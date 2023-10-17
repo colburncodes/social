@@ -2,6 +2,7 @@ import { useState, ReactNode, PropsWithoutRef } from "react"
 import { FormProvider, useForm, UseFormProps } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { Button } from "@mantine/core"
 
 export interface FormProps<S extends z.ZodType<any, any>>
   extends Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit"> {
@@ -65,9 +66,9 @@ export function Form<S extends z.ZodType<any, any>>({
         )}
 
         {submitText && (
-          <button type="submit" disabled={ctx.formState.isSubmitting}>
+          <Button type="submit" disabled={ctx.formState.isSubmitting}>
             {submitText}
-          </button>
+          </Button>
         )}
 
         <style global jsx>{`
