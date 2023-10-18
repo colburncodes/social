@@ -3,7 +3,7 @@ import { AuthenticationError, AuthorizationError } from "blitz"
 import React, { Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
 import "src/styles/globals.css"
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css"
 import { createTheme, MantineProvider, rem } from "@mantine/core"
 
 function RootErrorFallback({ error }: ErrorFallbackProps) {
@@ -34,25 +34,23 @@ const theme = createTheme({
   // },
 
   shadows: {
-    md: '1px 1px 3px rgba(0, 0, 0, .25)',
-    xl: '5px 5px 3px rgba(0, 0, 0, .25)',
+    md: "1px 1px 3px rgba(0, 0, 0, .25)",
+    xl: "5px 5px 3px rgba(0, 0, 0, .25)",
   },
 
   headings: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: "Roboto, sans-serif",
     sizes: {
       h1: { fontSize: rem(36) },
     },
   },
-});
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary FallbackComponent={RootErrorFallback}>
-      <MantineProvider defaultColorScheme={'dark'}>
-      <Suspense>
+      <MantineProvider defaultColorScheme={"light"}>
         <Component {...pageProps} />
-      </Suspense>
       </MantineProvider>
     </ErrorBoundary>
   )

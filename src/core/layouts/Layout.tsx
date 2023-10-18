@@ -23,8 +23,8 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
       >
         <AppShell.Header>
           <Group>
-            <Text fw={"bold"}>
-              <div style={{ padding: 10 }}>Social</div>
+            <Text fw={"bold"} p={10} c={"center"}>
+              Social
             </Text>
           </Group>
         </AppShell.Header>
@@ -33,7 +33,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         </AppShell.Main>
         <AppShell.Footer>
           <div style={{ textAlign: "center" }}>
-            <Text fz={"xs"} p={5} color="dimmed">
+            <Text fz={"xs"} p={5}>
               copyright {thisYear}
             </Text>
           </div>
