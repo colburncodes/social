@@ -1,7 +1,8 @@
 import Head from "next/head"
-import React, { FC, Suspense } from "react"
-import { BlitzLayout } from "@blitzjs/next"
-import { AppShell, Group, Text, Stack } from "@mantine/core"
+import React, from "react"
+import { BlitzLayout, Routes } from "@blitzjs/next"
+import { AppShell, Group, Text, Stack, Anchor } from "@mantine/core"
+import Link from "next/link"
 
 type Props = {
   title?: string
@@ -23,9 +24,16 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
       >
         <AppShell.Header>
           <Group>
-            <Text fw={"bold"} p={10} c={"center"}>
+            <Anchor
+              component={Link}
+              href={Routes.Home()}
+              fw={"bold"}
+              p={10}
+              c={"black"}
+              underline={false}
+            >
               Social
-            </Text>
+            </Anchor>
           </Group>
         </AppShell.Header>
         <AppShell.Main>

@@ -50,7 +50,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary FallbackComponent={RootErrorFallback}>
       <MantineProvider defaultColorScheme={"light"}>
-        <Component {...pageProps} />
+        <Suspense fallback="Loading...">
+          <Component {...pageProps} />
+        </Suspense>
       </MantineProvider>
     </ErrorBoundary>
   )

@@ -13,35 +13,22 @@ import { Button } from "@mantine/core"
 export const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
-  if (currentUser) {
-    return (
-      <>
-        <Button
-          className={styles.button}
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </Button>
-        <div>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-        </div>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <Button component={Link} href={Routes.SignupPage()} className={styles.button}>
-          <strong>Sign Up</strong>
-        </Button>
-        <Button component={Link} href={Routes.LoginPage()} className={styles.loginButton}>
-          <strong>Login</strong>
-        </Button>
-      </>
-    )
-  }
+  if (!currentUser) return null
+  return (
+    <>
+      <Button
+        className={styles.button}
+        onClick={async () => {
+          await logoutMutation()
+        }}
+      >
+        Logout
+      </Button>
+      <div>
+        User id: <code>{currentUser.id}</code>
+        <br />
+        User role: <code>{currentUser.role}</code>
+      </div>
+    </>
+  )
 }
