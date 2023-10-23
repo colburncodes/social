@@ -1,10 +1,12 @@
+import "@mantine/notifications/styles.css"
+import "src/styles/globals.css"
+import "@mantine/core/styles.css"
 import { ErrorFallbackProps, ErrorComponent, ErrorBoundary, AppProps } from "@blitzjs/next"
 import { AuthenticationError, AuthorizationError } from "blitz"
 import React, { Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
-import "src/styles/globals.css"
-import "@mantine/core/styles.css"
 import { createTheme, MantineProvider, rem } from "@mantine/core"
+import { Notifications } from "@mantine/notifications"
 
 function RootErrorFallback({ error }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
@@ -50,6 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary FallbackComponent={RootErrorFallback}>
       <MantineProvider defaultColorScheme={"light"}>
+        <Notifications position={"top-right"} />
         <Suspense fallback="Loading...">
           <Component {...pageProps} />
         </Suspense>

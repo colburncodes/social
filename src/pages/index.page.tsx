@@ -12,18 +12,9 @@ const Home: BlitzPage = () => {
     <Layout title="Home">
       {currentUser && <UserInfo />}
       {!currentUser && (
-        <div
-          style={{
-            display: "flex",
-            position: "relative",
-            marginLeft: 70,
-            marginTop: 50,
-          }}
-        >
-          <Stack>
-            <AuthenticationForm />
-          </Stack>
-        </div>
+        <Stack>
+          <AuthenticationForm />
+        </Stack>
       )}
     </Layout>
   )

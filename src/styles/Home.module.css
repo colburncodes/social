@@ -187,26 +187,23 @@
 }
 
 .button {
-  background: linear-gradient(to top, rgb(124, 58, 237), rgb(117, 81, 236));
   border: 1px solid rgb(231, 216, 246);
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
   padding: 0 24px;
-  height: 48px;
-  width: 200px;
+  height: 40px;
+  width: 100px;
   max-width: 300px;
   position: relative;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  justify-content: space-between;
   flex-shrink: 0;
   user-select: none;
   white-space: nowrap;
-  border-radius: 0.75rem;
-  border-bottom-left-radius: 0px;
+  border-radius: 0.55rem;
   font-size: 15px;
   transition: all 0.3s ease 0s;
   cursor: pointer;
+  float: right
 }
 
 .button:hover {
