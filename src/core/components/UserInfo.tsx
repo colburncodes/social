@@ -1,34 +1,26 @@
-import Link from "next/link"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
-import logout from "../../features/auth/mutations/logout"
-import { useMutation } from "@blitzjs/rpc"
-import { Routes } from "@blitzjs/next"
-import styles from "src/styles/Home.module.css"
-import { Button } from "@mantine/core"
+import { Stack, Text } from "@mantine/core"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
- * You can delete everything in here and start from scratch if you like.
+ * You can delete everything  in here and start from scratch if you like.
  */
 export const UserInfo = () => {
   const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
+
   if (!currentUser) return null
+
   return (
     <>
-      <Button
-        className={styles.button}
-        onClick={async () => {
-          await logoutMutation()
-        }}
-      >
-        Logout
-      </Button>
-      <div>
-        User id: <code>{currentUser.id}</code>
+      <Stack>
+        <Text>
+          User id: <code>{currentUser.id}</code>
+        </Text>
         <br />
-        User role: <code>{currentUser.role}</code>
-      </div>
+        <Text>
+          User role: <code>{currentUser.role}</code>
+        </Text>
+      </Stack>
     </>
   )
 }

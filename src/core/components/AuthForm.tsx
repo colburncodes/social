@@ -1,6 +1,7 @@
 import { useToggle, upperFirst } from "@mantine/hooks"
 import { useForm } from "@mantine/form"
 import {
+  Box,
   TextInput,
   PasswordInput,
   Text,
@@ -77,68 +78,79 @@ export function AuthenticationForm(props: PaperProps) {
   }
 
   return (
-    <Paper radius="md" p="xl" withBorder {...props}>
-      <Text size="lg" fw={"bold"} ta={"center"}>
-        Welcome to Social, {type} with
-      </Text>
+    <Box
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        top: 50,
+        right: 130,
+      }}
+    >
+      <Paper radius="md" p="xl" withBorder {...props}>
+        <Text size="lg" fw={"bold"} ta={"center"}>
+          Welcome to Social, {type} with
+        </Text>
 
-      <Group grow mb="md" mt="md">
-        <GoogleButton radius="xl">Google</GoogleButton>
-        <TwitterButton radius="xl">Twitter</TwitterButton>
-      </Group>
+        <Group grow mb="md" mt="md">
+          <GoogleButton radius="xl">Google</GoogleButton>
+          <TwitterButton radius="xl">Twitter</TwitterButton>
+        </Group>
 
-      <Divider label="Or continue with email" labelPosition="center" my="lg" />
+        <Divider label="Or continue with email" labelPosition="center" my="lg" />
 
-      <form onSubmit={form.onSubmit(onSubmit)}>
-        <Stack>
-          {type === "register" && (
+        <form onSubmit={form.onSubmit(onSubmit)}>
+          <Stack>
+            {type === "register" && (
+              <TextInput
+                label="Name"
+                placeholder="Your name"
+                value={form.values.name}
+                onChange={(event) => form.setFieldValue("name", event.currentTarget.value)}
+                radius="md"
+              />
+            )}
+
             <TextInput
-              label="Name"
-              placeholder="Your name"
-              value={form.values.name}
-              onChange={(event) => form.setFieldValue("name", event.currentTarget.value)}
+              required
+              label="Email"
+              placeholder="hello@social.dev"
+              {...form.getInputProps("email")}
               radius="md"
             />
-          )}
 
-          <TextInput
-            required
-            label="Email"
-            placeholder="hello@social.dev"
-            {...form.getInputProps("email")}
-            radius="md"
-          />
-
-          <PasswordInput
-            required
-            label="Password"
-            placeholder="Your password"
-            {...form.getInputProps("password")}
-            radius="md"
-          />
-
-          {type === "register" && (
-            <Checkbox
-              color={"black"}
-              label="I accept terms and conditions"
-              checked={form.values.terms}
-              onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
+            <PasswordInput
+              required
+              label="Password"
+              placeholder="Your password"
+              {...form.getInputProps("password")}
+              radius="md"
             />
-          )}
-        </Stack>
 
-        <Group justify="space-between" mt="xl">
-          <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
-            {type === "register"
-              ? "Already have an account? Login"
-              : "Don't have an account? Register"}
-          </Anchor>
-          <Button bg={"black"} type="submit" radius="xl">
-            {upperFirst(type)}
-          </Button>
-        </Group>
-      </form>
-    </Paper>
+            {type === "register" && (
+              <Checkbox
+                color={"black"}
+                label="I accept terms and conditions"
+                checked={form.values.terms}
+                onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
+              />
+            )}
+          </Stack>
+
+          <Group justify="space-between" mt="xl">
+            <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+              {type === "register"
+                ? "Already have an account? Login"
+                : "Don't have an account? Register"}
+            </Anchor>
+            <Button bg={"black"} type="submit" radius="xl">
+              {upperFirst(type)}
+            </Button>
+          </Group>
+        </form>
+      </Paper>
+    </Box>
   )
 }
 

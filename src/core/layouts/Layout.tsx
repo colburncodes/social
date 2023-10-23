@@ -1,15 +1,28 @@
 import Head from "next/head"
-import React, from "react"
+import React from "react"
 import { BlitzLayout, Routes } from "@blitzjs/next"
-import { AppShell, Group, Text, Stack, Anchor } from "@mantine/core"
+import { AppShell, Group, Text, Stack, Anchor, Button } from "@mantine/core"
 import Link from "next/link"
+import { useMutation } from "@blitzjs/rpc"
+import logout from "../../features/auth/mutations/logout"
+import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
+import { useRouter } from "next/navigation"
+import { thisYear } from "src/utils/utils"
 
 type Props = {
   title?: string
   children?: React.ReactNode
 }
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
-  const thisYear = new Date().getFullYear()
+  const router = useRouter()
+  const [logoutMutation] = useMutation(logout)
+  const user = useCurrentUser()
+
+  const onLogout = async () => {
+    await logoutMutation()
+    router.push("/")
+  }
+
   return (
     <>
       <Head>
@@ -17,13 +30,13 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppShell
-        header={{ height: 45 }}
+        header={{ height: 55 }}
         navbar={{ width: 300, breakpoint: "sm" }}
         footer={{ height: 30 }}
         padding="md"
       >
         <AppShell.Header>
-          <Group>
+          <Group style={{ justifyContent: "space-between" }}>
             <Anchor
               component={Link}
               href={Routes.Home()}
@@ -32,8 +45,14 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
               c={"black"}
               underline={false}
             >
-              Social
+              SOCIAL
             </Anchor>
+
+            {user && (
+              <Button size="xs" variant="light" style={{ margin: 10 }} onClick={onLogout}>
+                Logout
+              </Button>
+            )}
           </Group>
         </AppShell.Header>
         <AppShell.Main>
