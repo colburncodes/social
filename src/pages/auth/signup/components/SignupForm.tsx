@@ -1,8 +1,8 @@
-import signup from "../../../../features/auth/mutations/signup"
 import { Box, Button, Group, PasswordInput, TextInput } from "@mantine/core"
 import { useMutation } from "@blitzjs/rpc"
 import { useForm } from "@mantine/form"
-import { FORM_ERROR } from "../../../../core/components/Form"
+import signup from "~/src/features/auth/mutations/signup"
+import { FORM_ERROR } from "~/src/core/components/Form"
 
 type SignupFormProps = {
   onSuccess?: () => void
