@@ -20,9 +20,66 @@ model User {
   email          String   @unique
   hashedPassword String?
   role           String   @default("USER")
+  bio            String?
 
+  events   Event[]
   tokens   Token[]
   sessions Session[]
+  comment  Comment[]
+  favorite Favorite[]
+  follower Follow[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  body      String
+
+  event   Event @relation(fields: [eventId], references: [id])
+  eventId Int
+  user    User  @relation(fields: [userId], references: [id])
+  userId  Int
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  description String
+
+  eventTag EventTag[]
+  comment  Comment[]
+  favorite Favorite[]
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model EventTag {
+  id Int @id @default(autoincrement())
+
+  event   Event @relation(fields: [eventId], references: [id])
+  eventId Int
+  tag     Tag   @relation(fields: [tagId], references: [id])
+  tagId   Int
+}
+
+model Favorite {
+  id Int @id @default(autoincrement())
+
+  event   Event @relation(fields: [eventId], references: [id])
+  eventId Int
+  user    User  @relation(fields: [userId], references: [id])
+  userId  Int
+}
+
+model Follow {
+  id Int @id @default(autoincrement())
+
+  follower User @relation(fields: [userId], references: [id])
+  userId   Int
 }
 
 model Session {
@@ -38,6 +95,13 @@ model Session {
 
   user   User? @relation(fields: [userId], references: [id])
   userId Int?
+}
+
+model Tag {
+  id          Int    @id @default(autoincrement())
+  displayName String
+
+  eventTag EventTag[]
 }
 
 model Token {
