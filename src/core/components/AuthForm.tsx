@@ -21,10 +21,6 @@ import signup from "../../features/auth/mutations/signup"
 import login from "../../features/auth/mutations/login"
 import { FORM_ERROR } from "./Form"
 
-type SignupFormProps = {
-  onSuccess?: () => void
-}
-
 export function AuthenticationForm(props: PaperProps) {
   const [loginMutation] = useMutation(login)
   const [signupMutation] = useMutation(signup)
@@ -104,10 +100,10 @@ export function AuthenticationForm(props: PaperProps) {
           <Stack>
             {type === "register" && (
               <TextInput
+                required
                 label="Name"
                 placeholder="Your name"
-                value={form.values.name}
-                onChange={(event) => form.setFieldValue("name", event.currentTarget.value)}
+                {...form.getInputProps("name")}
                 radius="md"
               />
             )}

@@ -13,7 +13,7 @@ generator client {
 // --------------------------------------
 
 model User {
-  id             Int      @id @default(autoincrement())
+  id             String   @id @default(uuid())
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   name           String?
@@ -31,19 +31,19 @@ model User {
 }
 
 model Comment {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   body      String
 
-  event   Event @relation(fields: [eventId], references: [id])
-  eventId Int
-  user    User  @relation(fields: [userId], references: [id])
-  userId  Int
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
 }
 
 model Event {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   title       String
@@ -53,37 +53,37 @@ model Event {
   comment  Comment[]
   favorite Favorite[]
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model EventTag {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
-  event   Event @relation(fields: [eventId], references: [id])
-  eventId Int
-  tag     Tag   @relation(fields: [tagId], references: [id])
-  tagId   Int
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+  tag     Tag    @relation(fields: [tagId], references: [id])
+  tagId   String
 }
 
 model Favorite {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
-  event   Event @relation(fields: [eventId], references: [id])
-  eventId Int
-  user    User  @relation(fields: [userId], references: [id])
-  userId  Int
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
 }
 
 model Follow {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
-  follower User @relation(fields: [userId], references: [id])
-  userId   Int
+  follower User   @relation(fields: [userId], references: [id])
+  userId   String
 }
 
 model Session {
-  id                 Int       @id @default(autoincrement())
+  id                 String    @id @default(uuid())
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   expiresAt          DateTime?
@@ -93,37 +93,32 @@ model Session {
   publicData         String?
   privateData        String?
 
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
 }
 
 model Tag {
-  id          Int    @id @default(autoincrement())
+  id          String @id @default(uuid())
   displayName String
 
   eventTag EventTag[]
 }
 
 model Token {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   hashedToken String
-  type        String
-  // See note below about TokenType enum
-  // type        TokenType
+  type        TokenType
   expiresAt   DateTime
   sentTo      String
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
   @@unique([hashedToken, type])
 }
 
-// NOTE: It's highly recommended to use an enum for the token type
-//       but enums only work in Postgres.
-//       See: https://blitzjs.com/docs/database-overview#switch-to-postgre-sql
-// enum TokenType {
-//   RESET_PASSWORD
-// }
+enum TokenType {
+  RESET_PASSWORD
+}
