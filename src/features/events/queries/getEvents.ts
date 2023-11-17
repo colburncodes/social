@@ -1,17 +1,24 @@
 import { resolver } from "@blitzjs/rpc"
 import { z } from "zod"
+import db from "~/db"
 
 const Input = z.object({
   search: z.string().optional(),
 })
 
-const getEvents = resolver.pipe(resolver.zod(Input), resolver.authorize(), async ({ search }) => {
-  const events = [
-    { id: 1, title: "Social", description: "Details", createdAt: new Date().toDateString() },
-    { id: 2, title: "Stl Code", description: "Code", createdAt: new Date().toDateString() },
-    { id: 3, title: "React", description: "Suspense React", createdAt: new Date().toDateString() },
-  ]
-  return events
-})
+const getEvents = resolver.pipe(
+  resolver.zod(Input),
+  resolver.authorize(),
+  async ({}, { session: { userId } }) => {
+    const events = await db.event.findMany({
+      where: {
+        userId,
+      },
+    })
+    if (events == null) return "No events exists!"
+
+    return events
+  }
+)
 
 export default getEvents
