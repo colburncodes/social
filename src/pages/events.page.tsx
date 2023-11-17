@@ -1,32 +1,50 @@
 import { useMutation, useQuery } from "@blitzjs/rpc"
 import getEvents from "../features/events/queries/getEvents"
-import { Button, Group, Loader, List, Text, Stack } from "@mantine/core"
+import { Button, Group, Loader, List, Text, Stack, Input } from "@mantine/core"
 import { BlitzPage } from "@blitzjs/next"
 import Layout from "../core/layouts/Layout"
-import React, { Suspense } from "react"
+import React, { Suspense, useState } from "react"
 import createEvent from "../features/events/mutations/createEvent"
 import { notifications } from "@mantine/notifications"
+import EventCard from "~/src/core/components/EventCard/EventCard"
 
 const Events = () => {
   const [events] = useQuery(getEvents, {})
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+
   const [createEventMutation] = useMutation(createEvent, {
-    onSuccess: (result) => {
+    onSuccess: (event) => {
       notifications.show({
         title: "Mutation successful",
-        message: result,
+        message: `Create event: ${event.title}`,
       })
+
+      setTitle("")
+      setDescription("")
     },
   })
 
   return (
     <Stack>
+      <Input
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        placeholder={"Enter an event"}
+      />
+      <Input
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+        placeholder={"Enter an event description"}
+      />
       <Group>
         <Button
           size="xs"
           variant="filled"
           onClick={async () => {
             await createEventMutation({
-              title: "New Event",
+              title: title,
+              description: description,
             })
           }}
         >
@@ -35,9 +53,9 @@ const Events = () => {
       </Group>
 
       <List>
-        {events.map((event) => (
-          <List.Item key={event.id}>
-            <Text>{event.title}</Text>
+        {events.map((event, idx) => (
+          <List.Item key={idx}>
+            <EventCard key={event.id} title={event.title} description={event.description} />
           </List.Item>
         ))}
       </List>

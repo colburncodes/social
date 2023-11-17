@@ -5,7 +5,8 @@
     "dev": "blitz dev",
     "build": "blitz build",
     "start": "blitz start",
-    "studio": "blitz prisma studio"
+    "studio": "blitz prisma studio",
+    "db:migrate": "npm blitz prisma migrate dev"
   },
   "prisma": {
     "schema": "db/schema.prisma"
