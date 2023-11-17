@@ -38,20 +38,23 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         <AppShell.Header>
           <Group style={{ justifyContent: "space-between" }}>
             <Anchor
+              underline={false}
               component={Link}
               href={Routes.Home()}
               fw={"bold"}
               p={10}
               c={"black"}
-              underline={false}
             >
               SOCIAL
             </Anchor>
 
             {user && (
-              <Button size="xs" variant="light" style={{ margin: 10 }} onClick={onLogout}>
-                Logout
-              </Button>
+              <Group>
+                <Text>Welcome, {user.name}</Text>
+                <Button size="xs" variant="light" style={{ margin: 10 }} onClick={onLogout}>
+                  Logout
+                </Button>
+              </Group>
             )}
           </Group>
         </AppShell.Header>
