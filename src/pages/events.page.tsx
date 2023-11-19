@@ -3,30 +3,27 @@ import getEvents from "../features/events/queries/getEvents"
 import { Button, Group, Loader, List, Text, Stack, Input } from "@mantine/core"
 import { BlitzPage } from "@blitzjs/next"
 import Layout from "../core/layouts/Layout"
-import React, { Suspense, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import createEvent from "../features/events/mutations/createEvent"
 import { notifications } from "@mantine/notifications"
 import EventCard from "~/src/core/components/EventCard/EventCard"
+import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 
 const Events = () => {
+  const user = useCurrentUser()
   const [events] = useQuery(getEvents, {})
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
+  const [$createEvent] = useMutation(createEvent)
 
-  const [createEventMutation] = useMutation(createEvent, {
-    onSuccess: (event) => {
-      notifications.show({
-        title: "Mutation successful",
-        message: `Create event: ${event.title}`,
-      })
-
-      setTitle("")
-      setDescription("")
-    },
-  })
+  useEffect(() => {
+    setTitle("")
+    setDescription("")
+  }, [title, description])
 
   return (
     <Stack>
+      {user && <Text>Hello {user.name} here are your events</Text>}
       <Input
         value={title}
         onChange={(event) => setTitle(event.target.value)}
@@ -42,7 +39,7 @@ const Events = () => {
           size="xs"
           variant="filled"
           onClick={async () => {
-            await createEventMutation({
+            await $createEvent({
               title: title,
               description: description,
             })
@@ -55,7 +52,7 @@ const Events = () => {
       <List>
         {events.map((event, idx) => (
           <List.Item key={idx}>
-            <EventCard key={event.id} title={event.title} description={event.description} />
+            <EventCard key={event.id} event={event} />
           </List.Item>
         ))}
       </List>

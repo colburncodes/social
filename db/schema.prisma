@@ -48,6 +48,7 @@ model Event {
   updatedAt   DateTime @updatedAt
   title       String
   description String
+  bookMarked  Boolean?
 
   eventTag EventTag[]
   comment  Comment[]
