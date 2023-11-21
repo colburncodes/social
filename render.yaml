@@ -4,9 +4,9 @@ services:
     plan: starter
     repo: https://github.com/colburncodes/social.git
     buildCommand: npm --frozen-lockfile --prod=false &&
-      blitz prisma generate &&
-      blitz build &&
-      blitz prisma migrate deploy
+      npx blitz prisma generate &&
+      npx blitz build &&
+      npx blitz prisma migrate deploy
     startCommand: blitz start
     envVars:
       - key: NODE_ENV
