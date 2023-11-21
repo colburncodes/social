@@ -1,8 +1,8 @@
 services:
   - type: web
     name: social
-    runtime: node
     plan: starter
+    repo: https://github.com/colburncodes/social.git
     buildCommand: yarn --frozen-lockfile --prod=false &&
       blitz prisma generate &&
       blitz build &&
@@ -13,11 +13,11 @@ services:
         value: production
       - key: DATABASE_URL
         fromDatabase:
-          name: blitzapp-db
+          name: social_db
           property: connectionString
       - key: SESSION_SECRET_KEY
-        generateValue: true
+        generateValue: false
 
 databases:
-  - name: blitzapp-db
+  - name: social_db
     plan: starter
