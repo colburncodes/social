@@ -3,7 +3,7 @@ services:
     name: social
     plan: starter
     repo: https://github.com/colburncodes/social.git
-    buildCommand: yarn --frozen-lockfile --prod=false &&
+    buildCommand: npm --frozen-lockfile --prod=false &&
       blitz prisma generate &&
       blitz build &&
       blitz prisma migrate deploy
