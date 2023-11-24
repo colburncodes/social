@@ -74,7 +74,6 @@ export function EventCard({ event }) {
               />
             ) : (
               <IconBookmark
-                bookmarked={event.bookMarked}
                 onClick={() =>
                   $toggleEvent({
                     id: event.id,

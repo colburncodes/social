@@ -17,14 +17,13 @@ const Events = () => {
   const [$createEvent] = useMutation(createEvent)
 
   useEffect(() => {
-    setTitle("")
-    setDescription("")
   }, [title, description])
 
   return (
     <Stack>
       {user && <Text>Hello {user.name} here are your events</Text>}
       <Input
+        type={"text"}
         value={title}
         onChange={(event) => setTitle(event.target.value)}
         placeholder={"Enter an event"}
@@ -39,10 +38,21 @@ const Events = () => {
           size="xs"
           variant="filled"
           onClick={async () => {
-            await $createEvent({
+            const response = await $createEvent({
               title: title,
               description: description,
             })
+
+            if(response) {
+              notifications.show({
+                color: 'black',
+                title: "Create Event",
+                message: `${response.title} was successful!`
+              })
+            }
+
+            setTitle("")
+            setDescription("")
           }}
         >
           Create Event
