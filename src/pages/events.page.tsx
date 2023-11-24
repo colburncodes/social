@@ -22,6 +22,8 @@ const Events = () => {
   return (
     <Stack>
       {user && <Text>Hello {user.name} here are your events</Text>}
+      {user?.isAdmin &&
+        <>
       <Input
         type={"text"}
         value={title}
@@ -58,7 +60,8 @@ const Events = () => {
           Create Event
         </Button>
       </Group>
-
+        </>
+      }
       <List>
         {events.map((event, idx) => (
           <List.Item key={idx}>
