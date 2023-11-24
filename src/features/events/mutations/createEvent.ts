@@ -2,6 +2,7 @@ import { resolver } from "@blitzjs/rpc"
 import { z } from "zod"
 import db from "~/db"
 
+
 const Input = z.object({
   title: z.string(),
   description: z.string(),
@@ -9,7 +10,7 @@ const Input = z.object({
 
 const createEvent = resolver.pipe(
   resolver.zod(Input),
-  resolver.authorize(),
+  resolver.authorize("ADMIN"),
   async ({ title, description }, { session: { userId } }) => {
     const event = await db.event.create({
       data: {
