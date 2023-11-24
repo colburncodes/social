@@ -7,10 +7,11 @@ import React, { Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
 import { createTheme, MantineProvider, rem } from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
+import AuthenticationForm from "~/src/core/components/AuthForm"
 
-function RootErrorFallback({ error }: ErrorFallbackProps) {
+export function RootErrorFallback({ error }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
-    return <div>Error: You are not authenticated</div>
+    return <AuthenticationForm />
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent
@@ -50,14 +51,14 @@ const theme = createTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    <MantineProvider defaultColorScheme={"light"}>
     <ErrorBoundary FallbackComponent={RootErrorFallback}>
-      <MantineProvider defaultColorScheme={"light"}>
         <Notifications position={"top-right"} />
         <Suspense fallback="Loading...">
           <Component {...pageProps} />
         </Suspense>
-      </MantineProvider>
     </ErrorBoundary>
+    </MantineProvider>
   )
 }
 

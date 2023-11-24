@@ -19,11 +19,12 @@ import { TwitterButton } from "./SocialButtons/SocialButtons"
 import { useMutation } from "@blitzjs/rpc"
 import signup from "../../features/auth/mutations/signup"
 import login from "../../features/auth/mutations/login"
-import { FORM_ERROR } from "./Form"
+import { useRouter } from "next/navigation"
 
 export function AuthenticationForm(props: PaperProps) {
-  const [loginMutation] = useMutation(login)
-  const [signupMutation] = useMutation(signup)
+  const router = useRouter()
+  const [$login] = useMutation(login)
+  const [$signup] = useMutation(signup)
   const [type, toggle] = useToggle(["login", "register"])
   const form = useForm({
     initialValues: {
@@ -39,37 +40,12 @@ export function AuthenticationForm(props: PaperProps) {
     },
   })
 
-  const onRegister = async (values: any) => {
-    try {
-      await signupMutation(values)
-    } catch (error: any) {
-      if (error.code === "P2002" && error.meta?.target?.includes("email")) {
-        // This error comes from Prisma
-        return { email: "This email is already being used" }
-      } else {
-        return { [FORM_ERROR]: error.toString() }
-      }
-    }
-  }
-
-  const onLogin = async (values: any) => {
-    try {
-      await loginMutation(values)
-    } catch (error: any) {
-      if (error.code === "P2002" && error.meta?.target?.includes("email")) {
-        // This error comes from Prisma
-        return { email: "This email is already being used" }
-      } else {
-        return { [FORM_ERROR]: error.toString() }
-      }
-    }
-  }
-
   const onSubmit = async (values: any) => {
     if (type === "login") {
-      await onLogin(values)
+      await $login(values)
+      router.push('/events')
     } else {
-      await onRegister(values)
+      await $signup(values)
     }
   }
 

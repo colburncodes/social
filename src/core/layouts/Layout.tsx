@@ -1,13 +1,15 @@
 import Head from "next/head"
-import React from "react"
-import { BlitzLayout, Routes } from "@blitzjs/next"
-import { AppShell, Group, Text, Stack, Anchor, Button } from "@mantine/core"
+import React, { Suspense } from "react"
+import { BlitzLayout, BlitzPage, ErrorBoundary, Routes } from "@blitzjs/next"
+import { AppShell, Group, Text, Stack, Anchor, Button, Tooltip, Loader } from "@mantine/core"
 import Link from "next/link"
 import { useMutation } from "@blitzjs/rpc"
 import logout from "../../features/auth/mutations/logout"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
 import { useRouter } from "next/navigation"
 import { thisYear } from "src/utils/utils"
+import { IconUserShield } from "@tabler/icons-react"
+import { RootErrorFallback } from "~/src/pages/_app.page"
 
 type Props = {
   title?: string
@@ -17,11 +19,6 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
   const [logoutMutation] = useMutation(logout)
   const user = useCurrentUser()
-
-  const onLogout = async () => {
-    await logoutMutation()
-    router.push("/")
-  }
 
   return (
     <>
@@ -38,20 +35,26 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         <AppShell.Header>
           <Group style={{ justifyContent: "space-between" }}>
             <Anchor
-              underline={false}
+              underline={"never"}
               component={Link}
               href={Routes.Home()}
               fw={"bold"}
               p={10}
               c={"black"}
             >
-              SOCIAL
+              social
             </Anchor>
 
             {user && (
               <Group>
-                <Text>Welcome, {user.name}</Text>
-                <Button size="xs" variant="light" style={{ margin: 10 }} onClick={onLogout}>
+                <Text>{user.name}</Text>
+                {user.isAdmin && <Tooltip label={"Admin"}>
+                  <IconUserShield size={18} />
+                </Tooltip>}
+                <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
+                  await logoutMutation()
+                  router.push('/')
+                }}>
                   Logout
                 </Button>
               </Group>
@@ -59,7 +62,11 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
           </Group>
         </AppShell.Header>
         <AppShell.Main>
-          <Stack>{children}</Stack>
+          <ErrorBoundary resetKeys={[user]} FallbackComponent={RootErrorFallback}>
+            <Suspense fallback={<Loader/>}>
+              <Stack>{children}</Stack>
+            </Suspense>
+          </ErrorBoundary>
         </AppShell.Main>
         <AppShell.Footer>
           <div style={{ textAlign: "center" }}>
@@ -69,6 +76,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
           </div>
         </AppShell.Footer>
       </AppShell>
+
     </>
   )
 }
