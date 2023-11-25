@@ -63,7 +63,7 @@ const Events = () => {
         </>
       }
       <List>
-        {events.map((event, idx) => (
+        {events.map((event: any, idx: number) => (
           <List.Item key={idx}>
             <EventCard key={event.id} event={event} />
           </List.Item>
@@ -76,9 +76,7 @@ const Events = () => {
 export const EventsPage: BlitzPage = () => {
   return (
     <Layout>
-      <Suspense fallback={<Loader />}>
         <Events />
-      </Suspense>
     </Layout>
   )
 }
