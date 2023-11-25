@@ -62,7 +62,7 @@ export function AuthenticationForm(props: PaperProps) {
     >
       <Paper radius="md" p="xl" withBorder {...props}>
         <Text size="lg" fw={"bold"} ta={"center"}>
-          Welcome to Social, {type} with
+          welcome to social, {type} with
         </Text>
 
         <Group grow mb="md" mt="md">

@@ -5,4 +5,6 @@ const AboutPage: BlitzPage = () => {
   return <Layout>About Page</Layout>
 }
 
+AboutPage.authenticate = true;
+
 export default AboutPage
