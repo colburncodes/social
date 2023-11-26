@@ -1,13 +1,36 @@
 import "@mantine/notifications/styles.css"
 import "src/styles/globals.css"
 import "@mantine/core/styles.css"
-import { ErrorFallbackProps, ErrorComponent, ErrorBoundary, AppProps } from "@blitzjs/next"
+import { ErrorFallbackProps, ErrorBoundary, AppProps } from "@blitzjs/next"
 import { AuthenticationError, AuthorizationError } from "blitz"
-import React, { Suspense } from "react"
+import React, { FC, Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
-import { createTheme, MantineProvider, rem } from "@mantine/core"
+import { createTheme, Group, MantineProvider, Paper, rem, Text } from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
 import AuthenticationForm from "~/src/core/components/AuthForm"
+
+const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({
+  statusCode,
+  title
+}) => {
+  return(
+    <Group>
+      <Paper p={"xl"} w={"100%"} maw={400} radius={"md"}>
+        <Group>
+          <Text  fz={"md"} fw={"bold"}>
+            {statusCode}
+          </Text>
+          <Group >
+            <Text fz={"xl"}>An error occurred 😭</Text>
+            <Text fz={"md"}>
+              {title}
+            </Text>
+          </Group>
+        </Group>
+      </Paper>
+    </Group>
+  )
+}
 
 export function RootErrorFallback({ error }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
