@@ -1,6 +1,6 @@
 import Head from "next/head"
 import React, { Suspense } from "react"
-import { BlitzLayout, BlitzPage, ErrorBoundary, Routes } from "@blitzjs/next"
+import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
 import { AppShell, Group, Text, Stack, Anchor, Button, Tooltip, Loader } from "@mantine/core"
 import Link from "next/link"
 import { useMutation } from "@blitzjs/rpc"
@@ -76,7 +76,6 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
           </div>
         </AppShell.Footer>
       </AppShell>
-
     </>
   )
 }
