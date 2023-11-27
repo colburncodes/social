@@ -8,9 +8,12 @@ const SignupPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <Layout title='Sign Up'>
-      <SignupForm onSuccess={() => router.push(Routes.Home())} />
-    </Layout>
+    <>
+      {/* @ts-expect-error Server Component */}
+      <Layout title='Sign Up'>
+        <SignupForm onSuccess={() => router.push(Routes.Home())} />
+      </Layout>
+    </>
   )
 }
 

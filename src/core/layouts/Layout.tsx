@@ -62,11 +62,12 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
           </Group>
         </AppShell.Header>
         <AppShell.Main>
-          {/*<ErrorBoundary resetKeys={[user]} FallbackComponent={RootErrorFallback}>*/}
+          {/* @ts-expect-error Server Component */}
+          <ErrorBoundary resetKeys={[user]} FallbackComponent={RootErrorFallback}>
             <Suspense fallback={<Loader/>}>
               <Stack>{children}</Stack>
             </Suspense>
-          {/*</ErrorBoundary>*/}
+          </ErrorBoundary>
         </AppShell.Main>
         <AppShell.Footer>
           <div style={{ textAlign: "center" }}>

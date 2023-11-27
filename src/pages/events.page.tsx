@@ -75,9 +75,11 @@ const Events = () => {
 
 export const EventsPage: BlitzPage = () => {
   return (
-    <Layout>
+    <>
+      {/* @ts-expect-error Server Component */}
+      <Layout>
         <Events />
-    </Layout>
+      </Layout></>
   )
 }
 

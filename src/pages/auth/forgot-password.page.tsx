@@ -27,32 +27,36 @@ const ForgotPasswordPage: BlitzPage = () => {
   }
 
   return (
-    <Layout title="Forgot Your Password?">
-      <h1>Forgot your password?</h1>
+    <>
+      {/* @ts-expect-error Server Component */}
+      <Layout title="Forgot Your Password?">
+        <h1>Forgot your password?</h1>
 
-      {isSuccess ? (
-        <div>
-          <h2>Request Submitted</h2>
-          <p>
-            If your email is in our system, you will receive instructions to reset your password
-            shortly.
-          </p>
-        </div>
-      ) : (
-        <form onSubmit={form.onSubmit(onSubmit)}>
-          <TextInput
-            withAsterisk
-            label="Email"
-            placeholder="your@email.com"
-            {...form.getInputProps("email")}
-          />
+        {isSuccess ? (
+          <div>
+            <h2>Request Submitted</h2>
+            <p>
+              If your email is in our system, you will receive instructions to reset your password
+              shortly.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={form.onSubmit(onSubmit)}>
+            <TextInput
+              withAsterisk
+              label="Email"
+              placeholder="your@email.com"
+              {...form.getInputProps("email")}
+            />
 
-          <Group justify="flex-end" mt="md">
-            <Button type="submit">Submit</Button>
-          </Group>
-        </form>
-      )}
-    </Layout>
+            <Group justify="flex-end" mt="md">
+              <Button type="submit">Submit</Button>
+            </Group>
+          </form>
+        )}
+      </Layout>
+    </>
+
   )
 }
 
