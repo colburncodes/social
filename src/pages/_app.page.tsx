@@ -75,12 +75,12 @@ const theme = createTheme({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider defaultColorScheme={"light"}>
-    <ErrorBoundary FallbackComponent={RootErrorFallback}>
+    {/*<ErrorBoundary FallbackComponent={RootErrorFallback}>*/}
         <Notifications position={"top-right"} />
         <Suspense fallback="Loading...">
           <Component {...pageProps} />
         </Suspense>
-    </ErrorBoundary>
+    {/*</ErrorBoundary>*/}
     </MantineProvider>
   )
 }
