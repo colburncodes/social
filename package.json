@@ -11,10 +11,6 @@
   "prisma": {
     "schema": "db/schema.prisma"
   },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100
-  },
   "dependencies": {
     "@blitzjs/auth": "^2.0.0-beta.35",
     "@blitzjs/next": "^2.0.0-beta.35",
