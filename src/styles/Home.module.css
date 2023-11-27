@@ -305,3 +305,9 @@
     margin-left: 150px;
   }
 }
+
+@media (max-width: 550px) {
+  .mobileView{
+    margin-left: 150px;
+  }
+}
