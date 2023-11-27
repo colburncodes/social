@@ -63,6 +63,7 @@ const Events = () => {
         </>
       }
       <List>
+        {/* @ts-expect-error Server Component */}
         {events.map((event: any, idx: number) => (
           <List.Item key={idx}>
             <EventCard key={event.id} event={event} />
