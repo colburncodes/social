@@ -1,5 +1,4 @@
 import Layout from "src/core/layouts/Layout"
-import { FORM_ERROR } from "src/core/components/Form"
 import resetPassword from "../../features/auth/mutations/resetPassword"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
@@ -7,7 +6,7 @@ import { useMutation } from "@blitzjs/rpc"
 import Link from "next/link"
 import { assert } from "blitz"
 import { useForm } from "@mantine/form"
-import { Button, Group, PasswordInput } from "@mantine/core/lib"
+import { Button, Group, PasswordInput } from "@mantine/core"
 
 const ResetPasswordPage: BlitzPage = () => {
   const router = useRouter()
