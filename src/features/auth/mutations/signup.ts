@@ -2,17 +2,11 @@ import { SecurePassword } from "@blitzjs/auth/secure-password"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../../db"
 import { Role } from "../../../../types"
-import { email, password } from "../schemas"
-import { z } from "zod"
+import { SignUpInput } from "../schemas"
 import { PrismaError } from "~/src/utils/blitz-utils"
 
-export const Input = z.object({
-  email,
-  password,
-  name: z.string(),
-})
 
-export default resolver.pipe(resolver.zod(Input), async ({ email, name, password }, ctx) => {
+export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
 
   const existingUser = await db.user.findFirst({
