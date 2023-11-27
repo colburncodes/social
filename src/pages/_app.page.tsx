@@ -78,6 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     {/*<ErrorBoundary FallbackComponent={RootErrorFallback}>*/}
         <Notifications position={"top-right"} />
         <Suspense fallback="Loading...">
+          {/* @ts-expect-error Server Component */}
           <Component {...pageProps} />
         </Suspense>
     {/*</ErrorBoundary>*/}
