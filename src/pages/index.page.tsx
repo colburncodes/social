@@ -11,18 +11,21 @@ const Home: BlitzPage = () => {
   const [$adminOnlyMutation] = useMutation(adminOnly)
 
   return (
-    <Layout title="Home">
-      {user?.isAdmin && <Group>
-        <Button onClick={async () => {
-          await $adminOnlyMutation()
-        }}>Admin Only Button</Button>
-      </Group>}
-      {!user && (
-        <Stack>
-          <AuthenticationForm />
-        </Stack>
-      )}
-    </Layout>
+    <>
+      {/* @ts-expect-error Server Component */}
+      <Layout title="Home">
+        {user?.isAdmin && <Group>
+          <Button onClick={async () => {
+            await $adminOnlyMutation()
+          }}>Admin Only Button</Button>
+        </Group>}
+        {!user && (
+          <Stack>
+            <AuthenticationForm />
+          </Stack>
+        )}
+      </Layout>
+    </>
   )
 }
 
