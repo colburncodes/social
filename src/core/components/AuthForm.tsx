@@ -21,6 +21,8 @@ import signup from "../../features/auth/mutations/signup"
 import login from "../../features/auth/mutations/login"
 import { SignUpInput, LoginInput } from "~/src/features/auth/schemas"
 import { z } from "zod"
+import classes from '~/src/styles/Home.module.css'
+
 
 type SignupFormType = z.infer<typeof SignUpInput>
 type LoginFormType = z.infer<typeof LoginInput>
@@ -46,6 +48,7 @@ export function AuthenticationForm(props: PaperProps) {
 
   return (
     <Box
+      className={classes.mobileView}
       style={{
         display: "flex",
         justifyContent: "center",
