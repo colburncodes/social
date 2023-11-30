@@ -70,11 +70,11 @@ export function AuthenticationForm(props: PaperProps) {
 
         <Divider label="Or continue with email" labelPosition="center" my="lg" />
 
-        <form onSubmit={form.onSubmit((values) => {
+        <form onSubmit={form.onSubmit(async (values) => {
           if (type === "login") {
-            $login(values)
+            await $login(values)
           } else {
-            $signup(values)
+            await $signup(values)
           }
         })}>
           <Stack>
