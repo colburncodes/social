@@ -1,5 +1,5 @@
 import Head from "next/head"
-import React, { Suspense } from "react"
+import React, { Suspense, useState } from "react"
 import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
 import { AppShell, Group, Text, Stack, Anchor, Button, Tooltip, Loader } from "@mantine/core"
 import Link from "next/link"
@@ -10,15 +10,41 @@ import { useRouter } from "next/navigation"
 import { thisYear } from "src/utils/utils"
 import { IconUserShield } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
+import classes from "~/src/styles/Home.module.css"
 
 type Props = {
   title?: string
   children?: React.ReactNode
 }
+
+const links = [
+  { link: '/about', label: "about" },
+  { link: '/events', label: "events" },
+  { link: '/contact', label: "contact" },
+  { link: '/create-group', label: "start a new group"}
+];
+
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
   const [logoutMutation] = useMutation(logout)
+  // @ts-ignore
+  const [active, setActive] = useState(links[0].link)
   const user = useCurrentUser()
+
+  const items = links.map((link) => (
+    <Anchor
+      key={link.label}
+      href={link.link}
+      className={classes.link}
+      data-active={user && active === link.link || undefined}
+      onClick={(event) => {
+        event.preventDefault();
+        setActive(link.link);
+        router.push(link.link)
+      }}>
+      {link.label}
+    </Anchor>
+  ))
 
   return (
     <>
@@ -41,9 +67,14 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
               fw={"bold"}
               p={10}
               c={"black"}
+              ml={50}
             >
               social
             </Anchor>
+
+            <Group mr={200} gap={5} visibleFrom={"xs"}>
+              {items}
+            </Group>
 
             {user && (
               <Group>
