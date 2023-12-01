@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@blitzjs/rpc"
 import getEvents from "../features/events/queries/getEvents"
-import { Button, Group, Loader, List, Text, Stack, Input } from "@mantine/core"
+import { Button, Group, List, Text, Stack, Input } from "@mantine/core"
 import { BlitzPage } from "@blitzjs/next"
 import Layout from "../core/layouts/Layout"
-import React, { Suspense, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import createEvent from "../features/events/mutations/createEvent"
 import { notifications } from "@mantine/notifications"
 import EventCard from "~/src/core/components/EventCard/EventCard"
@@ -80,7 +80,8 @@ export const EventsPage: BlitzPage = () => {
       {/* @ts-expect-error Server Component */}
       <Layout>
         <Events />
-      </Layout></>
+      </Layout>
+    </>
   )
 }
 
