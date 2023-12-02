@@ -7,10 +7,10 @@ import { useMutation } from "@blitzjs/rpc"
 import logout from "../../features/auth/mutations/logout"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
 import { useRouter } from "next/navigation"
-import { thisYear } from "src/utils/utils"
 import { IconUserShield } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
+import { Footer } from '~/src/core/components/Footer/Footer'
 
 type Props = {
   title?: string
@@ -100,13 +100,14 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             </Suspense>
           </ErrorBoundary>
         </AppShell.Main>
-        <AppShell.Footer>
-          <div style={{ textAlign: "center" }}>
-            <Text fz={"xs"} p={5}>
-              copyright {thisYear}
-            </Text>
-          </div>
-        </AppShell.Footer>
+
+          {/*<div style={{ textAlign: "center" }}>*/}
+          {/*  <Text fz={"xs"} p={5}>*/}
+          {/*    copyright {thisYear}*/}
+          {/*  </Text>*/}
+          {/*</div>*/}
+          <Footer/>
+
       </AppShell>
     </>
   )

@@ -25,8 +25,14 @@ const toggleEvent = resolver.pipe(
     return db.event.update({
       where: {
         id,
+        userId
       },
       data: {
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
         bookMarked: !event.bookMarked,
       },
     })
