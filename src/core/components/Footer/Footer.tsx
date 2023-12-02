@@ -11,7 +11,7 @@ const data = [
       { label: 'Features', link: '#' },
       { label: 'Pricing', link: '#' },
       { label: 'Support', link: '#' },
-      { label: 'Forums', link: '#' },
+      { label: 'Frequently Asked', link: '/faqs' },
     ],
   },
   {
@@ -43,7 +43,7 @@ export function Footer() {
         className={classes.link}
         component="a"
         href={link.link}
-        onClick={(event) => event.preventDefault()}
+        onClick={(event) => router.push(link.link)}
       >
         {link.label}
       </Text>
@@ -63,7 +63,7 @@ export function Footer() {
         <div className={classes.logo}>
           <Text>Social</Text>
           <Text size="xs" c="dimmed" className={classes.description}>
-            Build fully functional accessible web applications faster than ever
+            Bringing the world together through live experiences.
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>

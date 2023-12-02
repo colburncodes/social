@@ -11,7 +11,7 @@ import { FeaturesCards } from "~/src/core/components/FeaturesCard/FeaturesCards"
 export const About = () => {
   const router = useRouter()
   return (
-    <Container mr={200} size="md">
+    <Container size="lg">
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.title}>
@@ -63,7 +63,9 @@ const AboutPage: BlitzPage = () => {
     <>
       {/* @ts-expect-error Server Component */}
       <Layout>
-        <About/>
+        <Group mr={200}>
+          <About/>
+        </Group>
       </Layout>
     </>
   )
