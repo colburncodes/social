@@ -54,7 +54,7 @@ export function FeaturesCards() {
   return (
     <Container color="black" size="lg" py="xl">
       <Title order={2} className={classes.title} ta="center" mt="sm">
-        Want do do more of what you love?
+        Want to do more of what you love?
       </Title>
 
       <Text c="dimmed" className={classes.description} ta="center" mt="md">
