@@ -15,7 +15,7 @@ export const About = () => {
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.title}>
-            Be <span className={classes.highlight}>social</span> creates <br /> possibilities to find and build local communities
+            <span className={classes.highlight}>Social</span> creates <br /> possibilities to find and build local communities
           </Title>
           <Text c="dimmed" mt="md">
             People use <span className={classes.highlight}>social</span> to meet new people, learn new things, find support, shake their comfort zones, and pursue their passions, together.
