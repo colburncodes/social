@@ -18,10 +18,10 @@ type Props = {
 }
 
 const links = [
-  { link: '/about', label: "about" },
-  { link: '/events', label: "events" },
-  { link: '/contact', label: "contact" },
-  { link: '/create-group', label: "start a new group"}
+  { link: '/about', label: "About" },
+  { link: '/events', label: "Events" },
+  { link: '/contact', label: "Contact" },
+  { link: '/create-group', label: "Create Group"}
 ];
 
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
@@ -69,10 +69,10 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
               c={"black"}
               ml={50}
             >
-              social
+              Social
             </Anchor>
 
-            <Group mr={200} gap={5} visibleFrom={"xs"}>
+            <Group mr={400} mt={5} gap={5} visibleFrom={"xs"}>
               {items}
             </Group>
 

@@ -22,6 +22,8 @@ model User {
   role           String   @default("USER")
   bio            String?
 
+  username String? @unique
+
   events   Event[]
   tokens   Token[]
   sessions Session[]
