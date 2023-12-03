@@ -20,7 +20,6 @@ type Props = {
 const links = [
   { link: '/about', label: "About" },
   { link: '/events', label: "Events" },
-  { link: '/contact', label: "Contact" },
   { link: '/create-group', label: "Create Group"}
 ];
 
