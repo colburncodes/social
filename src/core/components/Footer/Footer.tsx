@@ -6,21 +6,19 @@ import { useRouter } from "next/router"
 
 const data = [
   {
-    title: 'About',
+    title: 'Company',
     links: [
-      { label: 'Features', link: '#' },
-      { label: 'Pricing', link: '#' },
-      { label: 'Support', link: '#' },
-      { label: 'Frequently Asked', link: '/faqs' },
+      { label: 'About', link: '/about' },
+      { label: 'Blog', link: '/blog' },
+      { label: 'Contact Us', link: '/contact' },
     ],
   },
   {
-    title: 'Project',
+    title: 'Help and Info',
     links: [
-      { label: 'Contribute', link: '#' },
-      { label: 'Media assets', link: '#' },
-      { label: 'Changelog', link: '#' },
-      { label: 'Releases', link: '#' },
+      { label: 'Frequently Asked', link: '/faqs' },
+      { label: 'Features', link: '/features' },
+      { label: 'Help Center', link: '#' },
     ],
   },
   {
@@ -43,7 +41,10 @@ export function Footer() {
         className={classes.link}
         component="a"
         href={link.link}
-        onClick={(event) => router.push(link.link)}
+        onClick={(event) => {
+          event.preventDefault()
+          router.push(link.link)
+        }}
       >
         {link.label}
       </Text>
