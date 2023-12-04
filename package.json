@@ -8,7 +8,7 @@
     "start": "blitz start",
     "db:migrate": "npx blitz prisma migrate dev",
     "studio": "blitz prisma studio",
-    "railway:dev": "railway run yarn dev",
+    "railway:dev": "railway run yarn dev"
   },
   "prisma": {
     "schema": "db/schema.prisma"
