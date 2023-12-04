@@ -14,6 +14,7 @@ import { showNotification } from "@mantine/notifications"
 import { useRouter } from "next/router"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
 
+
 export const ProfilePage: BlitzPage = () => {
   const router = useRouter()
   const [opened, {close, open}] = useDisclosure(false);
@@ -35,28 +36,29 @@ export const ProfilePage: BlitzPage = () => {
   const currentUser = useCurrentUser()
   const isOwner = currentUser?.id === user?.id
 
+  const onSubmit = async (values: UpdateProfileInputType) => {
+    const { username } = values;
+    if (username !== user.username) {
+      if (username) {
+        await router.push(Routes.ProfilePage({ username }))
+      }
+    }
+    await $updateProfile(values)
+    showNotification({
+      color: 'green',
+      title: "Success!",
+      message: 'Profile updated'
+    })
+    close()
+  }
+
   return (
     <>
       <Modal opened={opened} onClose={() => {
         close()
         form.reset()
       }} title="Edit Profile">
-        {/*form*/}
-        <EditProfileForm form={form} onSubmit={form.onSubmit(async (values) => {
-          const { username } = values;
-          if (username !== user.username) {
-            if (username) {
-              await router.push(Routes.ProfilePage({ username }))
-            }
-          }
-          await $updateProfile(values)
-          showNotification({
-            color: 'green',
-            title: "Success!",
-            message: 'Profile updated'
-          })
-          close()
-        })} />
+        <EditProfileForm form={form} onSubmit={onSubmit} />
       </Modal>
       {/* @ts-expect-error Server Component */}
       <Layout>
