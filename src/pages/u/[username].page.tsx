@@ -12,6 +12,7 @@ import updateProfile from "~/src/features/users/mutations/updateProfile"
 import { UpdateProfileInput, UpdateProfileInputType } from "~/src/features/users/schemas"
 import { showNotification } from "@mantine/notifications"
 import { useRouter } from "next/router"
+import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
 
 export const ProfilePage: BlitzPage = () => {
   const router = useRouter()
@@ -36,15 +37,17 @@ export const ProfilePage: BlitzPage = () => {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Edit Profile">
-        <form onSubmit={form.onSubmit(async (values) => {
+      <Modal opened={opened} onClose={() => {
+        close()
+        form.reset()
+      }} title="Edit Profile">
+        {/*form*/}
+        <EditProfileForm form={form} onSubmit={form.onSubmit(async (values) => {
           const { username } = values;
           if (username !== user.username) {
             if (username) {
               await router.push(Routes.ProfilePage({ username }))
             }
-          } else {
-            await router.push(Routes.ProfilePage({ username }))
           }
           await $updateProfile(values)
           showNotification({
@@ -53,31 +56,7 @@ export const ProfilePage: BlitzPage = () => {
             message: 'Profile updated'
           })
           close()
-        })}>
-          <TextInput
-            required
-            label="Name"
-            placeholder="Name"
-            {...form.getInputProps("name")}
-          />
-          <TextInput
-            required
-            label="Username"
-            placeholder="Username"
-            {...form.getInputProps("username")}
-          />
-          <Textarea
-            required
-            data-autofocus
-            label="Bio"
-            placeholder="User bio"
-            {...form.getInputProps("bio")}
-            mt="md"
-          />
-          <Button disabled={!form.isValid()} type="submit" mt={10}>
-            Save
-          </Button>
-        </form>
+        })} />
       </Modal>
       {/* @ts-expect-error Server Component */}
       <Layout>
