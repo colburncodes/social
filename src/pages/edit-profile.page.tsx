@@ -8,8 +8,9 @@ import { UpdateProfileInput, UpdateProfileInputType } from "~/src/features/users
 import { useMutation, useQuery } from "@blitzjs/rpc"
 import updateProfile from "~/src/features/users/mutations/updateProfile"
 import { useForm, zodResolver } from "@mantine/form"
-import { Group } from "@mantine/core"
+import { Text, Group, Divider } from "@mantine/core"
 import getUserEditProfile from "~/src/features/users/queries/getUserEditProfile"
+import { bold } from "ansi-colors"
 
 export const EditProfilePage: BlitzPage = () => {
   const router = useRouter()
@@ -42,6 +43,9 @@ export const EditProfilePage: BlitzPage = () => {
     <>
       {/* @ts-expect-error Server Component */}
       <Layout>
+        <Text size={"md"} fw={"bold"}>Profile</Text>
+        <Text size={"xs"}>Update your profile settings.</Text>
+        <Divider my={"sx"} w={420}/>
         <Group>
           <EditProfileForm form={form} onSubmit={onSubmit} />
         </Group>
