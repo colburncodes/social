@@ -25,7 +25,7 @@ Made with [Blitz](https://github.com/blitz-js/blitz). Inspired by [Meetup](https
 - [ ] Subscription plans
 - [x] User Roles
 - [ ] Notifications
-    - [ ] Email using [MailTrap](https://mailtrap.io/) and [beefree](https://beefree.io/)
+    - [ ] Email using [Resend](https://resend.com/) and [React Email](https://react.email/)
     - [ ] Discord
     - [ ] Browser / in-app
 - [ ] Admin Panel
