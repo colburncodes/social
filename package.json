@@ -4,11 +4,11 @@
   "scripts": {
     "dev": "blitz dev",
     "build": "yarn blitz prisma migrate deploy && yarn blitz prisma generate && yarn blitz build",
+    "email": "cd mailers/react-email && yarn dev --port 3009",
     "start": "blitz start",
     "db:migrate": "npx blitz prisma migrate dev",
     "studio": "blitz prisma studio",
     "railway:dev": "railway run yarn dev",
-    "email": "cd mailers/react-email && yarn dev --port 3009"
   },
   "prisma": {
     "schema": "db/schema.prisma"
