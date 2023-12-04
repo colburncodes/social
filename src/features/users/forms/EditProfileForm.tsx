@@ -1,5 +1,5 @@
 import { Button, Textarea, TextInput } from "@mantine/core"
-import React from "react"
+import React, { useRef } from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
 
@@ -7,9 +7,20 @@ export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
   onSubmit: (values: UpdateProfileInputType) => Promise<void>;
 }> = ({ onSubmit, form }) => {
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const values: UpdateProfileInputType = {
+      name: form.getInputProps("name").value,
+      username: form.getInputProps("username").value,
+      bio: form.getInputProps("bio").value
+    }
+    await onSubmit(values)
+  }
+
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextInput
           required
           label="Name"

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import Layout from "~/src/core/layouts/Layout"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { showNotification } from "@mantine/notifications"
@@ -25,23 +25,25 @@ export const EditProfilePage: BlitzPage = () => {
     validateInputOnBlur: true,
   })
 
+  const onSubmit = async (values: UpdateProfileInputType) => {
+    const { username } = values;
+    await $updateProfile(values)
+    if (username) {
+      router.push(Routes.ProfilePage({ username }))
+      showNotification({
+        color: 'green',
+        title: "Success!",
+        message: 'Profile updated'
+      })
+    }
+  }
+
   return (
     <>
       {/* @ts-expect-error Server Component */}
       <Layout>
         <Group>
-          <EditProfileForm form={form} onSubmit={form.onSubmit(async (values) => {
-            const { username } = values;
-            await $updateProfile(values)
-            if (username) {
-              router.push(Routes.ProfilePage({ username }))
-              showNotification({
-                color: 'green',
-                title: "Success!",
-                message: 'Profile updated'
-              })
-            }
-          })} />
+          <EditProfileForm form={form} onSubmit={onSubmit} />
         </Group>
       </Layout>
     </>
