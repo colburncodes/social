@@ -1,7 +1,7 @@
 import { resolver } from "@blitzjs/rpc"
 import { z } from "zod"
 import db from "db"
-import { sendEmail } from "~/mailers/sendEmail"
+import { sendEmail } from "~/email/sendEmail"
 
 export const EmailInput = z.object({
   to: z.string(),

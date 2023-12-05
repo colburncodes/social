@@ -1,7 +1,7 @@
 import { generateToken, hash256 } from "@blitzjs/auth"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../../db"
-import { forgotPasswordMailer } from "../../../../mailers/forgotPasswordMailer"
+import { forgotPasswordMailer } from "../../../../email/forgotPasswordMailer"
 import { email } from "../schemas"
 import { z } from "zod"
 
