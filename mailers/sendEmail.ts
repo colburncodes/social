@@ -1,8 +1,8 @@
 import React from 'react';
 import { Resend } from 'resend';
-import { isDev } from "~/src/config"
 import { CreateEmailOptions } from "resend/build/src/emails/interfaces"
 import StripeWelcomeEmail from "~/mailers/react-email/emails/stripe-welcome"
+
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
