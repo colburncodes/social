@@ -6,7 +6,7 @@ import StripeWelcomeEmail from "~/mailers/react-email/emails/stripe-welcome"
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendEmail = async ({subject, to, html}) => {
+export const sendEmail = async ({subject, to}) => {
   let message:CreateEmailOptions = {
     from: 'onboarding@resend.dev',
     to, // 'colburnsanders@gmail.com'

@@ -17,7 +17,6 @@ const Home: BlitzPage = () => {
         {/* TODO: CREATE A LANDING PAGE.*/}
         {user && <Group><Button onClick={async () => {
           await $sendTestEmail({
-            html: "<div> Hello Testing </div>",
             subject: "Test email",
             to: "colburnsanders@gmail.com"
           })
