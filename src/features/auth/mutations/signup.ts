@@ -4,6 +4,9 @@ import db from "../../../../db"
 import { Role } from "../../../../types"
 import { SignUpInput } from "../schemas"
 import { PrismaError } from "~/src/utils/blitz-utils"
+import { sendEmail } from "~/email/sendEmail"
+import React from "react"
+import StripeWelcomeEmail from "~/email/react-email/emails/stripe-welcome"
 
 
 export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, password }, ctx) => {
@@ -26,6 +29,15 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
     })
 
     if (user) {
+      await sendEmail({
+        to: user.email,
+        subject: "Welcome to Social!",
+        react: React.createElement(StripeWelcomeEmail, {
+          props: {
+            name: user.name
+          }
+        })
+      })
       await ctx.session.$create({ userId: user.id, role: user.role as Role })
       return user
     }
