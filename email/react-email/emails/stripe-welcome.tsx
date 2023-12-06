@@ -18,27 +18,22 @@ const baseUrl = process.env.VERCEL_URL
   : "";
 
 export const StripeWelcomeEmail: React.FC<{
-  content: string,
-  btnText: string
-}> = ({ content, btnText }) => (
-  <Html>
+  props: {
+    name?: string | null;
+  }
+}> = ({ props: { name } }) => {
+  const welcomeMessage = name ? `Hello there ${name}, ` : "Hello, ";
+  return <Html>
     <Head />
     <Preview>You're now ready to make live transactions with Stripe!</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={box}>
-          <Img
-            src={`${baseUrl}/static/stripe-logo.png`}
-            width="49"
-            height="21"
-            alt="Stripe"
-          />
-          <Hr style={hr} />
           <Text style={paragraph}>
-            {content}
+            {welcomeMessage} welcome to our platform!
           </Text>
           <Button style={button} href="https://socialio.up.railway.app/">
-            {btnText}
+            Click here to get started
           </Button>
           <Hr style={hr} />
           <Text style={paragraph}>
@@ -92,7 +87,7 @@ export const StripeWelcomeEmail: React.FC<{
       </Container>
     </Body>
   </Html>
-);
+};
 
 export default StripeWelcomeEmail;
 
