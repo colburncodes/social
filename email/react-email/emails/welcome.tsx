@@ -15,13 +15,17 @@ import * as React from "react";
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : "";
+  : "http://localhost:3000";
 
+const defaultProps = {
+  name: "Test User"
+}
 export const StripeWelcomeEmail: React.FC<{
   props: {
     name?: string | null;
   }
-}> = ({ props: { name } }) => {
+}> = ({ props = defaultProps }) => {
+  const { name } = props;
   const welcomeMessage = name ? `Hello there ${name}, ` : "Hello, ";
   return <Html>
     <Head />
@@ -29,6 +33,7 @@ export const StripeWelcomeEmail: React.FC<{
     <Body style={main}>
       <Container style={container}>
         <Section style={box}>
+          <Img src={`${baseUrl}/images/logo.png`} width={49} height={21} alt={"logo"}/>
           <Text style={paragraph}>
             {welcomeMessage} welcome to our platform!
           </Text>

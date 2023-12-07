@@ -1,7 +1,8 @@
 import * as nodemailer from "nodemailer"
+import { env } from "~/src/env.mjs"
 
-let user = process.env.NODE_MAILER_USER;
-let pass = process.env.NODE_MAILER_PASS;
+let user = env.NODE_MAILER_USER;
+let pass = env.NODE_MAILER_PASS;
 
 export const nodemailerAppTransport = nodemailer.createTransport({
   host: "localhost",
