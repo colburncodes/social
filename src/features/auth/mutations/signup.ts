@@ -6,7 +6,7 @@ import { SignUpInput } from "../schemas"
 import { PrismaError } from "~/src/utils/blitz-utils"
 import { sendEmail } from "~/email/sendEmail"
 import React from "react"
-import StripeWelcomeEmail from "~/email/react-email/emails/stripe-welcome"
+import StripeWelcomeEmail from "~/email/react-email/emails/welcome"
 
 
 export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, password }, ctx) => {

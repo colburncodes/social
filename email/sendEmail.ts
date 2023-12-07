@@ -1,13 +1,12 @@
-import React from 'react';
 import { Resend } from 'resend';
 import { CreateEmailOptions } from "resend/build/src/emails/interfaces"
-import StripeWelcomeEmail from "~/email/react-email/emails/stripe-welcome"
 import { isDev } from "~/src/config"
 import { render } from "@react-email/render"
 import { nodemailerAppTransport } from "~/email/transports/nodemailer-local-transport"
+import { env } from "~/src/env.mjs"
 
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 export const sendEmail = async ({subject, to, react}) => {
 
