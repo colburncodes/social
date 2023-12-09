@@ -101,14 +101,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             </Suspense>
           </ErrorBoundary>
         </AppShell.Main>
-
-          {/*<div style={{ textAlign: "center" }}>*/}
-          {/*  <Text fz={"xs"} p={5}>*/}
-          {/*    copyright {thisYear}*/}
-          {/*  </Text>*/}
-          {/*</div>*/}
-          <Footer/>
-
+        <Footer/>
       </AppShell>
     </>
   )

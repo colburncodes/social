@@ -5,9 +5,9 @@ import classes from '~/src/styles/GetInTouch.module.css';
 
 export function ContactCard() {
   return (
-    <Paper shadow="md" radius="lg">
+    <Paper className={classes.container} shadow="md" radius="lg">
       <div className={classes.wrapper}>
-        <div className={classes.contacts} style={{ backgroundImage: `url(${bg.src})` }}>
+        <div className={classes.contacts} style={{ backgroundColor: "black" }}>
           <Text fz="lg" fw={700} className={classes.title} c="#fff">
             Contact information
           </Text>
