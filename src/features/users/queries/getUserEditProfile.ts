@@ -18,7 +18,7 @@ export default resolver.pipe(
       bio: true
     }
   })
-
+    
   if (!user) throw new NotFoundError()
   return user
 })

@@ -10,7 +10,6 @@ import updateProfile from "~/src/features/users/mutations/updateProfile"
 import { useForm, zodResolver } from "@mantine/form"
 import { Text, Group, Divider } from "@mantine/core"
 import getUserEditProfile from "~/src/features/users/queries/getUserEditProfile"
-import { bold } from "ansi-colors"
 
 export const EditProfilePage: BlitzPage = () => {
   const router = useRouter()
@@ -30,7 +29,7 @@ export const EditProfilePage: BlitzPage = () => {
     const { username } = values;
     await $updateProfile(values)
     if (username) {
-      router.push(Routes.ProfilePage({ username }))
+      await router.push(Routes.ProfilePage({ username }))
       showNotification({
         color: 'green',
         title: "Success!",

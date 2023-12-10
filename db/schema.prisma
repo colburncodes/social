@@ -107,6 +107,14 @@ model Tag {
   eventTag EventTag[]
 }
 
+model Contact {
+  id      String  @id @default(uuid())
+  name    String?
+  email   String?
+  subject String
+  message String?
+}
+
 model Token {
   id          Int       @id @default(autoincrement())
   createdAt   DateTime  @default(now())
