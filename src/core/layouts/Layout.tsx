@@ -70,10 +70,10 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             >
               Social
             </Anchor>
-
+            {user &&
             <Group mr={400} mt={5} gap={5} visibleFrom={"xs"}>
               {items}
-            </Group>
+            </Group>}
 
             {user && (
               <Group>
