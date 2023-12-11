@@ -48,7 +48,7 @@ export function AuthenticationForm(props: PaperProps) {
 
   return (
     <Box
-      className={classes.mobileView}
+      className={classes.formContainer}
       style={{
         display: "flex",
         justifyContent: "center",
