@@ -23,6 +23,7 @@ import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
 import { Footer } from '~/src/core/components/Footer/Footer'
 import cx from 'clsx'
+import { Img } from "@react-email/components"
 
 
 type Props = {
@@ -35,6 +36,10 @@ const links = [
   { link: '/events', label: "Events" },
   { link: '/create-group', label: "Create Group"}
 ];
+
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
 
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
@@ -68,26 +73,29 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppShell
-        header={{ height: 55 }}
+        header={{ height: 90 }}
         navbar={{ width: 300, breakpoint: "sm" }}
         footer={{ height: 30 }}
         padding="md"
       >
         <AppShell.Header>
-          <Group style={{ justifyContent: "space-between" }}>
-            <Anchor
-              underline={"never"}
-              component={Link}
-              href={Routes.Home()}
-              fw={"bold"}
-              p={10}
-              c={"black"}
-              ml={50}
-            >
-              Social
-            </Anchor>
+          <Group style={{ justifyContent: "space-between", position: "relative" }}>
+
+              <Anchor
+                underline={"never"}
+                component={Link}
+                href={Routes.Home()}
+                fw={"bold"}
+                c={"black"}
+                ml={10}
+                pos={"relative"}
+                top={-10}
+              >
+                <Img src={`${baseUrl}/social/social-logo.png`} width={200} height={120} alt={"Social"}/>
+              </Anchor>
+
             {user &&
-            <Group mr={400} mt={5} gap={5} visibleFrom={"xs"}>
+            <Group mr={100} mt={-30} gap={5} visibleFrom={"xs"}>
               {items}
             </Group>}
 
@@ -103,7 +111,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             </ActionIcon>
 
             {user && (
-              <Group>
+              <Group className={classes.profile}>
                 <Link href={Routes.EditProfilePage()}>
                   <Text>{user.name}</Text>
                 </Link>
