@@ -22,6 +22,7 @@ import login from "../../features/auth/mutations/login"
 import { SignUpInput, LoginInput } from "~/src/features/auth/schemas"
 import { z } from "zod"
 import classes from '~/src/styles/Home.module.css'
+import React from "react"
 
 
 type SignupFormType = z.infer<typeof SignUpInput>
