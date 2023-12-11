@@ -31,6 +31,7 @@
     "@t3-oss/env-nextjs": "^0.7.1",
     "@tabler/icons-react": "^2.42.0",
     "blitz": "^2.0.0-beta.35",
+    "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "eslint-config-next": "^14.0.3",
     "next": "^14.0.3",

@@ -300,6 +300,36 @@
   fill: #7450ec;
 }
 
+.iconWrapper {
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.icon {
+  width: rem(22px);
+  height: rem(22px);
+}
+
+.dark {
+  @mixin dark {
+    display: none;
+  }
+
+  @mixin light {
+    display: block;
+  }
+}
+
+.light {
+  @mixin light {
+    display: none;
+  }
+
+  @mixin dark {
+    display: block;
+  }
+}
+
 /* MOBILE */
 @media (max-width: 800px) {
   .linkGrid {
@@ -317,10 +347,18 @@
   .buttonContainer {
     flex-wrap: wrap;
   }
+
+  .formContainer {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 620px) {
-  .mobileView{
-    margin-left: 150px;
+  .formContainer {
+    /*width: 100%;*/
+    width: 350px;
+    margin-top: 50px;
+    margin-left: 180px;
   }
 }
+

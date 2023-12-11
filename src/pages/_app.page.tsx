@@ -3,11 +3,12 @@ import "src/styles/globals.css"
 import "@mantine/core/styles.css"
 import { ErrorFallbackProps, ErrorBoundary, AppProps } from "@blitzjs/next"
 import { AuthenticationError, AuthorizationError } from "blitz"
-import React, { FC, Suspense } from "react"
+import React, { Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
-import { createTheme, Group, MantineProvider, Paper, rem, Text } from "@mantine/core"
+import { Group, MantineProvider, Paper, Text } from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
 import AuthenticationForm from "~/src/core/components/AuthForm"
+import { theme } from "~/src/styles/mantine-theme"
 
 const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({
   statusCode,
@@ -52,29 +53,10 @@ export function RootErrorFallback({ error }: ErrorFallbackProps) {
   }
 }
 
-const theme = createTheme({
-  /** Put your mantine theme override here */
-  // colors: {
-  //   // Add your color
-  //   dark: ['#2C2E33', '#25262B', '#1A1B1E', '#141517', '#101113' /* ... */]
-  // },
-
-  shadows: {
-    md: "1px 1px 3px rgba(0, 0, 0, .25)",
-    xl: "5px 5px 3px rgba(0, 0, 0, .25)",
-  },
-
-  headings: {
-    fontFamily: "Roboto, sans-serif",
-    sizes: {
-      h1: { fontSize: rem(36) },
-    },
-  },
-})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MantineProvider defaultColorScheme={"light"}>
+    <MantineProvider theme={theme}>
       {/* @ts-expect-error Server Component */}
     <ErrorBoundary FallbackComponent={RootErrorFallback}>
         <Notifications position={"top-right"} />

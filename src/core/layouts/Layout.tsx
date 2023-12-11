@@ -1,16 +1,29 @@
 import Head from "next/head"
 import React, { Suspense, useState } from "react"
 import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
-import { AppShell, Group, Text, Stack, Anchor, Button, Tooltip, Loader } from "@mantine/core"
+import {
+  AppShell,
+  Group,
+  Text,
+  Stack,
+  Anchor,
+  Button,
+  Tooltip,
+  Loader,
+  ActionIcon,
+  useMantineColorScheme, useComputedColorScheme
+} from "@mantine/core"
 import Link from "next/link"
 import { useMutation } from "@blitzjs/rpc"
 import logout from "../../features/auth/mutations/logout"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
 import { useRouter } from "next/navigation"
-import { IconUserShield } from "@tabler/icons-react"
+import { IconSun, IconUserShield, IconMoon } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
 import { Footer } from '~/src/core/components/Footer/Footer'
+import cx from 'clsx'
+
 
 type Props = {
   title?: string
@@ -25,10 +38,13 @@ const links = [
 
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
+  const user = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
   // @ts-ignore
   const [active, setActive] = useState(links[0].link)
-  const user = useCurrentUser()
+  const { setColorScheme } = useMantineColorScheme()
+  const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
+
 
   const items = links.map((link) => (
     <Anchor
@@ -74,6 +90,17 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             <Group mr={400} mt={5} gap={5} visibleFrom={"xs"}>
               {items}
             </Group>}
+
+            <ActionIcon
+              className={classes.iconWrapper}
+              onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+              variant="default"
+              size="xl"
+              aria-label="Toggle color scheme"
+            >
+              <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
+              <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+            </ActionIcon>
 
             {user && (
               <Group>
