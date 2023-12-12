@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@blitzjs/rpc"
 import getEvents from "../features/events/queries/getEvents"
-import { Button, Group, List, Text, Stack, Input } from "@mantine/core"
+import { Button, Group, List, Text, Stack, Input, Textarea } from "@mantine/core"
 import { BlitzPage } from "@blitzjs/next"
 import Layout from "../core/layouts/Layout"
 import React, { useEffect, useState } from "react"
@@ -24,17 +24,26 @@ const Events = () => {
       {user && <Text>Hello {user.name} here are your events</Text>}
       {user?.isAdmin &&
         <>
-      <Input
-        type={"text"}
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-        placeholder={"Enter an event"}
-      />
-      <Input
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-        placeholder={"Enter an event description"}
-      />
+        <Stack>
+          <Group>
+            <Input
+              type={"text"}
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              placeholder={"Enter an event"}
+            />
+          </Group>
+          <Group>
+            <Textarea
+              size={"md"}
+              w={300}
+              data-autofocus
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              placeholder={"Enter an event description"}
+            />
+          </Group>
+        </Stack>
       <Group>
         <Button
           size="xs"
