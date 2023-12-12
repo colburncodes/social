@@ -1,5 +1,7 @@
 .inner {
     display: flex;
+    position: relative;
+    top: -70px;
     justify-content: space-between;
     padding-top: calc(var(--mantine-spacing-xl) * 4);
     padding-bottom: calc(var(--mantine-spacing-xl) * 4);
