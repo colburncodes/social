@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Group, Modal, Text, Textarea, TextInput } from "@mantine/core"
+import { Alert, Button, Group, Modal, Stack, Text, Textarea, TextInput } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { useStringParam } from "~/src/utils/utils"
 import { BlitzPage, Routes } from "@blitzjs/next"
@@ -13,6 +13,7 @@ import { UpdateProfileInput, UpdateProfileInputType } from "~/src/features/users
 import { showNotification } from "@mantine/notifications"
 import { useRouter } from "next/router"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
+import { IconInfoCircle } from '@tabler/icons-react';
 
 
 export const ProfilePage: BlitzPage = () => {
@@ -30,6 +31,8 @@ export const ProfilePage: BlitzPage = () => {
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,
   })
+
+  const icon = <IconInfoCircle/>
 
   if(!user) return <Text>User not found.</Text>
 
@@ -62,6 +65,16 @@ export const ProfilePage: BlitzPage = () => {
       </Modal>
       {/* @ts-expect-error Server Component */}
       <Layout>
+        <Group>
+          {isOwner && !currentUser?.emailVerifiedAt &&
+            <Alert variant={"outline"} color={"red"} title={"Warning"} icon={icon}>
+              <Text>
+                Your email is not verified.
+                Please check the welcome email we have sent you.
+              </Text>
+                <Button size={"xs"} color={"red"} variant={"light"}>Resend verification email</Button>
+            </Alert>}
+        </Group>
         {isOwner &&
           <Group>
             <Button onClick={open}>
