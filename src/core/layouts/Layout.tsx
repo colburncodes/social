@@ -44,6 +44,7 @@ const baseUrl = process.env.VERCEL_URL
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
   const user = useCurrentUser()
+  const username = user?.username;
   const [logoutMutation] = useMutation(logout)
   // @ts-ignore
   const [active, setActive] = useState(links[0].link)
@@ -112,11 +113,11 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
             {user && (
               <Group className={classes.profile}>
-                <Link href={Routes.ProfilePage({
-                  username: user?.username
-                })}>
-                  <Text>{user.name}</Text>
-                </Link>
+                {user?.username && (
+                  <Link href={Routes.ProfilePage({ username: user.username })}>
+                    <Text>{user.name}</Text>
+                  </Link>
+                )}
                 {user.isAdmin && <Tooltip label={"Admin"}>
                   <IconUserShield size={18} />
                 </Tooltip>}
