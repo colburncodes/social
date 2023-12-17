@@ -14,7 +14,8 @@ import { notifications, showNotification } from "@mantine/notifications"
 import { useRouter } from "next/router"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
 import { IconInfoCircle } from '@tabler/icons-react';
-import requestEmailVerification  from "~/src/features/auth/mutations/requestEmailVerification"
+import requestEmailVerification from "~/src/features/auth/mutations/requestEmailVerification"
+
 
 
 export const ProfilePage: BlitzPage = () => {
@@ -26,7 +27,7 @@ export const ProfilePage: BlitzPage = () => {
   const form = useForm<UpdateProfileInputType>({
     initialValues: {
       name: user?.name || "",
-      username: user?.username || "",
+      username: user.username || "",
       bio: user?.bio || ""
     },
     validate: zodResolver(UpdateProfileInput),
