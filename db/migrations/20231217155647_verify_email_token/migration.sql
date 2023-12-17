@@ -1,0 +1,2 @@
+-- AlterEnum
+ALTER TYPE "TokenType" ADD VALUE 'VERIFY_EMAIL';

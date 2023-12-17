@@ -112,7 +112,9 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
             {user && (
               <Group className={classes.profile}>
-                <Link href={Routes.EditProfilePage()}>
+                <Link href={Routes.ProfilePage({
+                  username: user?.username
+                })}>
                   <Text>{user.name}</Text>
                 </Link>
                 {user.isAdmin && <Tooltip label={"Admin"}>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Group, Modal, Text, Textarea, TextInput } from "@mantine/core"
+import { Alert, Button, Group, Modal, Stack, Text, Textarea, TextInput } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { useStringParam } from "~/src/utils/utils"
 import { BlitzPage, Routes } from "@blitzjs/next"
@@ -10,9 +10,11 @@ import { useDisclosure } from "@mantine/hooks"
 import { useForm, zodResolver } from "@mantine/form"
 import updateProfile from "~/src/features/users/mutations/updateProfile"
 import { UpdateProfileInput, UpdateProfileInputType } from "~/src/features/users/schemas"
-import { showNotification } from "@mantine/notifications"
+import { notifications, showNotification } from "@mantine/notifications"
 import { useRouter } from "next/router"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
+import { IconInfoCircle } from '@tabler/icons-react';
+import requestEmailVerification  from "~/src/features/auth/mutations/requestEmailVerification"
 
 
 export const ProfilePage: BlitzPage = () => {
@@ -30,6 +32,10 @@ export const ProfilePage: BlitzPage = () => {
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,
   })
+
+  const [$requestEmailVerification, {isLoading: isSending}] = useMutation(requestEmailVerification)
+
+  const icon = <IconInfoCircle/>
 
   if(!user) return <Text>User not found.</Text>
 
@@ -62,6 +68,30 @@ export const ProfilePage: BlitzPage = () => {
       </Modal>
       {/* @ts-expect-error Server Component */}
       <Layout>
+        <Group>
+          {isOwner && !currentUser?.emailVerifiedAt && (
+            <Alert variant={"outline"} color={"red"} title={"Warning"} icon={icon}>
+              <Text>
+                Your email is not verified.
+                Please check the welcome email we have sent you.
+              </Text>
+                <Button
+                  loading={isSending}
+                  size={"xs"}
+                  color={"red"}
+                  variant={"light"}
+                  onClick={ async () => {
+                   await $requestEmailVerification()
+                    notifications.show({
+                      color: "green",
+                      title: "Success",
+                      message: "Email sent!"
+                    })
+                }}>
+                  Resend verification email
+                </Button>
+            </Alert>)}
+        </Group>
         {isOwner &&
           <Group>
             <Button onClick={open}>

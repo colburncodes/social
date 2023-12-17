@@ -61,7 +61,7 @@ export const formatZodError = (err: any) => {
   });
 };
 
-const EMAIL_VERIFY_LINK_IN_HOURS = 4;
+const EMAIL_VERIFY_LINK_IN_HOURS = 1;
 
 const createToken = async ({ userId, userEmail, tokenType }) => {
   const token = generateToken();
@@ -81,10 +81,10 @@ const createToken = async ({ userId, userEmail, tokenType }) => {
   return token;
 };
 export const regenerateToken = async ({
-                                        userId,
-                                        userEmail,
-                                        tokenType,
-                                      }: {
+  userId,
+  userEmail,
+  tokenType,
+}: {
   userId: string;
   userEmail: string;
   tokenType: TokenType;
