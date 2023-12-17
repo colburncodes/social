@@ -64,3 +64,5 @@ export const ContactEmail: React.FC<{
     </Html>
   );
 }
+
+export default ContactEmail;

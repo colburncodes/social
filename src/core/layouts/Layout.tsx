@@ -44,7 +44,6 @@ const baseUrl = process.env.VERCEL_URL
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
   const user = useCurrentUser()
-  console.log(user)
   const [logoutMutation] = useMutation(logout)
   // @ts-ignore
   const [active, setActive] = useState(links[0].link)

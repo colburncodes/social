@@ -17,17 +17,14 @@ const baseUrl = process.env.VERCEL_URL
   : "http://localhost:3000";
 
 const defaultProps = {
-  name: "Test User",
   emailVerifyUrl: "Test User"
 }
-export const WelcomeEmailTemplate: React.FC<{
+export const VerifyEmailTemplate: React.FC<{
   props: {
-    name?: string | null;
-    emailVerifyUrl?: string | null;
+    emailVerifyUrl?: string;
   }
 }> = ({ props = defaultProps }) => {
-  const { name } = props;
-  const welcomeMessage = name ? `Hello there ${name}, ` : "Hello, ";
+  const { emailVerifyUrl } = props;
   return <Html>
     <Head />
     <Preview>You're now ready to make live transactions with Stripe!</Preview>
@@ -36,9 +33,9 @@ export const WelcomeEmailTemplate: React.FC<{
         <Section style={box}>
           <Img src={`${baseUrl}/images/logo.png`} width={49} height={21} alt={"logo"}/>
           <Text style={paragraph}>
-            {welcomeMessage} welcome to our platform!
+            Hello, you requested this email for verifying your account. If you didn't request it, please ignore.
           </Text>
-          <Button style={button} href="https://socialio.up.railway.app/">
+          <Button style={button} href={emailVerifyUrl}>
             Click here to verify your account
           </Button>
           <Text style={paragraph}>— The Social team</Text>
@@ -52,7 +49,7 @@ export const WelcomeEmailTemplate: React.FC<{
   </Html>
 };
 
-export default WelcomeEmailTemplate;
+export default VerifyEmailTemplate;
 
 const main = {
   backgroundColor: "#f6f9fc",
