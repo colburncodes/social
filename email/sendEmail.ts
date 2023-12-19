@@ -11,7 +11,7 @@ const resend = new Resend(env.RESEND_API_KEY);
 export const sendEmail = async ({subject, to, react}) => {
 
   let message: CreateEmailOptions = {
-    from: 'hello@whocolburn.com',
+    from: 'onboarding@resend.dev',
     to, // 'colburnsanders@gmail.com'
     subject,
     html: render(react)

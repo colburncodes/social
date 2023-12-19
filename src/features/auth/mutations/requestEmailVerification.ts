@@ -36,7 +36,6 @@ export const sendVerificationEmail = async ({ userId, userEmail }): Promise<void
 
 export default resolver.pipe(
   resolver.authorize(), async (_, { session: { userId } }) => {
-    console.log(userId)
     const user = await db.user.findFirst({
       where: { id: userId }
     })

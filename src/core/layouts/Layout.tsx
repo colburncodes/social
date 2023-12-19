@@ -113,11 +113,13 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
             {user && (
               <Group className={classes.profile}>
-                {user?.username && (
+                { user?.username ? (
                   <Link href={Routes.ProfilePage({ username: user.username })}>
                     <Text>{user.name}</Text>
                   </Link>
-                )}
+                ) : <Link href={Routes.EditProfilePage({ username: user.username })}>
+                  <Text>{user.name}</Text>
+                </Link>}
                 {user.isAdmin && <Tooltip label={"Admin"}>
                   <IconUserShield size={18} />
                 </Tooltip>}
