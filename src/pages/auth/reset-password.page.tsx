@@ -21,7 +21,7 @@ const ResetPasswordPage: BlitzPage = () => {
     },
   })
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: any) => {
       assert(token, "token is required.")
       await resetPasswordMutation({ ...values, token })
   }

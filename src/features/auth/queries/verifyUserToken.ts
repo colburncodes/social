@@ -10,7 +10,7 @@ export const Input = z.object({
 
 export default resolver.pipe(
   resolver.zod(Input), async ({ token }) => {
-    let hashedToken = hash256(token)
+    const hashedToken = hash256(token)
 
     const currToken = await db.token.findFirst({
       where: { hashedToken, type: TokenType.VERIFY_EMAIL },

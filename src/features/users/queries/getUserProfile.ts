@@ -7,9 +7,9 @@ export const LoginInput = z.object({
  username: z.string()
 })
 
-export default resolver.pipe(resolver.zod(LoginInput), async ({ username }, { session: userId }) => {
+export default resolver.pipe(resolver.zod(LoginInput), async ({ username }) => {
   const user = await db.user.findUnique({
-    where: { username },
+    where: { username: username.toLowerCase() },
     select: {
       id: true,
       name: true,
