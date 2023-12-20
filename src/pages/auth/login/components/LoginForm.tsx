@@ -25,7 +25,7 @@ export const LoginForm = (props: LoginFormProps) => {
     },
   })
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: any) => {
     const user = await loginMutation(values)
     props.onSuccess?.(user)
   }

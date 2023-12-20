@@ -6,7 +6,7 @@ import { SignUpInput } from "../schemas"
 import { PrismaError } from "~/src/utils/blitz-utils"
 import { sendEmail } from "~/email/sendEmail"
 import React from "react"
-import StripeWelcomeEmail from "~/email/react-email/emails/welcome"
+import Welcome from "~/email/react-email/emails/welcome"
 
 
 export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, password }, ctx) => {
@@ -32,7 +32,7 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
       await sendEmail({
         to: user.email,
         subject: "Welcome to Social!",
-        react: React.createElement(StripeWelcomeEmail, {
+        react: React.createElement(Welcome, {
           props: {
             name: user.name
           }
