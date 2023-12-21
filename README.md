@@ -13,7 +13,7 @@
 ## 📖 Introduction
 
 Social was built on the idea that anyone, anywhere in the world can share their passions. 
-Made with [Blitz](https://github.com/blitz-js/blitz). Inspired by [Meetup](https://www.meetup.com/) and [EventBrite](https://www.eventbrite.com/).
+Made with [Blitz](https://github.com/blitz-js/blitz).
 
 ---
 
@@ -26,6 +26,11 @@ Made with [Blitz](https://github.com/blitz-js/blitz). Inspired by [Meetup](https
 - [x] User Roles
 - [ ] Notifications
     - [x] Email using [Resend](https://resend.com/) and [React Email](https://react.email/)
+      - [x] Welcome Email 
+      - [x] Forgot Password
+      - [x] Password Reset
+      - [x] Contact Email
+    - [x] Email testing using [Nodemailer](https://nodemailer.com/about/)
     - [ ] Discord
     - [ ] Browser / in-app
 - [ ] Admin Panel
