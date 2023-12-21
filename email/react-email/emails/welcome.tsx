@@ -11,6 +11,7 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
+import { APP_NAME } from "~/src/config"
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -30,7 +31,7 @@ export const WelcomeEmailTemplate: React.FC<{
   const welcomeMessage = name ? `Hello there ${name}, ` : "Hello, ";
   return <Html>
     <Head />
-    <Preview>You're now ready to make live transactions with Stripe!</Preview>
+    <Preview>Welcome to {APP_NAME}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={box}>

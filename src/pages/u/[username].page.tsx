@@ -34,7 +34,7 @@ export const ProfilePage: BlitzPage = () => {
     validateInputOnBlur: true,
   })
 
-  const [$requestEmailVerification, {isLoading: isSending}] = useMutation(requestEmailVerification)
+  const [$requestEmailVerification, {isLoading: isSending, isSuccess }] = useMutation(requestEmailVerification)
 
   const icon = <IconInfoCircle/>
 
@@ -71,26 +71,37 @@ export const ProfilePage: BlitzPage = () => {
       <Layout>
         <Group>
           {isOwner && !currentUser?.emailVerifiedAt && (
-            <Alert variant={"outline"} color={"red"} title={"Warning"} icon={icon}>
-              <Text>
-                Your email is not verified.
-                Please check the welcome email we have sent you.
-              </Text>
+            <Alert
+              variant={"outline"}
+              color={"red"}
+              title={isSuccess ? "Email sent!" : "Warning"}
+              icon={icon}>
+            {!isSuccess &&
+              <>
+                <Text>
+                  Your email is not verified.
+                  Please check the welcome email we have sent you.
+                </Text>
                 <Button
                   loading={isSending}
                   size={"xs"}
                   color={"red"}
                   variant={"light"}
                   onClick={ async () => {
-                   await $requestEmailVerification()
+                    await $requestEmailVerification()
                     notifications.show({
                       color: "green",
                       title: "Success",
                       message: "Email sent!"
                     })
-                }}>
+                  }}>
                   Resend verification email
                 </Button>
+              </>}
+              {isSuccess && <Text>The email has been sent and should arrive
+                in the next few minutes.
+                Please be patient and check your spam folder.
+              </Text>}
             </Alert>)}
         </Group>
         {isOwner &&
