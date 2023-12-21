@@ -23,6 +23,8 @@ import { SignUpInput, LoginInput } from "~/src/features/auth/schemas"
 import { z } from "zod"
 import classes from '~/src/styles/Home.module.css'
 import React from "react"
+import Link from "next/link"
+import { Routes } from "@blitzjs/next"
 
 
 type SignupFormType = z.infer<typeof SignUpInput>
@@ -97,13 +99,21 @@ export function AuthenticationForm(props: PaperProps) {
               radius="md"
             />
 
-            <PasswordInput
-              required
-              label="Password"
-              placeholder="Your password"
-              {...form.getInputProps("password")}
-              radius="md"
-            />
+
+              <PasswordInput
+                required
+                label="Password"
+                placeholder="Your password"
+                {...form.getInputProps("password")}
+                radius="md"
+              />
+            <Group justify="flex-end">
+              <Anchor
+                component={Link}
+                size="xs"
+                c="dimmed"
+                href={Routes.ForgotPasswordPage()}>Forgot password?</Anchor>
+            </Group>
 
             {type === "register" && (
               <Checkbox

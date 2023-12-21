@@ -1,45 +1,49 @@
 import Layout from "src/core/layouts/Layout"
 import resetPassword from "../../features/auth/mutations/resetPassword"
 import { BlitzPage, Routes } from "@blitzjs/next"
-import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
 import Link from "next/link"
-import { assert } from "blitz"
-import { useForm } from "@mantine/form"
-import { Button, Group, PasswordInput } from "@mantine/core"
+import { useForm, zodResolver } from "@mantine/form"
+import { Button, Group, PasswordInput, Title } from "@mantine/core"
+import { ResetPasswordInput, ResetPasswordInputType } from "~/src/features/auth/schemas"
+import { useStringQueryParam } from "~/src/utils/utils"
+
 
 const ResetPasswordPage: BlitzPage = () => {
-  const router = useRouter()
-  const token = router.query.token?.toString()
-  const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
+  const token = useStringQueryParam("token")
+  const [$resetPassword, { isLoading, isSuccess }] = useMutation(resetPassword)
 
-  const form = useForm({
+  const form = useForm<ResetPasswordInputType>({
     initialValues: {
       password: "",
       passwordConfirmation: "",
-      token,
+      token: "",
     },
+    validateInputOnBlur: true,
+    validate: zodResolver(ResetPasswordInput)
   })
 
   const onSubmit = async (values: any) => {
-      assert(token, "token is required.")
-      await resetPasswordMutation({ ...values, token })
+      await $resetPassword({ ...values, token })
   }
 
   return (
     <>
       {/* @ts-expect-error Server Component */}
       <Layout title="Password Reset?">
-        <h1>Set a New Password</h1>
+        <Title>Set a New Password</Title>
 
-        {isSuccess ? (
-          <div>
-            <h2>Password Reset Successfully</h2>
-            <p>
-              Go to the <Link href={Routes.Home()}>homepage</Link>
-            </p>
-          </div>
-        ) : (
+        {isSuccess && (
+          <>
+            <Group>
+              <Title>Password Reset Successfully</Title>
+              <p>
+                Go to the <Link href={Routes.Home()}>homepage</Link>
+              </p>
+            </Group>
+          </>
+        )}
+        {!isSuccess && (
           <form onSubmit={form.onSubmit(onSubmit)}>
             <PasswordInput withAsterisk label="Password" {...form.getInputProps("password")} />
 
@@ -50,7 +54,7 @@ const ResetPasswordPage: BlitzPage = () => {
             />
 
             <Group justify="flex-end" mt="md">
-              <Button type="submit">Submit</Button>
+              <Button loading={isLoading} disabled={!form.isValid()} type="submit">Submit</Button>
             </Group>
           </form>
         )}
