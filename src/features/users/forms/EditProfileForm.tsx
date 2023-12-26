@@ -2,6 +2,8 @@ import { Button, Text, Textarea, TextInput } from "@mantine/core"
 import React from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
+import { UploadButton } from "~/src/core/components/UploadThing"
+import { notifications } from "@mantine/notifications"
 
 export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
@@ -37,6 +39,26 @@ export const EditProfileForm:React.FC<{
           {...form.getInputProps("username")}
         />
         <Text mb={10} size={"xs"}>This is your public display name. It can be your real name or a pseudonym.</Text>
+        <UploadButton
+          endpoint="imageUploader"
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            console.log("Files: ", res);
+            notifications.show({
+              color: "green",
+              title: "Success",
+              message: "File uploaded!"
+            })
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            notifications.show({
+              color: "red",
+              title: " Error",
+              message: error.message
+            })
+          }}
+        />
         <Textarea
           mb={5}
           required

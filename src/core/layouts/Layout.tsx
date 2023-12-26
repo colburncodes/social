@@ -24,6 +24,9 @@ import classes from "~/src/styles/Home.module.css"
 import { Footer } from '~/src/core/components/Footer/Footer'
 import cx from 'clsx'
 import { Img } from "@react-email/components"
+import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
 
 
 type Props = {
@@ -134,6 +137,15 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
           </Group>
         </AppShell.Header>
         <AppShell.Main>
+          <NextSSRPlugin
+            /**
+             * The `extractRouterConfig` will extract **only** the route configs
+             * from the router to prevent additional information from being
+             * leaked to the client. The data passed to the client is the same
+             * as if you were to fetch `/api/uploadthing` directly.
+             */
+            routerConfig={extractRouterConfig(ourFileRouter)}
+          />
           {/* @ts-expect-error Server Component */}
           <ErrorBoundary resetKeys={[user]} FallbackComponent={RootErrorFallback}>
             <Suspense fallback={<Loader/>}>

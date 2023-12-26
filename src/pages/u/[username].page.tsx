@@ -1,5 +1,5 @@
 import React from "react"
-import { Alert, Button, Group, Modal, Stack, Text, Textarea, TextInput } from "@mantine/core"
+import { Alert, Button, Group, Modal, Stack, Text } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { useStringParam } from "~/src/utils/utils"
 import { BlitzPage, Routes } from "@blitzjs/next"
@@ -15,6 +15,7 @@ import { useRouter } from "next/router"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
 import { IconInfoCircle } from '@tabler/icons-react';
 import requestEmailVerification from "~/src/features/auth/mutations/requestEmailVerification"
+import { UploadButton } from "~/src/core/components/UploadThing"
 
 
 
@@ -117,6 +118,27 @@ export const ProfilePage: BlitzPage = () => {
         <Text>
           {user.bio}
         </Text>
+
+        <UploadButton
+          endpoint="imageUploader"
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            console.log("Files: ", res);
+            notifications.show({
+              color: "green",
+              title: "Success",
+              message: "File uploaded!"
+            })
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            notifications.show({
+              color: "red",
+              title: " Error",
+              message: error.message
+            })
+          }}
+        />
       </Layout>
     </>
   )
