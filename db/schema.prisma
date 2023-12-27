@@ -22,6 +22,7 @@ model User {
   role            String    @default("USER")
   bio             String?
   emailVerifiedAt DateTime?
+  avatarImageKey  String?
 
   username String? @unique
 

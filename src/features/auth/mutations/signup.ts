@@ -14,7 +14,7 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
 
   const existingUser = await db.user.findFirst({
     where: {
-      email: email.toLowerCase().trim()
+      email:email.toLowerCase().trim( )
     }
   })
 

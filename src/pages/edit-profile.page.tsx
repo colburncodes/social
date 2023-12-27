@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import Layout from "~/src/core/layouts/Layout"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { showNotification } from "@mantine/notifications"

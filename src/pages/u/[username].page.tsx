@@ -1,5 +1,5 @@
 import React from "react"
-import { Alert, Button, Group, Modal, Stack, Text, Textarea, TextInput } from "@mantine/core"
+import { Alert, Button, Group, Modal, Stack, Text } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { useStringParam } from "~/src/utils/utils"
 import { BlitzPage, Routes } from "@blitzjs/next"
@@ -28,7 +28,7 @@ export const ProfilePage: BlitzPage = () => {
     initialValues: {
       name: user?.name || "",
       username: user.username || "",
-      bio: user?.bio || ""
+      bio: user?.bio || "",
     },
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,
@@ -44,13 +44,15 @@ export const ProfilePage: BlitzPage = () => {
   const isOwner = currentUser?.id === user?.id
 
   const onSubmit = async (values: UpdateProfileInputType) => {
+    await $updateProfile(values)
     const { username } = values;
+
     if (username !== user.username) {
       if (username) {
         await router.push(Routes.ProfilePage({ username }))
       }
     }
-    await $updateProfile(values)
+
     showNotification({
       color: 'green',
       title: "Success!",

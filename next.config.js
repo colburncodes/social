@@ -6,6 +6,9 @@ const { withBlitz } = require("@blitzjs/next")
  **/
 const config = {
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+  experimental: {
+    esmExternals: false
+  }
 }
 
 module.exports = withBlitz(config)

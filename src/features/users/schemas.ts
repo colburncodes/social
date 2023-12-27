@@ -7,7 +7,8 @@ export const UpdateProfileInput = z.object({
   username: z
           .string()
           .min(2, { message: "Username must be at least 2 characters."}).optional(),
-  bio: z.string().max(160).min(4).optional()
+  bio: z.string().max(160).min(4).optional(),
+  avatarImageKey: z.string().optional()
 })
 
 export type UpdateProfileInputType = z.infer<typeof UpdateProfileInput>

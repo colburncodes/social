@@ -10,7 +10,9 @@ export const env = createEnv({
   server: {
     RESEND_API_KEY: z.string(),
     NODE_MAILER_USER: z.string().optional(),
-    NODE_MAILER_PASS: z.string().optional()
+    NODE_MAILER_PASS: z.string().optional(),
+    UPLOADTHING_SECRET: z.string(),
+    UPLOADTHING_APP_ID: z.string()
   },
   /*
    * Environment variables available on the client (and server).
@@ -29,6 +31,8 @@ export const env = createEnv({
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NODE_MAILER_USER: process.env.NODE_MAILER_USER,
-    NODE_MAILER_PASS: process.env.NODE_MAILER_PASS
+    NODE_MAILER_PASS: process.env.NODE_MAILER_PASS,
+    UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
+    UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID
   },
 });
