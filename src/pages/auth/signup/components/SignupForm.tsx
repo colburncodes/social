@@ -4,7 +4,11 @@ import { useForm } from "@mantine/form"
 import signup from "~/src/features/auth/mutations/signup"
 import { notifications } from "@mantine/notifications"
 
-export const SignupForm = () => {
+type SignupFormProps = {
+  onSuccess?: () => void
+}
+
+export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
 
   const form = useForm({
@@ -21,6 +25,7 @@ export const SignupForm = () => {
 
   let onSubmit = async (values: any) => {
       await signupMutation(values)
+    props.onSuccess?.()
       notifications.show({
         color: "green",
         title: "Success",

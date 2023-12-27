@@ -2,9 +2,9 @@ import { Button, FileInput, Group, Loader, Text, Textarea, TextInput } from "@ma
 import React, { useState } from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
-import { useUploadThing } from "~/src/core/components/UploadThing"
 import { showNotification } from "@mantine/notifications"
 import { IconPhoto } from "@tabler/icons-react"
+import { useUploadThing } from "~/src/core/components/UploadThing"
 
 export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
