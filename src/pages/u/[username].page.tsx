@@ -15,7 +15,6 @@ import { useRouter } from "next/router"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"
 import { IconInfoCircle } from '@tabler/icons-react';
 import requestEmailVerification from "~/src/features/auth/mutations/requestEmailVerification"
-import { UploadButton } from "~/src/core/components/UploadThing"
 
 
 
@@ -29,7 +28,7 @@ export const ProfilePage: BlitzPage = () => {
     initialValues: {
       name: user?.name || "",
       username: user.username || "",
-      bio: user?.bio || ""
+      bio: user?.bio || "",
     },
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,
@@ -45,13 +44,15 @@ export const ProfilePage: BlitzPage = () => {
   const isOwner = currentUser?.id === user?.id
 
   const onSubmit = async (values: UpdateProfileInputType) => {
+    await $updateProfile(values)
     const { username } = values;
+
     if (username !== user.username) {
       if (username) {
         await router.push(Routes.ProfilePage({ username }))
       }
     }
-    await $updateProfile(values)
+
     showNotification({
       color: 'green',
       title: "Success!",
@@ -118,27 +119,6 @@ export const ProfilePage: BlitzPage = () => {
         <Text>
           {user.bio}
         </Text>
-
-        <UploadButton
-          endpoint="imageUploader"
-          onClientUploadComplete={(res) => {
-            // Do something with the response
-            console.log("Files: ", res);
-            notifications.show({
-              color: "green",
-              title: "Success",
-              message: "File uploaded!"
-            })
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            notifications.show({
-              color: "red",
-              title: " Error",
-              message: error.message
-            })
-          }}
-        />
       </Layout>
     </>
   )

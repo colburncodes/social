@@ -1,21 +1,46 @@
-import { Button, Text, Textarea, TextInput } from "@mantine/core"
-import React from "react"
+import { Button, FileInput, Group, Loader, Text, Textarea, TextInput } from "@mantine/core"
+import React, { useState } from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
-import { UploadButton } from "~/src/core/components/UploadThing"
-import { notifications } from "@mantine/notifications"
+import { useUploadThing } from "~/src/core/components/UploadThing"
+import { showNotification } from "@mantine/notifications"
+import { IconPhoto } from "@tabler/icons-react"
 
 export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
   onSubmit: (values: UpdateProfileInputType) => Promise<void>;
 }> = ({ onSubmit, form }) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const iconPhoto = <IconPhoto size={16}/>
+
+  const { startUpload, permittedFileInfo } = useUploadThing(
+    "imageUploader",
+    {
+      onClientUploadComplete: (res) => {
+        setIsLoading(false)
+        const fileKey = res?.[0]?.key;
+        if (fileKey) {
+          form.setFieldValue("avatarImageKey", fileKey)
+        }
+      },
+      onUploadError: () => {
+        setIsLoading(false)
+        showNotification({
+          color: "red",
+          icon: iconPhoto,
+          message: "Error occurred while uploading"
+        })
+      }
+    },
+  );
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const values: UpdateProfileInputType = {
       name: form.getInputProps("name").value,
       username: form.getInputProps("username").value,
-      bio: form.getInputProps("bio").value
+      bio: form.getInputProps("bio").value,
+      avatarImageKey: form.getInputProps("avatarImageKey").value
     }
     await onSubmit(values)
   }
@@ -39,26 +64,25 @@ export const EditProfileForm:React.FC<{
           {...form.getInputProps("username")}
         />
         <Text mb={10} size={"xs"}>This is your public display name. It can be your real name or a pseudonym.</Text>
-        <UploadButton
-          endpoint="imageUploader"
-          onClientUploadComplete={(res) => {
-            // Do something with the response
-            console.log("Files: ", res);
-            notifications.show({
-              color: "green",
-              title: "Success",
-              message: "File uploaded!"
-            })
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            notifications.show({
-              color: "red",
-              title: " Error",
-              message: error.message
-            })
-          }}
-        />
+        <Group>
+          <FileInput
+            onChange={async (files) => {
+              setIsLoading(true)
+              if (files) {
+                const fileData = await startUpload([files])
+              }
+            }}
+            clearable={true}
+            leftSection={iconPhoto}
+            label={
+             <Group>
+               <Text>Profile picture</Text>
+               {isLoading && <Loader size={"xs"}/>}
+             </Group>
+            }
+            placeholder={"Profile picture"} />
+        </Group>
+
         <Textarea
           mb={5}
           required

@@ -20,11 +20,11 @@ const ForgotPasswordPage: BlitzPage = () => {
 
   let onSubmit = async (values: any) => {
       await forgotPasswordMutation(values)
-    notifications.show({
-      color: "green",
-      title: "Success",
-      message: "If your email is in our system, you will receive instructions to reset your password."
-    })
+      notifications.show({
+        color: "green",
+        title: "Success",
+        message: "If your email is in our system, you will receive instructions to reset your password."
+      })
   }
 
   return (

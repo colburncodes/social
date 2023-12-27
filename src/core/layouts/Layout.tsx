@@ -27,6 +27,7 @@ import { Img } from "@react-email/components"
 import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
+import { UserAvatar } from "~/src/core/components/UserAvatar"
 
 
 type Props = {
@@ -47,7 +48,6 @@ const baseUrl = process.env.VERCEL_URL
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
   const user = useCurrentUser()
-  const username = user?.username;
   const [logoutMutation] = useMutation(logout)
   // @ts-ignore
   const [active, setActive] = useState(links[0].link)
@@ -116,13 +116,21 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
             {user && (
               <Group className={classes.profile}>
-                { user?.username ? (
+                {user?.username ? (
                   <Link href={Routes.ProfilePage({ username: user.username })}>
-                    <Text>{user.name}</Text>
+                    <Group>
+                      <UserAvatar user={user}/>
+                      <Text>{user.name}</Text>
+                    </Group>
                   </Link>
                 ) : <Link href={Routes.EditProfilePage({ username: user.username })}>
-                  <Text>{user.name}</Text>
+                  <Group>
+                    <UserAvatar user={user}/>
+                    <Text>{user.name}</Text>
+                  </Group>
                 </Link>}
+
+
                 {user.isAdmin && <Tooltip label={"Admin"}>
                   <IconUserShield size={18} />
                 </Tooltip>}

@@ -5,9 +5,7 @@ import { render } from "@react-email/render"
 import { nodemailerAppTransport } from "~/email/transports/nodemailer-local-transport"
 import { env } from "~/src/env.mjs"
 
-
 const resend = new Resend(env.RESEND_API_KEY);
-
 export const sendEmail = async ({subject, to, react}) => {
 
   let message: CreateEmailOptions = {
