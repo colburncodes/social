@@ -1,10 +1,22 @@
-import { Button, FileInput, Group, Loader, Text, Textarea, TextInput } from "@mantine/core"
+import {
+  Button,
+  FileInput,
+  Group,
+  Loader,
+  Text,
+  Textarea,
+  TextInput,
+  Image,
+  Indicator,
+  ActionIcon, Tooltip
+} from "@mantine/core"
 import React, { useState } from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
 import { showNotification } from "@mantine/notifications"
-import { IconPhoto } from "@tabler/icons-react"
+import { IconPhoto, IconX } from "@tabler/icons-react"
 import { useUploadThing } from "~/src/core/components/UploadThing"
+import { getUploadThingUrl } from "~/src/utils/utils"
 
 export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
@@ -45,6 +57,7 @@ export const EditProfileForm:React.FC<{
     await onSubmit(values)
   }
 
+  const existingImageKey = form.values.avatarImageKey;
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -65,7 +78,27 @@ export const EditProfileForm:React.FC<{
         />
         <Text mb={10} size={"xs"}>This is your public display name. It can be your real name or a pseudonym.</Text>
         <Group>
-          <FileInput
+          <Group>
+            <Text size={"sm"} w={500}>Profile picture</Text>
+            {isLoading && <Loader size={"xs"}/>}
+          </Group>
+          {existingImageKey &&
+            <>
+              <Indicator color={"none"} inline label={
+                <Tooltip color={"dark"} label={"clear image"}>
+                  <ActionIcon onClick={() => {
+                    form.setFieldValue("avatarImageKey", "")
+                  }} size={"xs"} variant={"subtle"}>
+
+                    <IconX size={13}/>
+                  </ActionIcon>
+                </Tooltip>} size={16}>
+                <Image radius={"lg"} w="50px" src={getUploadThingUrl(existingImageKey)} alt={"profile picture"}/>
+              </Indicator>
+            </>
+          }
+          {!existingImageKey &&
+            <FileInput
             onChange={async (files) => {
               setIsLoading(true)
               if (files) {
@@ -74,13 +107,7 @@ export const EditProfileForm:React.FC<{
             }}
             clearable={true}
             leftSection={iconPhoto}
-            label={
-             <Group>
-               <Text>Profile picture</Text>
-               {isLoading && <Loader size={"xs"}/>}
-             </Group>
-            }
-            placeholder={"Profile picture"} />
+            placeholder={"Profile picture"} />}
         </Group>
 
         <Textarea

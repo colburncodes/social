@@ -29,6 +29,7 @@ export const ProfilePage: BlitzPage = () => {
       name: user?.name || "",
       username: user.username || "",
       bio: user?.bio || "",
+      avatarImageKey: user?.avatarImageKey || ""
     },
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,
@@ -82,8 +83,8 @@ export const ProfilePage: BlitzPage = () => {
               <>
                 <Text>
                   Your email is not verified.
-                  Please check the welcome email we have sent you.
-                </Text>
+                Please check the welcome email we have sent you.
+              </Text>
                 <Button
                   loading={isSending}
                   size={"xs"}
