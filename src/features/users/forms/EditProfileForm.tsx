@@ -1,51 +1,18 @@
 import {
   Button,
-  FileInput,
-  Group,
-  Loader,
   Text,
   Textarea,
-  TextInput,
-  Image,
-  Indicator,
-  ActionIcon, Tooltip
+  TextInput
 } from "@mantine/core"
-import React, { useState } from "react"
+import React from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
-import { showNotification } from "@mantine/notifications"
-import { IconPhoto, IconX } from "@tabler/icons-react"
-import { useUploadThing } from "~/src/core/components/UploadThing"
-import { getUploadThingUrl } from "~/src/utils/utils"
+import { UploadThingFileInput } from "~/src/core/components/UploadThingFileInput"
 
 export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
   onSubmit: (values: UpdateProfileInputType) => Promise<void>;
 }> = ({ onSubmit, form }) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const iconPhoto = <IconPhoto size={16}/>
-
-  const { startUpload, permittedFileInfo } = useUploadThing(
-    "imageUploader",
-    {
-      onClientUploadComplete: (res) => {
-        setIsLoading(false)
-        const fileKey = res?.[0]?.key;
-        if (fileKey) {
-          form.setFieldValue("avatarImageKey", fileKey)
-        }
-      },
-      onUploadError: () => {
-        setIsLoading(false)
-        showNotification({
-          color: "red",
-          icon: iconPhoto,
-          message: "Error occurred while uploading"
-        })
-      }
-    },
-  );
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const values: UpdateProfileInputType = {
@@ -57,7 +24,6 @@ export const EditProfileForm:React.FC<{
     await onSubmit(values)
   }
 
-  const existingImageKey = form.values.avatarImageKey;
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -77,39 +43,7 @@ export const EditProfileForm:React.FC<{
           {...form.getInputProps("username")}
         />
         <Text mb={10} size={"xs"}>This is your public display name. It can be your real name or a pseudonym.</Text>
-        <Group>
-          <Group>
-            <Text size={"sm"} w={500}>Profile picture</Text>
-            {isLoading && <Loader size={"xs"}/>}
-          </Group>
-          {existingImageKey &&
-            <>
-              <Indicator color={"none"} inline label={
-                <Tooltip color={"dark"} label={"clear image"}>
-                  <ActionIcon onClick={() => {
-                    form.setFieldValue("avatarImageKey", "")
-                  }} size={"xs"} variant={"subtle"}>
-
-                    <IconX size={13}/>
-                  </ActionIcon>
-                </Tooltip>} size={16}>
-                <Image radius={"lg"} w="50px" src={getUploadThingUrl(existingImageKey)} alt={"profile picture"}/>
-              </Indicator>
-            </>
-          }
-          {!existingImageKey &&
-            <FileInput
-            onChange={async (files) => {
-              setIsLoading(true)
-              if (files) {
-                const fileData = await startUpload([files])
-              }
-            }}
-            clearable={true}
-            leftSection={iconPhoto}
-            placeholder={"Profile picture"} />}
-        </Group>
-
+        <UploadThingFileInput form={form} name={"avatarImageKey"} label={"Profile picture"}/>
         <Textarea
           mb={5}
           required
