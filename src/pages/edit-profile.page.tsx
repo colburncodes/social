@@ -19,7 +19,8 @@ export const EditProfilePage: BlitzPage = () => {
     initialValues: {
       name: user?.name || "",
       username: user?.username || "",
-      bio: user?.bio || ""
+      bio: user?.bio || "",
+      avatarImageKey: user?.avatarImageKey || ""
     },
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,

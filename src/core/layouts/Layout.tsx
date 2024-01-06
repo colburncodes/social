@@ -8,10 +8,11 @@ import {
   Stack,
   Anchor,
   Button,
-  Tooltip,
+  Indicator,
   Loader,
   ActionIcon,
-  useMantineColorScheme, useComputedColorScheme
+  Tooltip,
+  useMantineColorScheme, useComputedColorScheme, RingProgress
 } from "@mantine/core"
 import Link from "next/link"
 import { useMutation } from "@blitzjs/rpc"
@@ -116,24 +117,35 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
             {user && (
               <Group className={classes.profile}>
-                {user?.username ? (
-                  <Link href={Routes.ProfilePage({ username: user.username })}>
-                    <Group>
-                      <UserAvatar user={user}/>
-                      <Text>{user.name}</Text>
-                    </Group>
-                  </Link>
-                ) : <Link href={Routes.EditProfilePage({ username: user.username })}>
+                <Link href={user?.username ? Routes.ProfilePage({ username: user.username}) : Routes.EditProfilePage({ username: user.username})}>
                   <Group>
+                    {user.isAdmin &&
+                      <Indicator
+                        color={"none"}
+                        top={10}
+                        left={50}
+                        position={"bottom-end"}
+                        label={<Tooltip label={"Admin"}>
+                        <IconUserShield size={13} />
+                      </Tooltip>}>
+                      </Indicator>
+                      }
                     <UserAvatar user={user}/>
                     <Text>{user.name}</Text>
+                    {/*Refactor into a new component...
+                    and work on user profile progression.*/}
+                    <Tooltip label={"Profile progress"}>
+                      <RingProgress
+                        size={25}
+                        thickness={5}
+                        roundCaps
+                        sections={[{ value: 40, color: 'blue'}]}
+                      />
+                    </Tooltip>
+                    {/*Refactor into a new component...*/}
                   </Group>
-                </Link>}
+                </Link>
 
-
-                {user.isAdmin && <Tooltip label={"Admin"}>
-                  <IconUserShield size={18} />
-                </Tooltip>}
                 <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
                   await logoutMutation()
                   router.push('/')
