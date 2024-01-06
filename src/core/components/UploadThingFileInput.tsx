@@ -55,7 +55,7 @@ export const UploadThingFileInput: React.FC<{
                 <IconX size={13}/>
               </ActionIcon>
             </Tooltip>} size={16}>
-            <Image radius={"lg"} w="50px" src={getUploadThingUrl(existingImageKey)} alt={"profile picture"}/>
+            <Image radius={"lg"} w="50px" src={getUploadThingUrl(existingImageKey)} alt={label}/>
           </Indicator>
         </>
       }
@@ -64,7 +64,7 @@ export const UploadThingFileInput: React.FC<{
           onChange={async (files) => {
             setIsLoading(true)
             if (files) {
-              const fileData = await startUpload([files])
+              await startUpload([files])
             }
           }}
           clearable={true}

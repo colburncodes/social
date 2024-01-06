@@ -1,7 +1,7 @@
 import React from "react"
-import { Alert, Button, Group, Modal, Stack, Text } from "@mantine/core"
+import { Alert, Button, Group, Modal, Text, Image } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
-import { useStringParam } from "~/src/utils/utils"
+import { getUploadThingUrl, useStringParam } from "~/src/utils/utils"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import getUserProfile from "~/src/features/users/queries/getUserProfile"
 import { useMutation, useQuery } from "@blitzjs/rpc"
@@ -114,6 +114,7 @@ export const ProfilePage: BlitzPage = () => {
             </Button>
           </Group>
         }
+        <Image w={200} src={getUploadThingUrl(user.avatarImageKey)} alt={"Profile Image"}/>
         <Text>
           Hello from {user.name}
         </Text>
