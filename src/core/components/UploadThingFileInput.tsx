@@ -22,7 +22,7 @@ export const UploadThingFileInput: React.FC<{
         setIsLoading(false)
         const fileKey = res?.[0]?.key;
         if (fileKey) {
-          form.setFieldValue("avatarImageKey", fileKey)
+          form.setFieldValue(name, fileKey)
         }
       },
       onUploadError: () => {
@@ -41,7 +41,7 @@ export const UploadThingFileInput: React.FC<{
   return (
     <Group>
       <Group>
-        <Text size={"sm"} w={500}>Profile picture</Text>
+        <Text size={"sm"} w={500}>{label}</Text>
         {isLoading && <Loader size={"xs"}/>}
       </Group>
       {existingImageKey &&
@@ -49,7 +49,7 @@ export const UploadThingFileInput: React.FC<{
           <Indicator color={"none"} inline label={
             <Tooltip color={"dark"} label={"clear image"}>
               <ActionIcon onClick={() => {
-                form.setFieldValue("avatarImageKey", "")
+                form.setFieldValue(name, "")
               }} size={"xs"} variant={"subtle"}>
 
                 <IconX size={13}/>
@@ -60,16 +60,17 @@ export const UploadThingFileInput: React.FC<{
         </>
       }
       {!existingImageKey &&
-        <FileInput
-          onChange={async (files) => {
-            setIsLoading(true)
-            if (files) {
-              await startUpload([files])
-            }
-          }}
-          clearable={true}
-          leftSection={iconPhoto}
-          placeholder={"Profile picture"} />}
+          <FileInput
+            onChange={async (files) => {
+              setIsLoading(true)
+              if (files) {
+                await startUpload([files])
+              }
+            }}
+            clearable={true}
+            leftSection={iconPhoto}
+            placeholder={label}/>
+}
     </Group>
   )
 }

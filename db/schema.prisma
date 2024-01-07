@@ -23,6 +23,7 @@ model User {
   bio             String?
   emailVerifiedAt DateTime?
   avatarImageKey  String?
+  coverImageKey   String?
 
   username String? @unique
 

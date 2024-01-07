@@ -10,10 +10,12 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
       id: true,
       name: true,
       username: true,
+      bio: true,
       email: true,
       role: true,
       emailVerifiedAt: true,
-      avatarImageKey: true
+      avatarImageKey: true,
+      coverImageKey: true
     },
   })
 

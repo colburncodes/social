@@ -29,6 +29,7 @@ import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { UserAvatar } from "~/src/core/components/UserAvatar"
+import { UserProfileProgress } from "~/src/core/components/UserProfileProgress"
 
 
 type Props = {
@@ -132,17 +133,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                       }
                     <UserAvatar user={user}/>
                     <Text>{user.name}</Text>
-                    {/*Refactor into a new component...
-                    and work on user profile progression.*/}
-                    <Tooltip label={"Profile progress"}>
-                      <RingProgress
-                        size={25}
-                        thickness={5}
-                        roundCaps
-                        sections={[{ value: 40, color: 'blue'}]}
-                      />
-                    </Tooltip>
-                    {/*Refactor into a new component...*/}
+                    <UserProfileProgress/>
                   </Group>
                 </Link>
 

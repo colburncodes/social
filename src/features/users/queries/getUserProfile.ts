@@ -15,7 +15,8 @@ export default resolver.pipe(resolver.zod(LoginInput), async ({ username }) => {
       name: true,
       username: true,
       bio: true,
-      avatarImageKey: true
+      avatarImageKey: true,
+      coverImageKey: true
     }
   })
 
