@@ -19,7 +19,8 @@ export const EditProfileForm:React.FC<{
       name: form.getInputProps("name").value,
       username: form.getInputProps("username").value,
       bio: form.getInputProps("bio").value,
-      avatarImageKey: form.getInputProps("avatarImageKey").value
+      avatarImageKey: form.getInputProps("avatarImageKey").value,
+      coverImageKey: form.getInputProps("coverImageKey").value
     }
     await onSubmit(values)
   }
@@ -37,24 +38,24 @@ export const EditProfileForm:React.FC<{
         <Text mb={10} size={"xs"}>This is your name. You can only change this once every 30 days.</Text>
         <TextInput
           mb={5}
-          required
           label="Username"
           placeholder="Username"
           {...form.getInputProps("username")}
         />
         <Text mb={10} size={"xs"}>This is your public display name. It can be your real name or a pseudonym.</Text>
-        <UploadThingFileInput form={form} name={"avatarImageKey"} label={"Profile picture"}/>
         <Textarea
           mb={5}
-          required
           data-autofocus
           label="Bio"
           size={"md"}
           placeholder="User bio"
-          {...form.getInputProps("bio")}
+          {...form.getInputProps("Bio")}
           mt="md"
         />
         <Text mb={10} size={"xs"}>You can @mention other users and organizations to link to them.</Text>
+        <UploadThingFileInput form={form} name={"avatarImageKey"} label={"Profile Image"}/>
+
+        <UploadThingFileInput form={form} name={"coverImageKey"} label={"Cover picture"}/>
         <Button color={"black"} disabled={!form.isValid()} type="submit" mt={10}>
           Update profile
         </Button>

@@ -29,7 +29,8 @@ export const ProfilePage: BlitzPage = () => {
       name: user?.name || "",
       username: user.username || "",
       bio: user?.bio || "",
-      avatarImageKey: user?.avatarImageKey || ""
+      avatarImageKey: user?.avatarImageKey || "",
+      coverImageKey: user?.coverImageKey || ""
     },
     validate: zodResolver(UpdateProfileInput),
     validateInputOnBlur: true,
@@ -115,6 +116,7 @@ export const ProfilePage: BlitzPage = () => {
           </Group>
         }
         <Image w={200} src={getUploadThingUrl(user.avatarImageKey)} alt={"Profile Image"}/>
+        <Image w={200} src={getUploadThingUrl(user.coverImageKey)} alt={"Cover Picture"}/>
         <Text>
           Hello from {user.name}
         </Text>
