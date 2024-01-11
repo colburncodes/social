@@ -12,7 +12,7 @@ import {
   Loader,
   ActionIcon,
   Tooltip,
-  useMantineColorScheme, useComputedColorScheme, RingProgress
+  useMantineColorScheme, useComputedColorScheme, Modal
 } from "@mantine/core"
 import Link from "next/link"
 import { useMutation } from "@blitzjs/rpc"
@@ -30,6 +30,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { UserAvatar } from "~/src/core/components/UserAvatar"
 import { UserProfileProgress } from "~/src/core/components/UserProfileProgress"
+import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
 
 
 type Props = {
@@ -160,6 +161,17 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
           {/* @ts-expect-error Server Component */}
           <ErrorBoundary resetKeys={[user]} FallbackComponent={RootErrorFallback}>
             <Suspense fallback={<Loader/>}>
+              <Modal
+                size={"xl"}
+                centered={true}
+                closeOnClickOutside={false}
+                closeOnEscape={false}
+                withCloseButton={false}
+                title={"Onboarding Tutorial"}
+                opened={user != null && !user?.onBoarded}
+                onClose={() => {}}>
+                <OnboardingWizard />
+              </Modal>
               <Stack>{children}</Stack>
             </Suspense>
           </ErrorBoundary>

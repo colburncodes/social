@@ -25,7 +25,8 @@ model User {
   avatarImageKey  String?
   coverImageKey   String?
 
-  username String? @unique
+  username  String? @unique
+  onBoarded Boolean @default(true)
 
   events   Event[]
   tokens   Token[]

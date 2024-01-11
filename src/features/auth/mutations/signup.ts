@@ -24,7 +24,12 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
 
   try {
     const user = await db.user.create({
-      data: { email: email.toLowerCase().trim(), name, hashedPassword, role: "USER" },
+      data: {
+        email: email.toLowerCase().trim(),
+        name,
+        hashedPassword,
+        role: "USER" 
+      },
       select: { id: true, name: true, email: true, role: true },
     })
 
