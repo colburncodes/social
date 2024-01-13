@@ -25,6 +25,7 @@
     "@mantine/ds": "^7.2.2",
     "@mantine/form": "^7.2.2",
     "@mantine/hooks": "^7.2.2",
+    "@mantine/modals": "^7.4.1",
     "@mantine/notifications": "^7.2.2",
     "@prisma/client": "^5.7.1",
     "@react-email/components": "0.0.12",
