@@ -15,7 +15,7 @@ const Home: BlitzPage = () => {
             <AuthenticationForm />
           </Stack>
         )}
-      </Layout>
+    </Layout>
     </>
   )
 }
