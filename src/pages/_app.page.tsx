@@ -9,6 +9,8 @@ import { Group, MantineProvider, Paper, Text } from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
 import AuthenticationForm from "~/src/core/components/AuthForm"
 import { theme } from "~/src/styles/mantine-theme"
+import { ModalsProvider } from "@mantine/modals"
+import { globalModals } from "~/src/modals"
 
 const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({
   statusCode,
@@ -57,14 +59,16 @@ export function RootErrorFallback({ error }: ErrorFallbackProps) {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider theme={theme}>
-      {/* @ts-expect-error Server Component */}
-    <ErrorBoundary FallbackComponent={RootErrorFallback}>
-        <Notifications position={"top-right"} />
-        <Suspense fallback="Loading...">
-          {/* @ts-expect-error Server Component */}
-          <Component {...pageProps} />
-        </Suspense>
-    </ErrorBoundary>
+      <ModalsProvider modals={globalModals}>
+        {/* @ts-expect-error Server Component */}
+        <ErrorBoundary FallbackComponent={RootErrorFallback}>
+          <Notifications position={"top-right"} />
+          <Suspense fallback="Loading...">
+            {/* @ts-expect-error Server Component */}
+            <Component {...pageProps} />
+          </Suspense>
+        </ErrorBoundary>
+      </ModalsProvider>
     </MantineProvider>
   )
 }

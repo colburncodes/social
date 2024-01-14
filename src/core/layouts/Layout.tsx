@@ -12,7 +12,7 @@ import {
   Loader,
   ActionIcon,
   Tooltip,
-  useMantineColorScheme, useComputedColorScheme, Modal
+  useMantineColorScheme, useComputedColorScheme, Modal, Badge
 } from "@mantine/core"
 import Link from "next/link"
 import { useMutation } from "@blitzjs/rpc"
@@ -31,6 +31,8 @@ import { extractRouterConfig } from "uploadthing/server";
 import { UserAvatar } from "~/src/core/components/UserAvatar"
 import { UserProfileProgress } from "~/src/core/components/UserProfileProgress"
 import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
+import { modals } from "@mantine/modals"
+import { GlobalModal } from "~/src/modals"
 
 
 type Props = {
@@ -56,6 +58,13 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const [active, setActive] = useState(links[0].link)
   const { setColorScheme } = useMantineColorScheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
+  const openModal = () => modals.openContextModal({
+    modal: GlobalModal.becomePro,
+    title: "Become a pro",
+    innerProps: {
+      price: 25
+    }
+  })
 
 
   const items = links.map((link) => (
@@ -137,7 +146,9 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                     <UserProfileProgress/>
                   </Group>
                 </Link>
-
+                <Badge onClick={() => {
+                  openModal()
+                }} color={"red"}>Pro</Badge>
                 <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
                   await logoutMutation()
                   router.push('/')
