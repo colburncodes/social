@@ -31,9 +31,7 @@ export const UserProfileProgress = () => {
       label: "Cover picture"
     }
   ]
-  console.log(user)
   const existingKeys = keys.filter(({ key }) => user[key])
-  console.log(existingKeys)
   const missingKeys = keys.filter(({ key }) => !user[key])
 
   const profilePercentage = Math.round((existingKeys.length / keys.length) * 100)
