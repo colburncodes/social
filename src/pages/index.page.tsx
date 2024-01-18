@@ -34,8 +34,7 @@ const Home: BlitzPage = () => {
           </Group>
         )}
 
-
-    </Layout>
+      </Layout>
     </>
   )
 }
