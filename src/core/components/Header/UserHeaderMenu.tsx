@@ -1,8 +1,6 @@
-import { Menu, Text, rem, Indicator, Group, Tooltip } from "@mantine/core"
+import { Menu, rem, Indicator, Group, Tooltip } from "@mantine/core"
 import {
   IconSettings,
-  IconSearch,
-  IconPhoto,
   IconPencil,
   IconTrash,
   IconUserShield, IconUser
@@ -11,10 +9,17 @@ import Link from 'next/link';
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 import { Routes } from "@blitzjs/next"
 import { UserAvatar } from "~/src/core/components/UserAvatar"
+import { confirmDelete } from "~/src/utils/mantine-utils"
+import { MenuItemLink } from "~/src/core/components/MenuItems"
 
 export function UserHeaderMenu() {
   const user = useCurrentUser()
   if(!user) return null;
+
+  const deleteAccountMutation = () => {
+    // wire up mutation later
+    console.log("deleting account!")
+  }
 
   return (
     <Menu shadow="md" width={200}>
@@ -42,30 +47,41 @@ export function UserHeaderMenu() {
 
       <Menu.Dropdown>
         <Menu.Label>Application</Menu.Label>
-        <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
+        <MenuItemLink
+          Icon={IconSettings}
+          href={Routes.SettingsPage()}>
           Settings
-        </Menu.Item>
-        <Menu.Item leftSection={<IconPencil size={14} />}>
+        </MenuItemLink>
+
+        <MenuItemLink
+          Icon={IconPencil}
+          href={Routes.EditProfilePage({ username: user.username })} >
           Edit Profile
-        </Menu.Item>
-        <Menu.Item leftSection={<IconUser style={{ width: rem(14), height: rem(14) }} />}>
-          Go to Profile
-        </Menu.Item>
-        <Menu.Item
-          leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
-          rightSection={
-            <Text size="xs" c="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
-        </Menu.Item>
+        </MenuItemLink>
+
+        {user.username && (
+          <MenuItemLink
+            Icon={IconUser}
+            href={Routes.ProfilePage({
+            username: user.username
+          })}>
+            Go to Profile
+          </ MenuItemLink>
+        )}
+
 
         <Menu.Divider />
 
         <Menu.Label>Danger zone</Menu.Label>
         <Menu.Item
+          onClick={() => {
+            confirmDelete(() => {
+              deleteAccountMutation()
+            }, {
+              // override
+              confirmLabel: "Delete my account"
+            })
+          }}
           color="red"
           leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}
         >

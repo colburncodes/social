@@ -91,30 +91,36 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
               <Group className={classes.profile}>
                 <UserHeaderMenu/>
                 <UserProfileProgress/>
-                <Badge style={{ border: '1px solid red' }} variant={"light"} onClick={() => {
-                  openModal()
-                }} color={"red"}>Pro</Badge>
 
-                <ActionIcon
-                  left={5}
-                  pos={"relative"}
-                  top={1}
-                  className={classes.iconWrapper}
-                  onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-                  variant="default"
-                  size="md"
-                  aria-label="Toggle color scheme"
-                >
-                  <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
-                  <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
-                </ActionIcon>
+                {user && (
+                  <>
+                    <Badge style={{ border: '1px solid red' }} variant={"light"} onClick={() => {
+                      openModal()
+                    }} color={"red"}>Pro</Badge>
 
-                <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
-                  await logoutMutation()
-                  router.push('/')
-                }}>
-                  Logout
-                </Button>
+                    <ActionIcon
+                      left={5}
+                      pos={"relative"}
+                      top={1}
+                      className={classes.iconWrapper}
+                      onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                      variant="default"
+                      size="md"
+                      aria-label="Toggle color scheme"
+                    >
+                      <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
+                      <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+                    </ActionIcon>
+
+                    <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
+                      await logoutMutation()
+                      router.push('/')
+                    }}>
+                      Logout
+                    </Button>
+                  </>
+                )}
+
               </Group>
           </Group>
         </AppShell.Header>
