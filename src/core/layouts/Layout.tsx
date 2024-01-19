@@ -29,22 +29,17 @@ import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { UserAvatar } from "~/src/core/components/UserAvatar"
-import { UserProfileProgress } from "~/src/core/components/UserProfileProgress"
+import { UserProfileProgress } from "~/src/core/components/Header/UserProfileProgress"
 import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
 import { modals } from "@mantine/modals"
 import { GlobalModal } from "~/src/modals"
+import { UserHeaderMenu } from "~/src/core/components/Header/UserHeaderMenu"
 
 
 type Props = {
   title?: string
   children?: React.ReactNode
 }
-
-const links = [
-  { link: '/about', label: "About" },
-  { link: '/events', label: "Events" },
-  { link: '/create-group', label: "Create Group"}
-];
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -55,7 +50,6 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const user = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
   // @ts-ignore
-  const [active, setActive] = useState(links[0].link)
   const { setColorScheme } = useMantineColorScheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
   const openModal = () => modals.openContextModal({
@@ -65,22 +59,6 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
       price: 25
     }
   })
-
-
-  const items = links.map((link) => (
-    <Anchor
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      data-active={user && active === link.link || undefined}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-        router.push(link.link)
-      }}>
-      {link.label}
-    </Anchor>
-  ))
 
   return (
     <>
@@ -110,53 +88,40 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 <Img src={`${baseUrl}/social/social-logo.png`} width={200} height={120} alt={"Social"}/>
               </Anchor>
 
-            {user &&
-            <Group mr={100} mt={-30} gap={5} visibleFrom={"xs"}>
-              {items}
-            </Group>}
-
-            <ActionIcon
-              className={classes.iconWrapper}
-              onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-              variant="default"
-              size="md"
-              aria-label="Toggle color scheme"
-            >
-              <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
-              <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
-            </ActionIcon>
-
-            {user && (
               <Group className={classes.profile}>
-                <Link href={user?.username ? Routes.ProfilePage({ username: user.username}) : Routes.EditProfilePage({ username: user.username})}>
-                  <Group>
-                    {user.isAdmin &&
-                      <Indicator
-                        color={"none"}
-                        top={10}
-                        left={50}
-                        position={"bottom-end"}
-                        label={<Tooltip label={"Admin"}>
-                        <IconUserShield size={13} />
-                      </Tooltip>}>
-                      </Indicator>
-                      }
-                    <UserAvatar user={user}/>
-                    <Text>{user.name}</Text>
-                    <UserProfileProgress/>
-                  </Group>
-                </Link>
-                <Badge onClick={() => {
-                  openModal()
-                }} color={"red"}>Pro</Badge>
-                <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
-                  await logoutMutation()
-                  router.push('/')
-                }}>
-                  Logout
-                </Button>
+                <UserHeaderMenu/>
+                <UserProfileProgress/>
+
+                {user && (
+                  <>
+                    <Badge style={{ border: '1px solid red' }} variant={"light"} onClick={() => {
+                      openModal()
+                    }} color={"red"}>Pro</Badge>
+
+                    <ActionIcon
+                      left={5}
+                      pos={"relative"}
+                      top={1}
+                      className={classes.iconWrapper}
+                      onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                      variant="default"
+                      size="md"
+                      aria-label="Toggle color scheme"
+                    >
+                      <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
+                      <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+                    </ActionIcon>
+
+                    <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
+                      await logoutMutation()
+                      router.push('/')
+                    }}>
+                      Logout
+                    </Button>
+                  </>
+                )}
+
               </Group>
-            )}
           </Group>
         </AppShell.Header>
         <AppShell.Main>
