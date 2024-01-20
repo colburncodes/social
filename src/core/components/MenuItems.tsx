@@ -1,12 +1,11 @@
 import { Menu } from "@mantine/core"
 import NextLink from 'next/link'
 import classes from '~/src/styles/MenuItem.module.css';
+import { IconPencil } from "@tabler/icons-react"
 
-let ITEM_FONT_SIZE = 14;
 let ICON_SIZE = 16;
 export const MenuItemLink = ({ Icon, href, ...rest}) => {
   return (
-
     <Menu.Item
       className={classes.itemFont}
       component={NextLink}
@@ -16,3 +15,12 @@ export const MenuItemLink = ({ Icon, href, ...rest}) => {
     />
   )
 }
+
+export const MenuItemEdit = ({ href, children = "Edit"}) => {
+  return (
+    <MenuItemLink Icon={IconPencil} href={href}>
+      {children}
+    </MenuItemLink>
+  )
+}
+
