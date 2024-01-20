@@ -1,7 +1,6 @@
 import { Menu, rem, Indicator, Group, Tooltip } from "@mantine/core"
 import {
   IconSettings,
-  IconPencil,
   IconTrash,
   IconUserShield, IconUser
 } from "@tabler/icons-react"
@@ -10,7 +9,7 @@ import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 import { Routes } from "@blitzjs/next"
 import { UserAvatar } from "~/src/core/components/UserAvatar"
 import { confirmDelete } from "~/src/utils/mantine-utils"
-import { MenuItemLink } from "~/src/core/components/MenuItems"
+import { MenuItemEdit, MenuItemLink } from "~/src/core/components/MenuItems"
 
 export function UserHeaderMenu() {
   const user = useCurrentUser()
@@ -46,18 +45,17 @@ export function UserHeaderMenu() {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Label>Application</Menu.Label>
+        <Menu.Label>Account</Menu.Label>
         <MenuItemLink
           Icon={IconSettings}
           href={Routes.SettingsPage()}>
           Settings
         </MenuItemLink>
 
-        <MenuItemLink
-          Icon={IconPencil}
+        <MenuItemEdit
           href={Routes.EditProfilePage({ username: user.username })} >
           Edit Profile
-        </MenuItemLink>
+        </MenuItemEdit>
 
         {user.username && (
           <MenuItemLink
@@ -68,7 +66,6 @@ export function UserHeaderMenu() {
             Go to Profile
           </ MenuItemLink>
         )}
-
 
         <Menu.Divider />
 

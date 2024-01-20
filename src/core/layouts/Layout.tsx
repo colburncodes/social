@@ -1,17 +1,14 @@
 import Head from "next/head"
-import React, { Suspense, useState } from "react"
+import React, { Suspense } from "react"
 import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
 import {
   AppShell,
   Group,
-  Text,
   Stack,
   Anchor,
   Button,
-  Indicator,
   Loader,
   ActionIcon,
-  Tooltip,
   useMantineColorScheme, useComputedColorScheme, Modal, Badge
 } from "@mantine/core"
 import Link from "next/link"
@@ -19,7 +16,7 @@ import { useMutation } from "@blitzjs/rpc"
 import logout from "../../features/auth/mutations/logout"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
 import { useRouter } from "next/navigation"
-import { IconSun, IconUserShield, IconMoon } from "@tabler/icons-react"
+import { IconSun, IconMoon } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
 import { Footer } from '~/src/core/components/Footer/Footer'
@@ -28,7 +25,6 @@ import { Img } from "@react-email/components"
 import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
-import { UserAvatar } from "~/src/core/components/UserAvatar"
 import { UserProfileProgress } from "~/src/core/components/Header/UserProfileProgress"
 import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
 import { modals } from "@mantine/modals"
