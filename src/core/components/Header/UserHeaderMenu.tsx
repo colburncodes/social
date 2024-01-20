@@ -24,7 +24,7 @@ export function UserHeaderMenu() {
     <Menu shadow="md" width={200}>
       <Menu.Target>
         {user && (
-          <Link href={user?.username ? Routes.ProfilePage({ username: user.username}) : Routes.EditProfilePage({ username: user.username})}>
+          <Link href={user?.username ? Routes.ProfilePage({ username: user.username}) : Routes.EditProfilePage()}>
             <Group>
               {user.isAdmin &&
                 <Indicator
@@ -53,7 +53,7 @@ export function UserHeaderMenu() {
         </MenuItemLink>
 
         <MenuItemEdit
-          href={Routes.EditProfilePage({ username: user.username })} >
+          href={Routes.EditProfilePage()} >
           Edit Profile
         </MenuItemEdit>
 

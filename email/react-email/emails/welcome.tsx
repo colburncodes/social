@@ -24,10 +24,10 @@ const defaultProps = {
 export const WelcomeEmailTemplate: React.FC<{
   props: {
     name?: string | null;
-    emailVerifyUrl?: string | null;
+    emailVerifyUrl?: string;
   }
 }> = ({ props = defaultProps }) => {
-  const { name } = props;
+  const { name, emailVerifyUrl } = props;
   const welcomeMessage = name ? `Hello there ${name}, ` : "Hello, ";
   return <Html>
     <Head />
@@ -39,7 +39,7 @@ export const WelcomeEmailTemplate: React.FC<{
           <Text style={paragraph}>
             {welcomeMessage} welcome to our platform!
           </Text>
-          <Button style={button} href="https://socialio.up.railway.app/">
+          <Button style={button} href={"https://socialio.up.railway.app/"}>
             Click here to verify your account
           </Button>
           <Text style={paragraph}>— The Social team</Text>

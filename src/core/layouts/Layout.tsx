@@ -142,6 +142,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 title={"Onboarding Tutorial"}
                 opened={user != null && !user?.onBoarded}
                 onClose={() => {}}>
+
                 <OnboardingWizard />
               </Modal>
               <Stack>{children}</Stack>
