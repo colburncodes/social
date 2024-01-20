@@ -15,6 +15,7 @@ export const EditProfilePage: BlitzPage = () => {
   const router = useRouter()
   const [user] = useQuery(getUserEditProfile, {})
   const [$updateProfile] = useMutation(updateProfile)
+
   const form = useForm<UpdateProfileInputType>({
     initialValues: {
       name: user?.name || "",

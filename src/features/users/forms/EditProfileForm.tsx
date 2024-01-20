@@ -13,6 +13,7 @@ export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;
   onSubmit: (values: UpdateProfileInputType) => Promise<void>;
 }> = ({ onSubmit, form }) => {
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const values: UpdateProfileInputType = {
@@ -49,13 +50,14 @@ export const EditProfileForm:React.FC<{
           label="Bio"
           size={"md"}
           placeholder="User bio"
-          {...form.getInputProps("Bio")}
+          {...form.getInputProps("bio")}
           mt="md"
         />
         <Text mb={10} size={"xs"}>You can @mention other users and organizations to link to them.</Text>
         <UploadThingFileInput form={form} name={"avatarImageKey"} label={"Profile Image"}/>
 
         <UploadThingFileInput form={form} name={"coverImageKey"} label={"Cover picture"}/>
+
         <Button color={"black"} disabled={!form.isValid()} type="submit" mt={10}>
           Update profile
         </Button>

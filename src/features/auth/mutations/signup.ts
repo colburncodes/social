@@ -39,7 +39,8 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
         subject: "Welcome to Social!",
         react: React.createElement(Welcome, {
           props: {
-            name: user.name
+            name: user.name,
+            emailVerifyUrl: user.email
           }
         })
       })
