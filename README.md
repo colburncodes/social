@@ -21,7 +21,8 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 
 - [x] Authentication and Authorization
 - [x] Multi-tenancy
-- [ ] Subscriptions
+- [ ] Payments Integration [Lemon Squeezy](https://docs.lemonsqueezy.com/api#test-mode)
+- [ ] Subscriptions [Subscriptions](https://docs.lemonsqueezy.com/api/subscriptions)
 - [ ] Subscription plans
 - [x] User Roles
 - [ ] Notifications
