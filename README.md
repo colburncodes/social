@@ -5,8 +5,8 @@
 <p align="center">
  <a href="#introduction">Introduction</a> •
  <a href="#features">Features</a> •
- <a href="#how-to-run-it">How to run it</a> •
-<a href="#tech-stack">Tech stack</a> •
+ <a href="#how-to">How to run it</a> •
+ <a href="#tech-stack">Tech stack</a> •
  <a href="#author">Author</a> •
  <a href="#license">License</a>
 </p>
@@ -41,7 +41,7 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 - [ ] Cron jobs
 ---
 
-## 🛠️ How to Run It
+## 🛠️ How to run it
 
 Clone Project
 ```bash
