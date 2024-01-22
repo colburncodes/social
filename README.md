@@ -5,9 +5,10 @@
 <p align="center">
  <a href="#introduction">Introduction</a> •
  <a href="#features">Features</a> •
- <a href="#running-the-project">How to run it</a> •
+ <a href="#how-to-run-it">How to run it</a> •
+<a href="#tech-stack">Tech stack</a> •
  <a href="#author">Author</a> •
- <a href="#user-content-license">License</a>
+ <a href="#license">License</a>
 </p>
 
 ## 📖 Introduction
@@ -39,6 +40,38 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 - [ ] Invite system
 - [ ] Cron jobs
 ---
+
+## 🛠️ How to Run It
+
+Clone Project
+```bash
+git clone https://github.com/colburncodes/social.git
+```
+Navigate to project directory
+```bash
+cd social
+```
+Install dependencies
+```bash
+npm install
+```
+Create a `.env` file in root directory
+```
+DATABASE_URL="yourDBurl"
+RESEND_API_KEY="resendAPIKey"
+NODE_MAILER_USER="nodeMailerCreds"
+NODE_MAILER_PASS="nodeMailerCreds"
+UPLOADTHING_SECRET="uploadSecretKey"
+UPLOADTHING_APP_ID="uploadAPPID"
+```
+Start the server
+```bash
+npm run dev
+```
+Start Prisma Studio
+```bash
+npm run studio
+```
 
 ## Tech Stack
 
