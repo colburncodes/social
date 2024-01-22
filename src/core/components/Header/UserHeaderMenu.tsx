@@ -1,14 +1,11 @@
-import { Menu, rem, Indicator, Group, Tooltip, Button } from "@mantine/core"
+import { Menu, Indicator, Group, Tooltip, Button } from "@mantine/core"
 import {
   IconSettings,
-  IconTrash,
   IconUserShield, IconUser
 } from "@tabler/icons-react"
-import Link from 'next/link';
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 import { Routes } from "@blitzjs/next"
 import { UserAvatar } from "~/src/core/components/UserAvatar"
-import { confirmDelete } from "~/src/utils/mantine-utils"
 import { MenuItemEdit, MenuItemLink } from "~/src/core/components/MenuItems"
 import React from "react"
 import { useRouter } from "next/navigation"
@@ -39,7 +36,6 @@ export function UserHeaderMenu() {
                 </Indicator>
               }
               <UserAvatar user={user}/>
-
             </Group>
         )}
       </Menu.Target>
@@ -67,6 +63,13 @@ export function UserHeaderMenu() {
           </ MenuItemLink>
         )}
 
+        {user.isAdmin && (
+          <MenuItemLink
+            Icon={IconUserShield}
+            href={Routes.AdminPage()}>
+            Admin
+          </MenuItemLink>
+        )}
         <Menu.Divider />
 
         <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {

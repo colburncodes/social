@@ -1,4 +1,4 @@
-import { Avatar, AvatarProps } from "@mantine/core"
+import { Avatar } from "@mantine/core"
 import { getAvatarFallbackName, getUploadThingUrl } from "~/src/utils/utils"
 
 type Props = {

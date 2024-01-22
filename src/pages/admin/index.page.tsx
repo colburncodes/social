@@ -2,29 +2,28 @@ import React from "react"
 import { Stack, Tabs } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { BlitzPage } from "@blitzjs/next"
-import { IconMail, IconUser, IconUserCog, IconUserSearch } from "@tabler/icons-react"
+import { IconMail, IconUserSearch } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
 import { Users } from "~/src/core/components/Admin/Users"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
-import { ChangePassword } from "~/src/pages/settings/components/ChangePassword"
 
 
-export const Settings = () => {
-const user = useCurrentUser()
+export const Admin = () => {
+  const user = useCurrentUser()
   return (
     <Stack className={classes.container}>
       <Tabs defaultValue="account" orientation="vertical">
         <Tabs.List>
-          <Tabs.Tab value="account" leftSection={<IconUserCog size={"0.8rem"}/>}>Account</Tabs.Tab>
           <Tabs.Tab value="email" leftSection={<IconMail size={"0.8rem"}/>}>Email</Tabs.Tab>
-          <Tabs.Tab value="profile" leftSection={<IconUser size={"0.8rem"}/>}>Profile</Tabs.Tab>
           {user?.isAdmin && <Tabs.Tab value="users" leftSection={<IconUserSearch size={"0.8rem"}/>}>Users</Tabs.Tab>}
+
         </Tabs.List>
 
-        <Tabs.Panel value="account">
-          <ChangePassword/>
+        <Tabs.Panel value="email">
+          <div>
+            Sending Bulk Emails
+          </div>
         </Tabs.Panel>
-        <Tabs.Panel value="email">Email tab content</Tabs.Panel>
         <Tabs.Panel value="profile">Profile tab content</Tabs.Panel>
         {user?.isAdmin && (
           <Tabs.Panel value="users">
@@ -37,15 +36,15 @@ const user = useCurrentUser()
   )
 }
 
-export const SettingsPage: BlitzPage = () => {
+export const AdminPage: BlitzPage = () => {
   return (
     <>
       {/* @ts-expect-error Server Component */}
       <Layout>
-        <Settings/>
+        <Admin/>
       </Layout>
     </>
   )
 }
 
-export default SettingsPage
+export default AdminPage
