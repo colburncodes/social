@@ -1,4 +1,4 @@
-import { Menu, rem, Indicator, Group, Tooltip } from "@mantine/core"
+import { Menu, rem, Indicator, Group, Tooltip, Button } from "@mantine/core"
 import {
   IconSettings,
   IconTrash,
@@ -10,21 +10,22 @@ import { Routes } from "@blitzjs/next"
 import { UserAvatar } from "~/src/core/components/UserAvatar"
 import { confirmDelete } from "~/src/utils/mantine-utils"
 import { MenuItemEdit, MenuItemLink } from "~/src/core/components/MenuItems"
+import React from "react"
+import { useRouter } from "next/navigation"
+import { useMutation } from "@blitzjs/rpc"
+import logout from "~/src/features/auth/mutations/logout"
 
 export function UserHeaderMenu() {
+  const router = useRouter()
+  const [logoutMutation] = useMutation(logout)
+
   const user = useCurrentUser()
   if(!user) return null;
-
-  const deleteAccountMutation = () => {
-    // wire up mutation later
-    console.log("deleting account!")
-  }
 
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
         {user && (
-          <Link href={user?.username ? Routes.ProfilePage({ username: user.username}) : Routes.EditProfilePage()}>
             <Group>
               {user.isAdmin &&
                 <Indicator
@@ -40,7 +41,6 @@ export function UserHeaderMenu() {
               <UserAvatar user={user}/>
 
             </Group>
-          </Link>
         )}
       </Menu.Target>
 
@@ -69,21 +69,13 @@ export function UserHeaderMenu() {
 
         <Menu.Divider />
 
-        <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item
-          onClick={() => {
-            confirmDelete(() => {
-              deleteAccountMutation()
-            }, {
-              // override
-              confirmLabel: "Delete my account"
-            })
-          }}
-          color="red"
-          leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}
-        >
-          Delete my account
-        </Menu.Item>
+        <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
+          await logoutMutation()
+          router.push('/')
+        }}>
+          Logout
+        </Button>
+
       </Menu.Dropdown>
     </Menu>
   );

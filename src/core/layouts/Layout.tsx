@@ -6,16 +6,12 @@ import {
   Group,
   Stack,
   Anchor,
-  Button,
   Loader,
   ActionIcon,
   useMantineColorScheme, useComputedColorScheme, Modal, Badge
 } from "@mantine/core"
 import Link from "next/link"
-import { useMutation } from "@blitzjs/rpc"
-import logout from "../../features/auth/mutations/logout"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
-import { useRouter } from "next/navigation"
 import { IconSun, IconMoon } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
@@ -42,9 +38,7 @@ const baseUrl = process.env.VERCEL_URL
   : "http://localhost:3000";
 
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
-  const router = useRouter()
   const user = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
   // @ts-ignore
   const { setColorScheme } = useMantineColorScheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
@@ -95,7 +89,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                     }} color={"red"}>Pro</Badge>
 
                     <ActionIcon
-                      left={5}
+                      left={-5}
                       pos={"relative"}
                       top={1}
                       className={classes.iconWrapper}
@@ -107,13 +101,6 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                       <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
                       <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
                     </ActionIcon>
-
-                    <Button size="xs" variant="light" style={{ margin: 10 }} onClick={async () => {
-                      await logoutMutation()
-                      router.push('/')
-                    }}>
-                      Logout
-                    </Button>
                   </>
                 )}
 
