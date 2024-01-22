@@ -9,7 +9,7 @@ type Props = {
 }
 export const UserAvatar: React.FC<Partial<Props>> = ({ user, ...rest }) => {
   return (
-    <Avatar src={getUploadThingUrl(user?.avatarImageKey)} radius="xl" {...rest}>
+    <Avatar component={"a"} src={getUploadThingUrl(user?.avatarImageKey)} radius="xl" {...rest}>
       {getAvatarFallbackName(user?.name)}
     </Avatar>
   );
