@@ -31,6 +31,7 @@ model User {
   events   Event[]
   tokens   Token[]
   sessions Session[]
+  settings Setting[]
   comment  Comment[]
   favorite Favorite[]
   follower Follow[]
@@ -87,6 +88,15 @@ model Follow {
 
   follower User   @relation(fields: [userId], references: [id])
   userId   String
+}
+
+model Setting {
+  id                     String  @id @default(uuid())
+  settingsEmailMarketing Boolean @default(false)
+  settingsEmailProduct   Boolean @default(false)
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model Session {

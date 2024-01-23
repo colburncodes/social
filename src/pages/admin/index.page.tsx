@@ -1,10 +1,10 @@
 import React from "react"
-import { Stack, Tabs } from "@mantine/core"
+import { Divider, Stack, Tabs, Text, Title } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { BlitzPage } from "@blitzjs/next"
 import { IconMail, IconUserSearch } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
-import { Users } from "~/src/core/components/Admin/Users"
+import { Users } from "~/src/pages/admin/components/Users"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 
 
@@ -12,6 +12,11 @@ export const Admin = () => {
   const user = useCurrentUser()
   return (
     <Stack className={classes.container}>
+      <Stack>
+        <Title>Admin Settings</Title>
+        <Divider my={"sx"} w={500}/>
+        <Text mb={10} size={"xs"}>Manage your user account settings and set bulk e-mail preferences.</Text>
+      </Stack>
       <Tabs defaultValue="account" orientation="vertical">
         <Tabs.List>
           <Tabs.Tab value="email" leftSection={<IconMail size={"0.8rem"}/>}>Email</Tabs.Tab>

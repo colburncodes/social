@@ -35,7 +35,7 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
     - [x] Email testing using [Nodemailer](https://nodemailer.com/about/)
     - [ ] Discord
     - [ ] Browser / in-app
-- [ ] Admin Panel
+- [x] Admin Panel
 - [ ] Announcements
 - [ ] Invite system
 - [ ] Cron jobs
