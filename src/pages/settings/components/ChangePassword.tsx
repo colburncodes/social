@@ -33,7 +33,7 @@ export const ChangePassword = () => {
         <Group w={"100%"}>
           <form onSubmit={form.onSubmit(onSubmit)}>
             <PasswordInput
-              w={"100%"}
+              w={200}
               size={"sm"}
               withAsterisk
               label="Current Password"
@@ -42,7 +42,7 @@ export const ChangePassword = () => {
 
             <PasswordInput
               mt={5}
-              w={"100%"}
+              w={200}
               size={"sm"}
               withAsterisk
               label="New Password"
@@ -50,6 +50,7 @@ export const ChangePassword = () => {
               {...form.getInputProps("newPassword")} />
 
             <PasswordInput
+              w={200}
               mt={5}
               withAsterisk
               size={"sm"}
@@ -58,10 +59,10 @@ export const ChangePassword = () => {
               {...form.getInputProps("newPasswordConfirmation")}
             />
 
-            <Group justify="flex-start" mt="md">
-              <Button loading={isLoading} disabled={!form.isValid()} type="submit">Update password</Button>
-            </Group>
           </form>
+          <Group justify="flex-start" mt="md">
+            <Button size={"xs"} loading={isLoading} disabled={!form.isValid()} type="submit">Update password</Button>
+          </Group>
         </Group>
       </Group>}
     </Card>

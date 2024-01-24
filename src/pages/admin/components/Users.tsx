@@ -20,16 +20,16 @@ export function Users() {
   ));
 
   return (
-    <Table striped highlightOnHover withTableBorder withColumnBorders>
+    <Table striped highlightOnHover withTableBorder withColumnBorders ml={20}>
       <Table.Thead>
         <Table.Tr>
-          <Table.Th>UserId</Table.Th>
-          <Table.Th>Name</Table.Th>
-          <Table.Th>Username</Table.Th>
-          <Table.Th>Email</Table.Th>
-          <Table.Th>Role</Table.Th>
-          <Table.Th>Bio</Table.Th>
-          <Table.Th>OnBoarded</Table.Th>
+          <Table.Th>userId</Table.Th>
+          <Table.Th>name</Table.Th>
+          <Table.Th>username</Table.Th>
+          <Table.Th>email</Table.Th>
+          <Table.Th>role</Table.Th>
+          <Table.Th>bio</Table.Th>
+          <Table.Th>onboarded</Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{rows}</Table.Tbody>

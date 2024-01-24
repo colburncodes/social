@@ -1,29 +1,42 @@
 import React from "react"
-import { Stack, Tabs } from "@mantine/core"
+import { Divider, Stack, Tabs, Text, Title } from "@mantine/core"
 import Layout from "~/src/core/layouts/Layout"
 import { BlitzPage } from "@blitzjs/next"
 import { IconMail, IconUser, IconUserCog } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
 import { ChangePassword } from "~/src/pages/settings/components/ChangePassword"
+import { UserEmailSettings } from "~/src/pages/settings/components/UserEmailSettings"
 
 
 export const Settings = () => {
+  // @ts-ignore
   return (
-    <Stack className={classes.container}>
-      <Tabs defaultValue="account" orientation="vertical">
-        <Tabs.List>
-          <Tabs.Tab value="account" leftSection={<IconUserCog size={"0.8rem"}/>}>Account</Tabs.Tab>
-          <Tabs.Tab value="email" leftSection={<IconMail size={"0.8rem"}/>}>Email</Tabs.Tab>
-          <Tabs.Tab value="profile" leftSection={<IconUser size={"0.8rem"}/>}>Profile</Tabs.Tab>
-        </Tabs.List>
+    <>
+      <Stack className={classes.container}>
+        <Stack>
+          <Title>Settings</Title>
+          <Divider my={"sx"} w={500}/>
+          <Text mb={10} size={"xs"}>Manage your account settings and set e-mail preferences.</Text>
+        </Stack>
+        <Tabs defaultValue="account" orientation="vertical">
+          <Tabs.List>
+            <Tabs.Tab value="profile" leftSection={<IconUser size={"0.8rem"}/>}>Profile</Tabs.Tab>
+            <Tabs.Tab value="account" leftSection={<IconUserCog size={"0.8rem"}/>}>Account</Tabs.Tab>
+            <Tabs.Tab value="notifications" leftSection={<IconMail size={"0.8rem"}/>}>Notifications</Tabs.Tab>
 
-        <Tabs.Panel value="account">
-          <ChangePassword/>
-        </Tabs.Panel>
-        <Tabs.Panel value="email">Email tab content</Tabs.Panel>
-        <Tabs.Panel value="profile">Profile tab content</Tabs.Panel>
-      </Tabs>
-    </Stack>
+          </Tabs.List>
+
+          <Tabs.Panel value="profile">Profile tab content</Tabs.Panel>
+          <Tabs.Panel value="account">
+            <ChangePassword/>
+          </Tabs.Panel>
+          <Tabs.Panel value="notifications">
+            <UserEmailSettings/>
+          </Tabs.Panel>
+
+        </Tabs>
+      </Stack>
+    </>
   )
 }
 
