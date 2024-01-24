@@ -95,8 +95,8 @@ model Setting {
   settingsEmailMarketing Boolean @default(false)
   settingsEmailProduct   Boolean @default(false)
 
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
 }
 
 model Session {
