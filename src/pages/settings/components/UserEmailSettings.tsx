@@ -35,7 +35,7 @@ export const UserEmailSettings = () => {
             disabled={isLoading}
             onToggle={handleToggle("settingsEmailProduct", user?.settings[0]?.settingsEmailProduct)}
             checked={user?.settings[0]?.settingsEmailProduct}
-            label={"Marketing emails"}
+            label={"Product emails"}
             description={"Want to learn more about the latest product updates, get notified now."}
           />
         </Card>

@@ -26,9 +26,7 @@ import React from "react"
 import Link from "next/link"
 import { Routes } from "@blitzjs/next"
 
-
 type SignupFormType = z.infer<typeof SignUpInput>
-type LoginFormType = z.infer<typeof LoginInput>
 
 export const bindCheckBoxToForm = (form: any, key: string) => {
   const inputProps = form.getInputProps(key)
@@ -57,7 +55,7 @@ export function AuthenticationForm(props: PaperProps) {
         justifyContent: "center",
         alignItems: "center",
         position: "relative",
-        top: 50,
+        top: -30,
         right: 130,
       }}
     >
@@ -130,7 +128,7 @@ export function AuthenticationForm(props: PaperProps) {
                 ? "Already have an account? Login"
                 : "Don't have an account? Register"}
             </Anchor>
-            <Button disabled={!form.isValid()} bg={"black"} type="submit" radius="xl">
+            <Button size={"sm"} disabled={!form.isValid()} bg={"black"} type="submit">
               {upperFirst(type)}
             </Button>
           </Group>
