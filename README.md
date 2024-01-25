@@ -13,7 +13,9 @@
 
 ## 📖 Introduction
 
-Social was built on the idea that anyone, anywhere in the world can share their passions. 
+Social was built on the idea that anyone, anywhere in the world can share
+and monetize their passions. Our vision: a world where passions create connections across
+continents.
 Made with [Blitz](https://github.com/blitz-js/blitz).
 
 ---
