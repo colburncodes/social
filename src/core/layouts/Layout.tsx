@@ -8,7 +8,8 @@ import {
   Anchor,
   Loader,
   ActionIcon,
-  useMantineColorScheme, useComputedColorScheme, Modal, Badge
+  Text,
+  useMantineColorScheme, useComputedColorScheme, Modal, Badge, Button
 } from "@mantine/core"
 import Link from "next/link"
 import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
@@ -17,7 +18,6 @@ import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
 import { Footer } from '~/src/core/components/Footer/Footer'
 import cx from 'clsx'
-import { Img } from "@react-email/components"
 import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
@@ -26,6 +26,7 @@ import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
 import { modals } from "@mantine/modals"
 import { GlobalModal } from "~/src/modals"
 import { UserHeaderMenu } from "~/src/core/components/Header/UserHeaderMenu"
+import { useRouter } from "next/router"
 
 
 type Props = {
@@ -39,6 +40,7 @@ const baseUrl = process.env.VERCEL_URL
 
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const user = useCurrentUser()
+  const router = useRouter()
   // @ts-ignore
   const { setColorScheme } = useMantineColorScheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
@@ -62,7 +64,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         footer={{ height: 30 }}
         padding="md"
       >
-        <AppShell.Header>
+        {/*<AppShell.Header>*/}
           <Group style={{ justifyContent: "space-between", position: "relative" }}>
 
               <Anchor
@@ -75,7 +77,8 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 pos={"relative"}
                 top={-10}
               >
-                <Img src={`${baseUrl}/social/social-logo.png`} width={200} height={120} alt={"Social"}/>
+                <Text style={{ fontFamily: "Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif", fontSize: "1.75rem", fontWeight: "bolder", marginTop: 20, marginLeft: 20}}>social</Text>
+                {/*<Img src={`${baseUrl}/social/logos/png/white_logo_no_background.png`} width={100} height={100} alt={"Social"}/>*/}
               </Anchor>
 
               <Group className={classes.profile}>
@@ -105,8 +108,16 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 )}
 
               </Group>
+            {!user && (
+              <Button bg={"black"} c={"white"} size="sm" variant="light" style={{ margin: 10, right: 30, top: 10 }} onClick={() => {
+                router.push('/auth/login')
+              }}>
+                Login
+              </Button>
+            )}
+
           </Group>
-        </AppShell.Header>
+        {/*</AppShell.Header>*/}
         <AppShell.Main>
           <NextSSRPlugin
             /**
