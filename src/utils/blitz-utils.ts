@@ -3,6 +3,12 @@ import { generateToken, hash256 } from "@blitzjs/auth";
 import db from "~/db";
 import { TokenType } from "@prisma/client";
 import { addHours } from "date-fns";
+import { useRouter } from "next/router"
+
+export const navigateToLoginRouter = () => {
+  const router = useRouter()
+  return () => router.push('/auth/login');
+}
 
 export class PrismaError extends Error {
   code = "123";
