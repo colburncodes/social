@@ -1,4 +1,4 @@
-import Layout from "src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
 import { Box, Button, Group, Stack, Text, Title } from "@mantine/core"
 import React from "react"
@@ -12,7 +12,7 @@ const Home: BlitzPage = () => {
     <>
       {/* @ts-expect-error Server Component */}
       <Layout title="Home">
-        <Group style={{ position: "relative", top: -50 }}>
+        <Group style={{ position: "relative", top: -50, textAlign: "center" }}>
           <Box w={600}>
             <Title order={1} mx={"auto"} lineClamp={3}><Text style={{ fontFamily: "Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif", fontSize: "2.75rem", fontWeight: "bold", lineHeight: "1.2"}}>social. An example app built using Blitz.js 2.0 using Typesafe API Layer.</Text></Title>
             <Text style={{ marginTop: 5, fontWeight: "lighter", fontSize: "18px"}}>I'm building a web app with Blitz.js 2.0 with a goal to open source everything.</Text>

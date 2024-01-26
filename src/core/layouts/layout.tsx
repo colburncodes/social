@@ -1,5 +1,5 @@
 import Head from "next/head"
-import React, { Suspense } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
 import {
   AppShell,
@@ -16,18 +16,18 @@ import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
 import { IconSun, IconMoon } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
-import { Footer } from '~/src/core/components/Footer/Footer'
+import { Footer } from '~/src/core/components/footer/footer'
 import cx from 'clsx'
 import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
-import { UserProfileProgress } from "~/src/core/components/Header/UserProfileProgress"
-import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
+import { UserProfileProgress } from "~/src/core/components/header/user-profile-progress"
+import { OnboardingWizard } from "~/src/core/components/onboarding-wizard"
 import { modals } from "@mantine/modals"
 import { GlobalModal } from "~/src/modals"
-import { UserHeaderMenu } from "~/src/core/components/Header/UserHeaderMenu"
+import { UserHeaderMenu } from "~/src/core/components/header/user-header-menu"
+import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
 import { useRouter } from "next/router"
-
 
 type Props = {
   title?: string
@@ -41,6 +41,8 @@ const baseUrl = process.env.VERCEL_URL
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const user = useCurrentUser()
   const router = useRouter()
+  const navigateToLogin = navigateToLoginRouter()
+  const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
   // @ts-ignore
   const { setColorScheme } = useMantineColorScheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
@@ -51,6 +53,25 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
       price: 25
     }
   })
+
+  const handleLoginButtonClick = async () => {
+    await navigateToLogin()
+  }
+
+  useEffect(() => {
+    // create a constant ts for this later
+    const pathNameHidden = [
+      '/auth/login',
+      '/settings',
+      "/edit-profile",
+      "/u/[username]",
+      "/admin",
+      "/contact",
+      "/events"
+    ]
+    const isLoginPage = pathNameHidden.includes(router.pathname)
+    setLoginButtonVisible(!isLoginPage)
+  }, [router.pathname])
 
   return (
     <>
@@ -64,9 +85,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         footer={{ height: 30 }}
         padding="md"
       >
-        {/*<AppShell.Header>*/}
           <Group style={{ justifyContent: "space-between", position: "relative" }}>
-
               <Anchor
                 underline={"never"}
                 component={Link}
@@ -108,16 +127,16 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 )}
 
               </Group>
-            {!user && (
-              <Button bg={"black"} c={"white"} size="sm" variant="light" style={{ margin: 10, right: 30, top: 10 }} onClick={() => {
-                router.push('/auth/login')
-              }}>
+
+            {!user && isLoginButtonVisible && (
+              <Button bg={"black"} c={"white"} size="sm" variant="light"
+                      style={{ margin: 10, right: 30, top: 10 }}
+                      onClick={handleLoginButtonClick}>
                 Login
               </Button>
             )}
 
           </Group>
-        {/*</AppShell.Header>*/}
         <AppShell.Main>
           <NextSSRPlugin
             /**

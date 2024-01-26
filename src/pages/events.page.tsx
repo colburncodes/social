@@ -2,11 +2,11 @@ import { useMutation, useQuery } from "@blitzjs/rpc"
 import getEvents from "../features/events/queries/getEvents"
 import { Button, Group, List, Text, Stack, Input, Textarea } from "@mantine/core"
 import { BlitzPage } from "@blitzjs/next"
-import Layout from "../core/layouts/Layout"
+import Layout from "../core/layouts/layout"
 import React, { useEffect, useState } from "react"
 import createEvent from "../features/events/mutations/createEvent"
 import { notifications } from "@mantine/notifications"
-import EventCard from "~/src/core/components/EventCard/EventCard"
+import EventCard from "~/src/core/components/event-card/event-card"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 
 const Events = () => {

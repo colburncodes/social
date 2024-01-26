@@ -1,10 +1,10 @@
 import React from "react"
 import { Divider, Stack, Tabs, Text, Title } from "@mantine/core"
-import Layout from "~/src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
 import { IconMail, IconUserSearch } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
-import { Users } from "~/src/pages/admin/components/Users"
+import { Users } from "~/src/pages/admin/components/users"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 
 

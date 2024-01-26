@@ -1,11 +1,11 @@
 import { BlitzPage } from "@blitzjs/next"
-import Layout from "src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import image from '~/public/about.svg';
 import classes from '~/src/styles/About.module.css';
 import { useRouter } from "next/router"
-import { FeaturesCards } from "~/src/core/components/FeaturesCard/FeaturesCards"
+import { FeaturesCards } from "~/src/core/components/features-card/features-cards"
 
 
 export const About = () => {

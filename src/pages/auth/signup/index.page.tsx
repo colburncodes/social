@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
-import { SignupForm } from "./components/SignupForm"
+import { SignupForm } from "./components/signup-form"
 import { BlitzPage, Routes } from "@blitzjs/next"
-import Layout from "~/src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import React from "react"
 
 const SignupPage: BlitzPage = () => {

@@ -1,7 +1,7 @@
 import { Button, ButtonProps, Group } from "@mantine/core"
 import { GithubIcon, DiscordIcon, TwitterIcon } from "@mantine/ds"
-import { GoogleIcon } from "./GoogleIcon"
-import { FacebookIcon } from "./FacebookIcon"
+import { GoogleIcon } from "./google-icon"
+import { FacebookIcon } from "./facebook-icon"
 
 export function GoogleButton(props: ButtonProps & React.ComponentPropsWithoutRef<"button">) {
   return <Button leftSection={<GoogleIcon />} variant="default" {...props} />

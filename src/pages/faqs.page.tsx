@@ -1,5 +1,5 @@
 import { BlitzPage } from "@blitzjs/next"
-import Layout from "~/src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { Accordion, Container, Group, Title } from "@mantine/core"
 import classes from "~/src/styles/Faqs.module.css"
 

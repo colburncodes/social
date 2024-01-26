@@ -2,7 +2,7 @@ import { ActionIcon, FileInput, Group, Image, Indicator, Loader, Text, Tooltip }
 import { IconPhoto, IconX } from "@tabler/icons-react"
 import { getUploadThingUrl } from "~/src/utils/utils"
 import React, { useState } from "react"
-import { useUploadThing } from "~/src/core/components/UploadThing"
+import { useUploadThing } from "~/src/core/components/upload-thing"
 import { showNotification } from "@mantine/notifications"
 import { UseFormReturnType } from "@mantine/form"
 
