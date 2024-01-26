@@ -16,16 +16,16 @@ import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
 import { IconSun, IconMoon } from "@tabler/icons-react"
 import { RootErrorFallback } from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
-import { Footer } from '~/src/core/components/Footer/Footer'
+import { Footer } from '~/src/core/components/footer/footer'
 import cx from 'clsx'
 import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
-import { UserProfileProgress } from "~/src/core/components/Header/UserProfileProgress"
-import { OnboardingWizard } from "~/src/core/components/OnboardingWizard"
+import { UserProfileProgress } from "~/src/core/components/header/user-profile-progress"
+import { OnboardingWizard } from "~/src/core/components/onboarding-wizard"
 import { modals } from "@mantine/modals"
 import { GlobalModal } from "~/src/modals"
-import { UserHeaderMenu } from "~/src/core/components/Header/UserHeaderMenu"
+import { UserHeaderMenu } from "~/src/core/components/header/user-header-menu"
 import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
 import { useRouter } from "next/router"
 
@@ -59,7 +59,17 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   }
 
   useEffect(() => {
-    const isLoginPage = router.pathname === '/auth/login' || router.pathname === '/settings';
+    // create a constant ts for this later
+    const pathNameHidden = [
+      '/auth/login',
+      '/settings',
+      "/edit-profile",
+      "/u/[username]",
+      "/admin",
+      "/contact",
+      "/events"
+    ]
+    const isLoginPage = pathNameHidden.includes(router.pathname)
     setLoginButtonVisible(!isLoginPage)
   }, [router.pathname])
 
@@ -118,7 +128,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
               </Group>
 
-            {isLoginButtonVisible && (
+            {!user && isLoginButtonVisible && (
               <Button bg={"black"} c={"white"} size="sm" variant="light"
                       style={{ margin: 10, right: 30, top: 10 }}
                       onClick={handleLoginButtonClick}>

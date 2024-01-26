@@ -7,7 +7,7 @@ import {
 import React from "react"
 import { UpdateProfileInputType } from "~/src/features/users/schemas"
 import { UseFormReturnType } from "@mantine/form"
-import { UploadThingFileInput } from "~/src/core/components/UploadThingFileInput"
+import { UploadThingFileInput } from "~/src/core/components/upload-thing-file-input"
 
 export const EditProfileForm:React.FC<{
   form: UseFormReturnType<UpdateProfileInputType>;

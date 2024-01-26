@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "~/src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { showNotification } from "@mantine/notifications"
 import { EditProfileForm } from "~/src/features/users/forms/EditProfileForm"

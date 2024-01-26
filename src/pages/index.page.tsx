@@ -1,4 +1,4 @@
-import Layout from "src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
 import { Box, Button, Group, Stack, Text, Title } from "@mantine/core"
 import React from "react"

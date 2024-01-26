@@ -310,7 +310,8 @@
 .profile {
   display: flex;
   position: relative;
-  top: -20px;
+  top: 5px;
+  right: 50px;
 }
 
 .icon {

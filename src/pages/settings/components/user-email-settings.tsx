@@ -3,7 +3,7 @@ import getUserEmailSettings from "~/src/features/users/queries/getUserEmailSetti
 import { useMutation, useQuery } from "@blitzjs/rpc"
 import setUserSettings from "~/src/features/users/mutations/setUserSettings"
 import React from "react"
-import { ToggleUserSettings } from "~/src/core/components/ToggleUserSettings"
+import { ToggleUserSettings } from "~/src/core/components/toggle-user-settings"
 
 
 export const UserEmailSettings = () => {

@@ -11,7 +11,7 @@ import {
   useMantineTheme,
   rem,
 } from "@mantine/core"
-import classes from "./EventCard.module.css"
+import classes from "./event-card.module.css"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 import { useMutation } from "@blitzjs/rpc"
 import toggleEvent from "~/src/features/events/mutations/toggleEvent"

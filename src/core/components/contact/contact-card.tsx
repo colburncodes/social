@@ -1,5 +1,5 @@
 import { Paper, Text } from '@mantine/core';
-import { ContactIconsList } from './ContactIcons';
+import { ContactIconsList } from './contact-icons';
 import classes from '~/src/styles/GetInTouch.module.css';
 import { ContactForm } from "~/src/features/contact/forms/ContactForm"
 

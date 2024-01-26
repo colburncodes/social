@@ -1,6 +1,6 @@
 import React from "react"
 import { Text } from "@mantine/core"
-import Layout from "~/src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import { useStringQueryParam } from "~/src/utils/utils"
 import { BlitzPage } from "@blitzjs/next"
 import { useQuery } from "@blitzjs/rpc"

@@ -1,4 +1,4 @@
-import Layout from "src/core/layouts/Layout"
+import Layout from "~/src/core/layouts/layout"
 import resetPassword from "../../features/auth/mutations/resetPassword"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { useMutation } from "@blitzjs/rpc"
