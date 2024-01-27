@@ -5,7 +5,7 @@ import { IconCheck } from '@tabler/icons-react';
 import image from '~/public/about.svg';
 import classes from '~/src/styles/About.module.css';
 import { useRouter } from "next/router"
-import { FeaturesCards } from "~/src/core/components/features-card/features-cards"
+import { FeaturesCards } from "~/src/core/components/feature-card/features-cards"
 
 
 export const About = () => {
@@ -53,7 +53,7 @@ export const About = () => {
         </div>
         <Image src={image.src} className={classes.image} />
       </div>
-      <FeaturesCards/>
+      {/*<FeaturesCards/>*/}
     </Container>
   )
 }

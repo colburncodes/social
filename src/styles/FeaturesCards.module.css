@@ -1,5 +1,5 @@
 .title {
-    font-size: rem(34px);
+    font-size: rem(48px);
     font-weight: 900;
 
     @media (max-width: $mantine-breakpoint-sm) {
@@ -10,17 +10,19 @@
 .description {
     max-width: rem(600px);
     margin: auto;
-
-    &::after {
-        content: '';
-        display: block;
-        background-color: var(--mantine-color-blue-filled);
-        width: rem(45px);
-        height: rem(2px);
-        margin-top: var(--mantine-spacing-sm);
-        margin-left: auto;
-        margin-right: auto;
-    }
+    font-size: 22px;
+    font-weight: 300;
+    color: gray;
+    /*&::after {*/
+    /*    content: '';*/
+    /*    display: block;*/
+    /*    background-color: #000;*/
+    /*    width: rem(45px);*/
+    /*    height: rem(2px);*/
+    /*    margin-top: var(--mantine-spacing-sm);*/
+    /*    margin-left: auto;*/
+    /*    margin-right: auto;*/
+    /*}*/
 }
 
 .card {
@@ -35,5 +37,17 @@
         width: rem(45px);
         height: rem(2px);
         margin-top: var(--mantine-spacing-sm);
+    }
+}
+
+.container {
+    /*width: rem(376px);*/
+    /*height: rem(356px);*/
+
+    @media (max-width: $mantine-breakpoint-md) {
+        /*width: rem(376px);*/
+        /*height: rem(356px);*/
+        align-content: center;
+        width: 500px
     }
 }

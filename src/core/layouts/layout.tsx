@@ -28,6 +28,7 @@ import { GlobalModal } from "~/src/modals"
 import { UserHeaderMenu } from "~/src/core/components/header/user-header-menu"
 import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
 import { useRouter } from "next/router"
+import { pathNameHidden } from "~/src/utils/constants"
 
 type Props = {
   title?: string
@@ -59,17 +60,9 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   }
 
   useEffect(() => {
-    // create a constant ts for this later
-    const pathNameHidden = [
-      '/auth/login',
-      '/settings',
-      "/edit-profile",
-      "/u/[username]",
-      "/admin",
-      "/contact",
-      "/events"
-    ]
-    const isLoginPage = pathNameHidden.includes(router.pathname)
+    const paths = pathNameHidden;
+
+    const isLoginPage = paths.includes(router.pathname)
     setLoginButtonVisible(!isLoginPage)
   }, [router.pathname])
 
