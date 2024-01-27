@@ -131,7 +131,8 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
           </Group>
         <AppShell.Main>
-          <NextSSRPlugin
+
+        <NextSSRPlugin
             /**
              * The `extractRouterConfig` will extract **only** the route configs
              * from the router to prevent additional information from being
@@ -159,8 +160,9 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             </Suspense>
           </ErrorBoundary>
         </AppShell.Main>
-        <Footer/>
+
       </AppShell>
+      <Footer/>
     </>
   )
 }

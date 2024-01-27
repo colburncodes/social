@@ -8,11 +8,11 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
-    RESEND_API_KEY: z.string(),
+    RESEND_API_KEY: z.string().min(1),
     NODE_MAILER_USER: z.string().optional(),
     NODE_MAILER_PASS: z.string().optional(),
-    UPLOADTHING_SECRET: z.string(),
-    UPLOADTHING_APP_ID: z.string()
+    UPLOADTHING_SECRET: z.string().min(1),
+    UPLOADTHING_APP_ID: z.string().min(1)
   },
   /*
    * Environment variables available on the client (and server).
