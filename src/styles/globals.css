@@ -4,6 +4,31 @@
   --screen-width: 90vmin;
 }
 
+/*@font-face {*/
+/*  font-family: 'CalSans-SemiBold';*/
+/*  src: url('public/assets/fonts/CalSans-SemiBold.woff2') format('woff2'),*/
+/*  url('public/assets/fonts/CalSans-SemiBold.woff2') format('woff2');*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: 'Inter-Bold';*/
+/*  src: url('public/assets/fonts/Inter-Bold.ttf') format('ttf'),*/
+/*  url('public/assets/fonts/Inter-Bold.ttf') format('ttf');*/
+/*  font-weight: bold;*/
+/*  font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: 'Inter-Regular';*/
+/*  src: url('public/assets/fonts/Inter-Regular.ttf') format('ttf'),*/
+/*  url('public/assets/fonts/Inter-Regular.ttf') format('ttf');*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
+
+
 html,
 body {
   padding: 0;

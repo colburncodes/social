@@ -12,17 +12,17 @@ export const pathNameHidden = [
   "/events"
 ]
 
-export const mockdata = [
+export const features = [
   {
     title: 'Blitz.js 2.0',
     description: 'Page dir, Routing, Layouts, Loading UI and Typesafe API layer.',
   },
   {
-    title: 'React 18',
-    description: 'Server and Client Components. Use hook.',
+    title: 'Backend Architecture',
+    description: 'Server intensive tasks like sending emails, cron jobs, backend processing.',
   },
   {
-    title: 'Database',
+    title: 'Database Agnostic',
     description:
       'ORM using Prisma and deployed on Railway.',
   },
@@ -32,9 +32,9 @@ export const mockdata = [
       'UI components styled and built using Mantine UI.',
   },
   {
-    title: 'Authentication',
+    title: 'Authentication & Authorization',
     description:
-      'Authentication using AuthO and middlewares.',
+      'Includes self-hosted username & password & third-parties like AuthO.',
   },
   {
     title: 'Subscriptions',

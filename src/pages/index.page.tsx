@@ -2,8 +2,8 @@ import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
 import { Group } from "@mantine/core"
 import React from "react"
-import { TestCard } from "~/src/core/components/feature-card/test-card"
-import { mockdata } from "~/src/utils/constants"
+import { FeaturesCard } from "~/src/core/components/feature-card/features-card"
+import { features } from "~/src/utils/constants"
 
 
 const baseUrl = process.env.VERCEL_URL
@@ -16,8 +16,8 @@ const Home: BlitzPage = () => {
     <>
       {/* @ts-expect-error Server Component */}
       <Layout title="Home">
-          <Group style={{ position: "relative"}} w={800} justify={"center"}>
-            <TestCard features={mockdata}/>
+          <Group style={{ position: "relative", margin: "auto", marginLeft: 50}} w={800} justify={"center"}>
+            <FeaturesCard features={features}/>
           </Group>
       </Layout>
     </>

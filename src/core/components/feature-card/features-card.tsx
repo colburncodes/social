@@ -14,7 +14,7 @@ import {
 } from "@mantine/core"
 import classes from "~/src/styles/FeaturesCards.module.css"
 
-export function TestCard({ features }) {
+export function FeaturesCard({ features }) {
   const theme = useMantineTheme()
   const results =  features.map((feature: any) => (
     <Card
@@ -24,11 +24,11 @@ export function TestCard({ features }) {
       className={classes.card}
       style={{ border: "1px solid #ddd"}}
     >
-      <Text size="lg" fw={500}  mt="md" style={{ textAlign: "left", fontWeight: "lighter", fontSize: "18px" }}>
+      <Text size="lg" fw={500}  mt="md" style={{ textAlign: "left", fontWeight: "lighter", fontSize: "18px", fontFamily: theme.fontFamily }}>
         {feature.title}
       </Text>
       <Text
-        style={{ textAlign: "left", fontWeight: "300", fontSize: "15px", color: "#000" }}
+        style={{ textAlign: "left", fontWeight: "300", fontSize: "15px", color: "#000", fontFamily: theme.fontFamily }}
         size="sm"
         variant="light"
         mt="sm">
@@ -39,7 +39,7 @@ export function TestCard({ features }) {
 
 
   return (
-    <Container size="lg" py="xl">
+    <Container size="lg" py="xl" className={classes.container}>
       <Group justify="center">
         <Badge
           bg={"#ddd"}
@@ -84,7 +84,7 @@ export function TestCard({ features }) {
 
 
       <Title order={2} className={classes.title} ta="center" mt="sm">
-        Features.
+        Features
       </Title>
 
       <Text c="dimmed" className={classes.description} ta="center" mt="md">
@@ -99,19 +99,18 @@ export function TestCard({ features }) {
         social will also include a full-featured documentation site built using Contentlayer and MDX.
       </Text>
 
-      <Title order={2} className={classes.title} ta="center" mt="xl">
+      <Title order={2} className={classes.title} ta="center" mt={"xl"}>
         Proudly Open Source
       </Title>
 
       <Text c="dimmed" className={classes.description}  ta="center" mt="sm">
         social is open source and powered by open source software.
-        The code is available on
-        <Anchor
+        The code is available on <Anchor
           underline={"hover"}
           c={"black"}
           href={"https://github.com/colburncodes/social"}
           target={"_blank"}>
-          GitHub.
+           GitHub.
         </Anchor>
       </Text>
 

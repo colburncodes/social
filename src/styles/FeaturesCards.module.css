@@ -27,6 +27,24 @@
 
 .card {
     border: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+    top: 30px;
+    @media (max-width: $mantine-breakpoint-md) {
+        align-content: center;
+        width: 100%; /* Use full width for small screens */
+        margin: auto;
+        height: 200px;
+    }
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        align-content: center;
+        width: 100%; /* Use full width for small screens */
+        margin: auto;
+        height: 200px;
+    }
+}
+
+.card:last-child {
+    margin-bottom: 30px;
 }
 
 .cardTitle {
@@ -41,13 +59,12 @@
 }
 
 .container {
-    /*width: rem(376px);*/
-    /*height: rem(356px);*/
-
+    margin: auto;
+    align-items: center;
+    align-content: center;
     @media (max-width: $mantine-breakpoint-md) {
-        /*width: rem(376px);*/
-        /*height: rem(356px);*/
         align-content: center;
-        width: 500px
+        width: 100%; /* Use full width for small screens */
+        max-width: 500px; /* Ensures it doesn't get too wide on larger screens */
     }
 }
