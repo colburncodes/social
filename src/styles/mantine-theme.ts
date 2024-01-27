@@ -5,6 +5,7 @@ const ButtonDefaultProps: Partial<ButtonProps> = {
   variant: "light"
 }
 export const theme = createTheme ({
+  fontFamily: "Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif",
   cursorType: "pointer",
   primaryColor: "violet",
   components: {
