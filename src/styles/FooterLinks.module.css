@@ -10,17 +10,21 @@
         align-content: center;
         width: 100%; /* Use full width for small screens */
         margin: auto;
-        width: 1368px;
+        max-width: 1368px;
     }
 
     @media (max-width: $mantine-breakpoint-md) {
         align-content: center;
         width: 100%; /* Use full width for small screens */
         margin: auto;
-        width: 932px;
-
+        max-width: 800px;
     }
 
+    @media (max-width: $mantine-breakpoint-sm) {
+        width: 100%; /* Use full width for small screens */
+        margin: auto;
+        max-width: 525px;
+    }
 
 }
 
@@ -41,7 +45,7 @@
     @media (max-width: $mantine-breakpoint-sm) {
         margin-top: var(--mantine-spacing-xs);
         text-align: center;
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
@@ -102,10 +106,22 @@
     padding-bottom: var(--mantine-spacing-xl);
     border-top: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
 
+    @media (max-width: $mantine-breakpoint-md) {
+        align-content: center;
+        width: 100%; /* Use full width for small screens */
+        max-width: 1368px;
+    }
+
+    @media (max-width: $mantine-breakpoint-md) {
+        align-content: center;
+        width: 100%; /* Use full width for small screens */
+        max-width: 800px;
+    }
+
     @media (max-width: $mantine-breakpoint-sm) {
         align-content: center;
         width: 100%; /* Use full width for small screens */
-        max-width: 500px;
+        max-width: 525px;
     }
 }
 

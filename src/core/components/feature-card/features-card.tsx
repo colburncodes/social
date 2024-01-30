@@ -29,7 +29,7 @@ export function FeaturesCard({ features }) {
         {feature.title}
       </Text>
       <Text
-        style={{ textAlign: "left", fontWeight: "300", fontSize: "15px", color: "#000", fontFamily: theme.fontFamily }}
+        style={{ textAlign: "left", fontWeight: "300", fontSize: theme.headings.sizes.h5.fontSize, color: "#000", fontFamily: theme.fontFamily }}
         size="sm"
         variant="light"
         mt="sm">

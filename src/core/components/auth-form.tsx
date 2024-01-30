@@ -50,14 +50,6 @@ export function AuthenticationForm(props: PaperProps) {
   return (
     <Box
       className={classes.formContainer}
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-        top: -30,
-        right: 130,
-      }}
     >
       <Paper radius="md" p="xl" withBorder {...props}>
         <Text size="lg" fw={"bold"} ta={"center"}>

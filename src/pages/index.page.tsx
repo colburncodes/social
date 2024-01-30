@@ -4,11 +4,7 @@ import { Group } from "@mantine/core"
 import React from "react"
 import { FeaturesCard } from "~/src/core/components/feature-card/features-card"
 import { features } from "~/src/utils/constants"
-
-
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+import classes from "~/src/styles/Home.module.css"
 
 const Home: BlitzPage = () => {
 
@@ -16,7 +12,7 @@ const Home: BlitzPage = () => {
     <>
       {/* @ts-expect-error Server Component */}
       <Layout title="Home">
-          <Group style={{ position: "relative", margin: "auto", marginLeft: 50}} w={800} justify={"center"}>
+          <Group className={classes.container}>
             <FeaturesCard features={features}/>
           </Group>
       </Layout>
