@@ -130,7 +130,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
             )}
 
           </Group>
-        <AppShell.Main>
+        <AppShell.Main style-={{ alignItems: "center"}}>
 
         <NextSSRPlugin
             /**

@@ -16,6 +16,7 @@ import classes from "~/src/styles/FeaturesCards.module.css"
 
 export function FeaturesCard({ features }) {
   const theme = useMantineTheme()
+  console.log(theme)
   const results =  features.map((feature: any) => (
     <Card
       key={feature.title}
@@ -24,11 +25,11 @@ export function FeaturesCard({ features }) {
       className={classes.card}
       style={{ border: "1px solid #ddd"}}
     >
-      <Text size="lg" fw={500}  mt="md" style={{ textAlign: "left", fontWeight: "lighter", fontSize: "18px", fontFamily: theme.fontFamily }}>
+      <Text size="lg" fw={500}  mt="md" style={{ textAlign: "left", fontWeight: theme.headings.sizes.h1.fontWeight, fontSize: theme.headings.sizes.h4.fontSize, fontFamily: theme.fontFamily }}>
         {feature.title}
       </Text>
       <Text
-        style={{ textAlign: "left", fontWeight: "300", fontSize: "15px", color: "#000", fontFamily: theme.fontFamily }}
+        style={{ textAlign: "left", fontWeight: "300", fontSize: theme.headings.sizes.h5.fontSize, color: "#000", fontFamily: theme.fontFamily }}
         size="sm"
         variant="light"
         mt="sm">
@@ -67,11 +68,11 @@ export function FeaturesCard({ features }) {
         <Box>
           <Button
             bg={"black"} c={"white"}
-            style={{ marginRight: '20px' }}>
+            style={{ marginRight: '20px', cursor: theme.cursorType }}>
             Get Started
           </Button>
           <Button
-            style={{ border: "1px solid black"}}
+            style={{ border: "1px solid black", cursor: theme.cursorType}}
             component={"a"}
             href="https://github.com/colburncodes/social"
             target={"_blank"}

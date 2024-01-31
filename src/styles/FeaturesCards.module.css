@@ -23,6 +23,11 @@
     /*    margin-left: auto;*/
     /*    margin-right: auto;*/
     /*}*/
+    @media (max-width: $mantine-breakpoint-sm) {
+        text-align-all: center;
+        font-size: 14px;
+        width: 100%; /* Use full width for small screens */
+    }
 }
 
 .card {
@@ -59,12 +64,12 @@
 }
 
 .container {
-    margin: auto;
+    /*margin: auto;*/
     align-items: center;
     align-content: center;
     @media (max-width: $mantine-breakpoint-md) {
         align-content: center;
         width: 100%; /* Use full width for small screens */
-        max-width: 500px; /* Ensures it doesn't get too wide on larger screens */
+        max-width: 800px; /* Ensures it doesn't get too wide on larger screens */
     }
 }

@@ -1,7 +1,21 @@
 .container {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  width: 800px;
+
+  @media (max-width: $mantine-breakpoint-md) {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    align-items: center;
+    justifyContent: "center";
+  }
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 100%;
+    max-width: 375px;
+    margin: auto;
+    align-items: center;
+  }
 }
 
 .main {
@@ -362,12 +376,38 @@
   }
 }
 
-@media (max-width: 620px) {
-  .formContainer {
-    /*width: 100%;*/
-    width: 350px;
-    margin-top: 50px;
-    margin-left: 180px;
+.formContainer {
+  display: flex;
+  alignItems: "center";
+  /*position: relative;*/
+  top: -30px;
+  width: 350px;
+  margin: auto;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    align-items: center;
+    width: 100%; /* Use full width for small screens */
+    margin: auto;
+    max-width: 800px;
+    margin-left: 400px;
+  }
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    align-items: center;
+    width: 100%; /* Use full width for small screens */
+    margin: auto;
+    max-width: 665px;
+    margin-left: 400px;
+  }
+
+  @media (max-width: $mantine-breakpoint-sm) {
+      align-items: center;
+      width: 100%;
+      max-width: 475px;
+      margin: auto;
+      margin-left: 70px;
   }
 }
+
+
 
