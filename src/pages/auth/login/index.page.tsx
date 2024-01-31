@@ -1,6 +1,5 @@
 import { BlitzPage } from "@blitzjs/next"
 import Layout from "~/src/core/layouts/layout"
-import { Stack } from "@mantine/core"
 import AuthenticationForm from "~/src/core/components/auth-form"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
 
@@ -12,9 +11,7 @@ const LoginPage: BlitzPage = () => {
       {/* @ts-expect-error Server Component */}
       <Layout title="Log In">
         {!user && (
-          <Stack>
-            <AuthenticationForm />
-          </Stack>
+          <AuthenticationForm />
         )}
       </Layout>
     </>
