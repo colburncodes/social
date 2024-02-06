@@ -7,8 +7,13 @@ const { withBlitz } = require("@blitzjs/next")
 const config = {
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   experimental: {
-    esmExternals: false
-  }
+    esmExternals: false,
+    serverComponentsExternalPackages: [
+      '@react-email/components',
+      '@react-email/render',
+      '@react-email/tailwind'
+    ]
+  },
 }
 
 module.exports = withBlitz(config)
