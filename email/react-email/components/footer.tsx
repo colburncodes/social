@@ -1,15 +1,21 @@
-import { Hr, Text } from "@react-email/components"
+import { Hr, Text, Link } from "@react-email/components"
 import * as React from "react"
 import { emailStyles } from "~/email/react-email/styles"
 
-export const Footer = () => {
+export const Footer = ({unsubscribeLink}: {unsubscribeLink?: string}) => {
   return(
     <>
       <Text style={emailStyles.paragraph}>— The Social team</Text>
-      <Hr style={emailStyles.hr} />
-      <Text style={emailStyles.footer}>
-        Social, Magical Road, Somewhere in US
-      </Text>
+      {unsubscribeLink && (
+        <>
+          <Hr style={emailStyles.hr} />
+          <Text style={emailStyles.footer}>
+            <Link href={unsubscribeLink} style={emailStyles.footer}>
+              Unsubscribe
+            </Link>
+          </Text>
+        </>
+      )}
     </>
   )
 }

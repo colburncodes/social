@@ -16,7 +16,6 @@ import classes from "~/src/styles/FeaturesCards.module.css"
 
 export function FeaturesCard({ features }) {
   const theme = useMantineTheme()
-  console.log(theme)
   const results =  features.map((feature: any) => (
     <Card
       key={feature.title}

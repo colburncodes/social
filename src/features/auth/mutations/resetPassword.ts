@@ -2,9 +2,8 @@ import { hash256 } from "@blitzjs/auth"
 import { SecurePassword } from "@blitzjs/auth/secure-password"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../../db"
-import { password, ResetPasswordInput } from "../schemas"
+import { ResetPasswordInput } from "../schemas"
 import login from "./login"
-import { z } from "zod"
 import { TokenType } from "@prisma/client"
 
 export class ResetPasswordError extends Error {

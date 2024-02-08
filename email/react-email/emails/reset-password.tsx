@@ -1,11 +1,8 @@
 import {
   Body,
-  Button,
   Container,
   Head,
-  Hr,
   Html,
-  Img,
   Preview,
   Section,
   Text,
