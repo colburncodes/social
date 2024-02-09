@@ -1,13 +1,13 @@
 import React from "react"
 import { Text } from "@mantine/core"
-import { useStringParam } from "~/src/utils/utils"
+import { useStringQueryParam } from "~/src/utils/utils"
 import { BlitzPage } from "@blitzjs/next"
 import getUserEmailSettingsForUnsubscribe from "~/src/features/users/queries/getUserEmailSettingsForUnsubscribe"
 import { useQuery } from "@blitzjs/rpc"
 import Layout from "../core/layouts/layout"
 
 export const UnsubScribePage: BlitzPage = () => {
-  const token = useStringParam("token")
+  const token = useStringQueryParam("token")
 
   const [settings] = useQuery(getUserEmailSettingsForUnsubscribe, {
     token: token as string
@@ -18,7 +18,7 @@ export const UnsubScribePage: BlitzPage = () => {
       {/* @ts-expect-error Server Component */}
       <Layout title={"Unsubscribe"}>
         <Text>
-          Hello from unsubscribe
+          Hello from unsubscribe {token}
         </Text>
       </Layout>
     </>

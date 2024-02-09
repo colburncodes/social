@@ -8,10 +8,10 @@ import { regenerateToken } from "~/src/utils/blitz-utils"
 import { TokenType } from "@prisma/client"
 import { URL_ORIGIN } from "~/src/config"
 
-export const LoginInput = z.object({})
+export const Input = z.object({})
 
 export default resolver.pipe(
-  resolver.zod(LoginInput),
+  resolver.zod(Input),
   resolver.authorize(), async ({}, { session: { userId } }) => {
   const user = await db.user.findUnique({
     where: { id: userId }

@@ -26,7 +26,8 @@ export default resolver.pipe(resolver.zod(Input), async ({ token }) => {
         }
       }
     })
-
+    console.log(hashedToken)
+  console.log(possibleToken?.hashedToken)
     let isTokenMatch = hashedToken === possibleToken?.hashedToken
     console.log(isTokenMatch)
     if (!possibleToken) throw new Error("Token not found")

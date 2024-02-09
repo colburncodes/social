@@ -27,8 +27,8 @@ export const DummyEmail: React.FC<{
     unsubscribeLink: string;
   }
 }> = ({ props = defaultProps }) => {
-  const { name, emailVerifyUrl, unsubscribeLink } = props;
-  const welcomeMessage = name ? `Hello there ${name}, ` : "Hello, ";
+  const { name, unsubscribeLink } = props;
+
   return <Html>
     <Head />
     <Preview>Welcome to {APP_NAME}</Preview>
@@ -39,7 +39,7 @@ export const DummyEmail: React.FC<{
           <Text style={emailStyles.paragraph}>
             This is a dummy email
           </Text>
-          <MainButton href={emailVerifyUrl}>
+          <MainButton href={"https://dashboard.stripe.com/login"}>
             This is a dummy button
           </MainButton>
           <Footer unsubscribeLink={unsubscribeLink}/>
