@@ -4,9 +4,7 @@ import db from "db"
 import { sendEmail } from "~/email/sendEmail"
 import React from "react"
 import DummyEmail from "~/email/react-email/emails/dummy-email"
-import { regenerateToken } from "~/src/utils/blitz-utils"
-import { TokenType } from "@prisma/client"
-import { URL_ORIGIN } from "~/src/config"
+import { generateUnsubscribeLink } from "~/src/utils/email-utils"
 
 export const Input = z.object({})
 
@@ -19,14 +17,11 @@ export default resolver.pipe(
 
   if (!user) throw new Error("User not found")
 
-  const token = await regenerateToken({
-    tokenType: TokenType.UNSUBSCRIBE_EMAIL,
+  let unsubscribeLink = await generateUnsubscribeLink({
     userId: user.id,
     userEmail: user.email
-  })
+  });
 
-  let unsubscribeLink = `${URL_ORIGIN}/unsubscribe?token=${token}`;
-  console.log(unsubscribeLink)
   await sendEmail({
     to: user.email,
     subject: "Hey there dummy user!",

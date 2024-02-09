@@ -6,7 +6,7 @@ import React from "react"
 import { ToggleUserSettings } from "~/src/core/components/toggle-user-settings"
 
 
-export const UserEmailSettings = () => {
+export const UserEmailSettings: React.FC<{}> = () => {
   const [user] = useQuery(getUserEmailSettings, {})
   const [$setUserSettings, {isLoading}] = useMutation(setUserSettings)
 

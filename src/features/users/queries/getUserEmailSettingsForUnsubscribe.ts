@@ -9,8 +9,8 @@ export const Input = z.object({
 })
 
 export default resolver.pipe(resolver.zod(Input), async ({ token }) => {
+
     const hashedToken = hash256(token);
-    console.log(hashedToken)
     const possibleToken = await db.token.findFirst({
       where: { hashedToken, type: TokenType.UNSUBSCRIBE_EMAIL },
       include: {
@@ -26,12 +26,8 @@ export default resolver.pipe(resolver.zod(Input), async ({ token }) => {
         }
       }
     })
-    console.log(hashedToken)
-  console.log(possibleToken?.hashedToken)
-    let isTokenMatch = hashedToken === possibleToken?.hashedToken
-    console.log(isTokenMatch)
-    if (!possibleToken) throw new Error("Token not found")
 
+    if (!possibleToken) throw new Error("Token not found")
     if (possibleToken.expiresAt < new Date()) throw new Error("Token expired")
 
   return possibleToken.user
