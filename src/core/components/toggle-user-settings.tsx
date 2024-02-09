@@ -1,6 +1,6 @@
 import { Stack, Switch, Text } from "@mantine/core"
 import React from "react"
-export const ToggleUserSettings = ({disabled, onToggle, checked, label, description}) => {
+export const ToggleUserSettings = ({disabled = false, onToggle = () => {}, checked, label, description}) => {
 
   return(
     <Stack mt={10}>

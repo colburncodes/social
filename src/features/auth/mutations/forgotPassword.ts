@@ -23,7 +23,7 @@ export default resolver.pipe(resolver.zod(ForgotPasswordInput), async ({ email }
     userEmail: user.email
   })
 
-  const resetPasswordUrl = `${URL_ORIGIN}/auth/reset-password?token=${token}`;
+  let resetPasswordUrl = `${URL_ORIGIN}/auth/reset-password?token=${token}`;
 
   await sendEmail({
     to: user.email,

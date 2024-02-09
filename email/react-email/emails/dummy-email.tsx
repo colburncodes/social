@@ -8,40 +8,61 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
-import { emailStyles } from "~/email/react-email/styles"
-import { MainButton } from "~/email/react-email/components/button"
-import { Header } from "../components/header";
+import { Header } from "~/email/react-email/components/header"
 import { Footer } from "~/email/react-email/components/footer"
+import { emailStyles } from "~/email/react-email/styles"
+import { APP_NAME } from "~/src/config"
+import { MainButton } from "~/email/react-email/components/button"
 
 const defaultProps = {
-  emailVerifyUrl: "Test User"
+  name: "Test User",
+  emailVerifyUrl: "",
+  unsubscribeLink: ""
 }
 // @ts-ignore
-export const VerifyEmailTemplate: React.FC<{
+export const DummyEmail: React.FC<{
   props: {
+    name?: string | null;
     emailVerifyUrl?: string;
+    unsubscribeLink: string;
   }
 }> = ({ props = defaultProps }) => {
-  const { emailVerifyUrl } = props;
+  const { name, unsubscribeLink } = props;
+
   return <Html>
     <Head />
-    <Preview>Verify your email for social.</Preview>
+    <Preview>Welcome to {APP_NAME}</Preview>
     <Body style={emailStyles.main}>
       <Container style={emailStyles.container}>
         <Section style={emailStyles.box}>
           <Header/>
           <Text style={emailStyles.paragraph}>
-            Hello, you requested this email for verifying your account. If you didn't request it, please ignore.
+            This is a dummy email
           </Text>
-          <MainButton href={emailVerifyUrl}>
-            Click here to verify your account
+          <MainButton href={"https://dashboard.stripe.com/login"}>
+            This is a dummy button
           </MainButton>
-          <Footer/>
+          <Footer unsubscribeLink={unsubscribeLink}/>
         </Section>
       </Container>
     </Body>
   </Html>
 };
 
-export default VerifyEmailTemplate;
+export default DummyEmail;
+
+
+
+
+
+
+
+
+
+const anchor = {
+  color: "#556cd6",
+};
+
+
+
 
