@@ -1,6 +1,6 @@
 import { loadEnvConfig } from "@next/env"
 import { defineConfig } from "vitest/config"
-
+import { resolve } from "node:path"
 import react from "@vitejs/plugin-react"
 import tsconfigPaths from "vite-tsconfig-paths"
 
@@ -11,11 +11,10 @@ loadEnvConfig(projectDir)
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
-    dir: "./",
     globals: true,
-    setupFiles: "./test/setup.ts",
-    coverage: {
-      reporter: ["text", "json", "html"],
-    },
+    environment: "jsdom"
   },
+  resolve: {
+    alias: [{ find: "@", replacement: resolve(__dirname, "./src") }]
+  }
 })

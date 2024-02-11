@@ -9,7 +9,9 @@
     "start": "blitz start",
     "db:migrate": "npx blitz prisma migrate dev",
     "studio": "blitz prisma studio",
-    "railway:dev": "railway run yarn dev"
+    "railway:dev": "railway run yarn dev",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "prisma": {
     "schema": "db/schema.prisma"
@@ -67,8 +69,8 @@
     "preview-email": "3.0.7",
     "prisma": "^5.8.1",
     "typescript": "^4.9.5",
-    "vite-tsconfig-paths": "3.6.0",
-    "vitest": "0.25.3"
+    "vite-tsconfig-paths": "^3.6.0",
+    "vitest": "^1.2.2"
   },
   "private": true
 }
