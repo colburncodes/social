@@ -21,7 +21,7 @@ const mockCtx: any = {
   },
 }
 
-// MOCK USER 
+// MOCK USER
 const mockUser = {
   id: "12",
   email: 'user@email.com',
@@ -45,7 +45,7 @@ describe("login mutation", () => {
 
     vi.mocked(authenticateUser).mockResolvedValue(mockUser)
 
-    const result = await login({ email: mockUser.email, password: "validPassword" }, mockCtx)
+    const result = await login({ email: mockUser.email, password: mockUser.password }, mockCtx)
 
     expect(result).toEqual(mockUser)
     expect(mockCtx.session.$create).toHaveBeenCalledWith({ userId: mockUser.id, role: mockUser.role })
@@ -57,7 +57,7 @@ describe("login mutation", () => {
 
     vi.mocked(authUtils.default).mockRejectedValue(new Error("Invalid credentials"))
 
-    await expect(login({ email: "user@email.com", password: "invalidPassword"}, mockCtx))
+    await expect(login({ email: mockUser.email, password: "invalidPassword"}, mockCtx))
       .rejects
       .toThrow("Invalid credentials")
 
@@ -67,8 +67,7 @@ describe("login mutation", () => {
   it("should throw an error if required fields are missing",
     async () => {
       try {
-        await login({ email: "", password: "validPassword"}, mockCtx)
-
+        const result = await login({ email: "", password: "validPassword"}, mockCtx)
         expect.fail("Expected to throw validation error")
       } catch (err) {
         expect(err).toBeInstanceOf(ZodError)

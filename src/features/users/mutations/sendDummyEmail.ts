@@ -28,8 +28,8 @@ export default resolver.pipe(
     react: React.createElement(DummyEmail, {
       props: {
         name: user.name,
-        emailVerifyUrl: user.email,
-        unsubscribeLink: unsubscribeLink
+        emailVerifyUrl: "",
+        unsubscribeLink
       }
     })
   })
