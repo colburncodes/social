@@ -10,10 +10,10 @@ export const UserEmailSettings: React.FC<{}> = () => {
   const [user] = useQuery(getUserEmailSettings, {})
   const [$setUserSettings, {isLoading}] = useMutation(setUserSettings)
 
-  const handleToggle = (key: any, value: any) => () => {
-     $setUserSettings({
+  const handleToggle = (key: any, value: any) => async () => {
+     await $setUserSettings({
       key,
-      value: !value
+      value: !value?.[key]
     })
   }
 

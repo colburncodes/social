@@ -1,5 +1,3 @@
-import { IconBrush, IconChartBar, IconLocation } from "@tabler/icons-react"
-
 
 export const pathNameHidden = [
   '/auth/login',
