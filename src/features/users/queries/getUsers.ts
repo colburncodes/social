@@ -14,6 +14,13 @@ export default resolver.pipe(
       role: true,
       bio: true,
       onBoarded: true,
+      settings: {
+        select: {
+          id: true,
+          settingsEmailMarketing: true,
+          settingsEmailProduct: true
+        }
+      }
     }
   });
 
