@@ -6,6 +6,7 @@ import { IconMail, IconUserSearch } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
 import { Users } from "~/src/pages/admin/components/users"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
+import { BulkEmails } from "./components/bulk-emails"
 
 
 export const Admin = () => {
@@ -25,8 +26,9 @@ export const Admin = () => {
         </Tabs.List>
 
         <Tabs.Panel value="email">
-          <div>
+          <div style={{ marginLeft: "50px"}}>
             Sending Bulk Emails
+            <BulkEmails/>
           </div>
         </Tabs.Panel>
         <Tabs.Panel value="profile">Profile tab content</Tabs.Panel>
