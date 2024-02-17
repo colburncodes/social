@@ -28,6 +28,7 @@ export default resolver.pipe(resolver.zod(ForgotPasswordInput), async ({ email }
   await sendEmail({
     to: user.email,
     subject: "Reset your password for Social",
+    text: "",
     react: React.createElement(ResetPasswordTemplate, {
       props: {
         resetPasswordUrl

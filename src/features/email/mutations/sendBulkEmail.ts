@@ -7,6 +7,8 @@ import { isDev } from "~/src/config"
 import React from "react"
 import DummyEmail from "~/email/react-email/emails/dummy-email"
 import { generateUnsubscribeLink } from "~/src/utils/email-utils"
+import { Email } from "~/email/types"
+import { sendBulkEmail } from "~/email/sendBulkEmail"
 
 export const Input = z.object({
   list: z.nativeEnum(EmailList)
@@ -20,8 +22,6 @@ export default resolver.pipe(
   })
 
   if (!user) throw new Error("User not found")
-
-    //console.log("list is", list)
 
     const users = await db.user.findMany({
       where: {
@@ -56,8 +56,8 @@ export default resolver.pipe(
     const chunks = chunk(users, CHUNK_SIZE);
 
     for (const chunk of chunks) {
-      const emails = await Promise.all(
-        chunk.map(async (user) => {
+      const emails: Email[] = await Promise.all(
+        chunk.map(async (user): Promise<Email> => {
           let unsubscribeLink = await generateUnsubscribeLink({
             userId: user.id,
             userEmail: user.email
@@ -65,6 +65,7 @@ export default resolver.pipe(
           return {
             to: user.email,
             subject: `Hey there ${user.name}`,
+            text: "",
             react: React.createElement(DummyEmail, {
               props: {
                 name: user.name,
@@ -76,20 +77,6 @@ export default resolver.pipe(
         })
       )
 
-      console.log('emails are', emails);
+      await sendBulkEmail(emails)
     }
-
-
-  //
-  // await sendEmail({
-  //   to: user.email,
-  //   subject: "Hey there dummy user!",
-  //   react: React.createElement(DummyEmail, {
-  //     props: {
-  //       name: user.name,
-  //       emailVerifyUrl: "",
-  //       unsubscribeLink
-  //     }
-  //   })
-  // })
 })

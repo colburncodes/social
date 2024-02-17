@@ -13,19 +13,21 @@ export const BulkEmails = () => {
   const [list, setList] = useState<EmailList>(EmailList.All)
   const [$sendBulkEmail] = useMutation(sendBulkEmail)
   return (
-    <Group>
-      <Select
-        placeholder="Pick value"
-        data={options}
-        defaultValue={EmailList.All}
-        value={list}
-        onChange={(value) => setList(value as EmailList)}
-      />
-      <Button onClick={async() => {
+    <>
+      <Group>
+        <Select
+          placeholder="Pick value"
+          data={options}
+          defaultValue={EmailList.All}
+          value={list}
+          onChange={(value) => setList(value as EmailList)}
+        />
+      </Group>
+      <Button mt={20} onClick={async() => {
         await $sendBulkEmail({ list })
       }}>
         Send Bulk Email
       </Button>
-    </Group>
+    </>
   )
 }
