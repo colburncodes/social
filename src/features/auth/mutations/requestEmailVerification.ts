@@ -26,6 +26,7 @@ export const sendVerificationEmail = async ({ userId, userEmail }): Promise<void
   await sendEmail({
     to: userEmail,
     subject: "Please verify your email address",
+    text: "",
     react: React.createElement(VerifyEmailTemplate, {
       props: {
         emailVerifyUrl

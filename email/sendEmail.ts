@@ -1,23 +1,26 @@
-import { Resend } from 'resend';
-import { CreateEmailOptions } from "resend/build/src/emails/interfaces"
 import { isDev } from "~/src/config"
 import { render } from "@react-email/render"
 import { nodemailerAppTransport } from "~/email/transports/nodemailer-local-transport"
-import { env } from "~/src/env.mjs"
+import { Email } from "~/email/types"
+import { resend } from "~/email/resend"
+import { CreateEmailOptions } from "resend/build/src/emails/interfaces"
 
-const resend = new Resend(env.RESEND_API_KEY);
-export const sendEmail = async ({subject, to, react}) => {
+export const DEFAULT_FROM = 'onboarding@resend.dev'
+export const sendEmail = async ({subject, to, react}: Email) => {
 
   let message: CreateEmailOptions = {
-    from: 'onboarding@resend.dev',
-    to, // 'colburnsanders@gmail.com'
+    from: DEFAULT_FROM,
+    to,
     subject,
-    html: render(react)
+    text: ""
   }
 
   if (isDev) {
+    if (!react) throw new Error("The email doesn't have any content")
+    const html = render(react)
     return nodemailerAppTransport.sendMail({
-      ...message
+      ...message,
+      html
     })
   }
 

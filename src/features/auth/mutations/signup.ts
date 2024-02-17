@@ -37,6 +37,7 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
       await sendEmail({
         to: user.email,
         subject: "Welcome to Social!",
+        text: "",
         react: React.createElement(Welcome, {
           props: {
             name: user.name,

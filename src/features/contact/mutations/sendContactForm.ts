@@ -21,6 +21,7 @@ export default resolver.pipe(
       await sendEmail({
         to: email,
         subject: "Contact",
+        text: "",
         react: React.createElement(ContactEmail, {
           props: {
             name: name,

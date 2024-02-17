@@ -1,6 +1,6 @@
 import { resolver } from "@blitzjs/rpc"
 import { z } from "zod"
-import db from "db"
+import db from "~/db"
 import { sendEmail } from "~/email/sendEmail"
 import React from "react"
 import DummyEmail from "~/email/react-email/emails/dummy-email"
@@ -25,6 +25,7 @@ export default resolver.pipe(
   await sendEmail({
     to: user.email,
     subject: "Hey there dummy user!",
+    text: "",
     react: React.createElement(DummyEmail, {
       props: {
         name: user.name,
