@@ -27,7 +27,6 @@ export const Admin = () => {
 
         <Tabs.Panel value="email">
           <div style={{ marginLeft: "50px"}}>
-            choose email list
             <BulkEmails/>
           </div>
         </Tabs.Panel>

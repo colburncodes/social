@@ -3,3 +3,7 @@ export enum EmailList {
   Product = "product",
   All = "all"
 }
+export enum EmailTemplate  {
+  Dummy = "dummy",
+  BlackFriday = "blackFriday"
+}
