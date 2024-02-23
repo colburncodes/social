@@ -19,7 +19,6 @@ export default resolver.pipe(resolver.zod(LoginInput), async ({ username }) => {
       coverImageKey: true
     }
   })
-
   if (!user) throw new NotFoundError()
   return user
 })

@@ -13,7 +13,7 @@ export const UserEmailSettings: React.FC<{}> = () => {
   const handleToggle = (key: any, value: any) => async () => {
      await $setUserSettings({
       key,
-      value: !value?.[key]
+      value: !value
     })
   }
 

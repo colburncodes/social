@@ -14,8 +14,11 @@ export const BulkEmails = () => {
   const [list, setList] = useState<EmailList>(EmailList.All)
   const [template, setTemplate] = useState<EmailTemplate>(emailTemplates[0]!.value)
   const [$sendBulkEmail] = useMutation(sendBulkEmail)
+
+  const isTemplateFound = emailTemplates.find((t) => t.value === template)
   return (
     <>
+      <Group>
       <Stack w={200}>
         <Select
           label={"Choose email list"}
@@ -37,12 +40,17 @@ export const BulkEmails = () => {
           value={template}
           onChange={(value) => setTemplate(value as EmailTemplate)}
         />
+
+        <Button mt={20} onClick={async() => {
+          await $sendBulkEmail({ list, template })
+        }}>
+          Send Bulk Email
+        </Button>
       </Stack>
-      <Button mt={20} onClick={async() => {
-        await $sendBulkEmail({ list, template })
-      }}>
-        Send Bulk Email
-      </Button>
+
+        {/* @ts-expect-error Server Component */}
+        {isTemplateFound && <isTemplateFound.component/>}
+      </Group>
     </>
   )
 }

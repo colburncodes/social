@@ -53,16 +53,6 @@ export function UserHeaderMenu() {
           Edit Profile
         </MenuItemEdit>
 
-        {user.username && (
-          <MenuItemLink
-            Icon={IconUser}
-            href={Routes.ProfilePage({
-            username: user.username
-          })}>
-            Go to Profile
-          </ MenuItemLink>
-        )}
-
         {user.isAdmin && (
           <MenuItemLink
             Icon={IconUserShield}

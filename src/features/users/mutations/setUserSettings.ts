@@ -29,6 +29,7 @@ export default resolver.pipe(
     if (!user) throw new Error("User not found")
 
     if (user.settings.length === 0) {
+      console.log("CREATE")
          await db.setting.create({
           data: {
             user: {
@@ -43,7 +44,7 @@ export default resolver.pipe(
           }
         })
     } else {
-      user.settings.forEach(async (setting) => {
+       user.settings.forEach(async (setting) => {
           await db.setting.update({
           where: { id: setting.id },
           data: { [key]: value }
