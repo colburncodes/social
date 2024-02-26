@@ -6,6 +6,7 @@ import { IconMail, IconUser, IconUserCog } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
 import { ChangePassword } from "~/src/pages/settings/components/change-password"
 import { UserEmailSettings } from "~/src/pages/settings/components/user-email-settings"
+import EditProfilePage from "~/src/pages/edit-profile.page"
 
 
 export const Settings = () => {
@@ -20,13 +21,11 @@ export const Settings = () => {
         </Stack>
         <Tabs defaultValue="account" orientation="vertical">
           <Tabs.List>
-            <Tabs.Tab value="profile" leftSection={<IconUser size={"0.8rem"}/>}>Profile</Tabs.Tab>
             <Tabs.Tab value="account" leftSection={<IconUserCog size={"0.8rem"}/>}>Account</Tabs.Tab>
             <Tabs.Tab value="notifications" leftSection={<IconMail size={"0.8rem"}/>}>Notifications</Tabs.Tab>
 
           </Tabs.List>
 
-          <Tabs.Panel value="profile">Profile tab content</Tabs.Panel>
           <Tabs.Panel value="account">
             <ChangePassword/>
           </Tabs.Panel>

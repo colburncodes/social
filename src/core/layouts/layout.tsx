@@ -35,10 +35,6 @@ type Props = {
   children?: React.ReactNode
 }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
 const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const user = useCurrentUser()
   const router = useRouter()
@@ -89,8 +85,8 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 pos={"relative"}
                 top={-10}
               >
-                <Text style={{ fontFamily: "Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif", fontSize: "1.75rem", fontWeight: "bolder", marginTop: 20, marginLeft: 20}}>social</Text>
-                {/*<Img src={`${baseUrl}/social/logos/png/white_logo_no_background.png`} width={100} height={100} alt={"Social"}/>*/}
+                <Text
+                  style={{ fontFamily: "Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif", fontSize: "1.75rem", fontWeight: "bolder", marginTop: 20, marginLeft: 20}}>social</Text>
               </Anchor>
 
               <Group className={classes.profile}>
@@ -99,9 +95,14 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
                 {user && (
                   <>
-                    <Badge style={{ border: '1px solid red' }} variant={"light"} onClick={() => {
+                    <Badge
+                      style={{ border: '1px solid red' }}
+                      variant={"light"}
+                      onClick={() => {
                       openModal()
-                    }} color={"red"}>Pro</Badge>
+                    }} color={"red"}>
+                      Pro
+                    </Badge>
 
                     <ActionIcon
                       left={-5}

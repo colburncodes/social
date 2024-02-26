@@ -6,3 +6,4 @@ export type Email = {
   react: ReactElement;
   text: string;
 }
+

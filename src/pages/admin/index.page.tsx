@@ -21,13 +21,17 @@ export const Admin = () => {
       <Tabs defaultValue="account" orientation="vertical">
         <Tabs.List>
           <Tabs.Tab value="email" leftSection={<IconMail size={"0.8rem"}/>}>Email</Tabs.Tab>
-          {user?.isAdmin && <Tabs.Tab value="users" leftSection={<IconUserSearch size={"0.8rem"}/>}>Users</Tabs.Tab>}
+          {user?.isAdmin &&
+            <Tabs.Tab
+              value="users"
+              leftSection={<IconUserSearch size={"0.8rem"}/>}>
+              Users
+            </Tabs.Tab>}
 
         </Tabs.List>
 
         <Tabs.Panel value="email">
           <div style={{ marginLeft: "50px"}}>
-            choose email list
             <BulkEmails/>
           </div>
         </Tabs.Panel>
