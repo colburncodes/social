@@ -17,7 +17,9 @@ import { MainButton } from "~/email/react-email/components/button"
 const defaultProps = {
   name: "Test User",
   emailVerifyUrl: "",
-  unsubscribeLink: ""
+  unsubscribeLink: "",
+  title: "Black Friday Discount Ends Soon!",
+  buttonText: "Shop Now"
 }
 // @ts-ignore
 export const EmailTemplateBlackFriday: React.FC<{
@@ -25,9 +27,11 @@ export const EmailTemplateBlackFriday: React.FC<{
     name?: string | null;
     emailVerifyUrl?: string;
     unsubscribeLink: string;
+    title?: string;
+    buttonText?: string;
   }
 }> = ({ props = defaultProps }) => {
-  const { name, unsubscribeLink } = props;
+  const { name, unsubscribeLink, title, buttonText} = props;
 
   return <Html>
     <Head />
@@ -37,10 +41,10 @@ export const EmailTemplateBlackFriday: React.FC<{
         <Section style={emailStyles.box}>
           <Header/>
           <Text style={emailStyles.paragraph}>
-            Black Friday Discount Ends Soon!
+            {title}
           </Text>
           <MainButton href={"https://dashboard.stripe.com/login"}>
-            Use our Black Friday Discount!
+            {buttonText}
           </MainButton>
           <Footer unsubscribeLink={unsubscribeLink}/>
         </Section>
