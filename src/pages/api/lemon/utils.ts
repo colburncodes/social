@@ -1,8 +1,6 @@
-// import { NextApiRequest } from "next"
-// import { buffer } from "raw-body"
-//
-//
-// export const getRawBody = async (req: NextApiRequest) => {
-//   const buff = await buffer(req)
-//   return buff.toString("utf-8")
-// }
+export const returnOkay = (res) => res.status(200).json({ message: "OK" });
+
+export const returnError = (res) =>
+  res.status(400).json({
+    message: "Error in webhook",
+  });

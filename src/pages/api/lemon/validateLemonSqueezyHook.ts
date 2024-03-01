@@ -21,6 +21,4 @@ export const validateLemonSqueezyHook = async ({
     console.log("err", err);
     return false;
   }
-
-  return false;
 };
