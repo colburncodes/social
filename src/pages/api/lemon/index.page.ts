@@ -1,7 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { validateLemonSqueezyHook } from "~/src/pages/api/lemon/validateLemonSqueezyHook"
-import { getRawBody } from "~/src/pages/api/lemon/utils"
+import getRawBody from "raw-body"
 
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
+}
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("🍋: hello")
@@ -14,7 +20,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const rawBody = await getRawBody(req)
-  const isValidHook = await validateLemonSqueezyHook({ req,rawBody })
+  const isValidHook = await validateLemonSqueezyHook({ req, rawBody })
 
   console.log("🍋: isValidHook", isValidHook)
 
