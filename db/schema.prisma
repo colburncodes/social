@@ -25,8 +25,11 @@ model User {
   avatarImageKey  String?
   coverImageKey   String?
 
-  username  String? @unique
-  onBoarded Boolean @default(false)
+  username          String?             @unique
+  onBoarded         Boolean             @default(false)
+  // payments
+  hasLifeTimeAccess Boolean             @default(false)
+  Orders            LemonSqueezyOrder[]
 
   events   Event[]
   tokens   Token[]
@@ -35,6 +38,19 @@ model User {
   comment  Comment[]
   favorite Favorite[]
   follower Follow[]
+}
+
+model LemonSqueezyOrder {
+  id      String @id @default(uuid())
+  orderId String @unique
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  attributes Json
 }
 
 model Comment {
