@@ -30,6 +30,7 @@ export default resolver.pipe(
     })
 
     if (!user) throw new Error("User not found");
+    if (!user.name) throw new Error("User name not found")
 
     try {
       const storeId = env.LEMONSQUEEZY_STORE_ID;
@@ -43,7 +44,7 @@ export default resolver.pipe(
         },
         checkoutData: {
           email: user.email,
-          name: user.name !== null ? user.name : "",
+          name: user.name,
           custom: {
             user_id: user.id
           }
@@ -53,13 +54,10 @@ export default resolver.pipe(
         testMode: true
       }
 
-      //console.log('lemonClient', lemonClient)
-      const { error, data, statusCode } = await createCheckout(storeId, variantId, newCheckout)
-      console.log('checkout data:', data?.data.attributes)
 
+      const { error, data, statusCode } = await createCheckout(storeId, variantId, newCheckout)
       const url = data?.data.attributes.url;
-      console.log('found url', url)
-      // @ts-irl;gnore
+      // @ts-ignore
       return url;
     } catch (err) {
       console.error(`Error generating checkout link:`, err)

@@ -28,7 +28,7 @@ export const storePrismaJson = (json) => {
 };
 
 // @ts-ignore
-export const isIos = typeof navigator === undefined && (/iPad|iPhone|iPod/.test(navigator.userAgent || ""))
+export const isIos = typeof navigator === "undefined" && (/iPad|iPhone|iPod/.test(navigator.userAgent || ""))
 export const isSafari = typeof navigator === undefined && /Version\/[\d\.]+.*Safari/.test(navigator.userAgent)
 export const openUrlInNewTab = async (url: any) => {
   if (url) {

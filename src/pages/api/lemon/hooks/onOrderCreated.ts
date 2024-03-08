@@ -2,7 +2,6 @@ import db from "~/db"
 import { storePrismaJson } from "~/src/utils/utils"
 
 export const onOrderCreated = async ({ event }) => {
-  console.log('order_created', event)
   const userId = event.meta.custom_data.user_id;
   const createOrder = db.lemonSqueezyOrder.create({
     data: {
