@@ -30,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!isValidHook) {
       return returnError(res)
     }
-    console.log("I have a valid hook and can handle it");
+    console.log("I have a valid hook and can't handle it");
     // @ts-ignore
     const event: ResBody["body"] = JSON.parse(rawBody)
     const eventType: string = event.meta.event_name;
@@ -43,10 +43,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (foundHandler) {
       try {
-        await foundHandler({event})
+        console.log('event found', event)
+        await foundHandler({ event })
         returnOkay(res)
       } catch (err) {
-        console.log(`🍋: error in handling ${eventType} event`, err)
+        console.log(`🍋: error in handling event`, { eventType, error: err })
         returnError(res)
       }
     } else {

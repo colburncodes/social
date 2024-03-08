@@ -1288,6 +1288,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@lemonsqueezy/lemonsqueezy.js@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/@lemonsqueezy/lemonsqueezy.js/-/lemonsqueezy.js-2.2.0.tgz"
+  integrity sha512-DsZTeowehSLTESUZ6xxoYPDhoE8BYepWsj3TCqibG7FvB8X1HERPXQlc6E/IeGj22SOfIM997b7GfFkeLWY8pA==
+
 "@mantine/code-highlight@^7.4.2":
   version "7.4.2"
   resolved "https://registry.npmjs.org/@mantine/code-highlight/-/code-highlight-7.4.2.tgz"

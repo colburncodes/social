@@ -1,7 +1,6 @@
 import { Ctx } from "blitz"
 import db from "../../../../db"
 import { Simulate } from "react-dom/test-utils"
-import select = Simulate.select
 
 export default async function getCurrentUser(_ = null, { session }: Ctx) {
   if (!session.userId) return null
@@ -25,7 +24,8 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
            settingsEmailProduct: true,
            settingsEmailMarketing: true
          }
-      }
+      },
+      hasLifeTimeAccess: true
     },
   })
 
