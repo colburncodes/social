@@ -30,7 +30,7 @@
     "@mantine/hooks": "^7.4.2",
     "@mantine/modals": "^7.4.1",
     "@mantine/notifications": "^7.4.2",
-    "@prisma/client": "^5.9.1",
+    "@prisma/client": "^5.10.2",
     "@react-email/components": "0.0.14",
     "@t3-oss/env-nextjs": "^0.7.1",
     "@tabler/icons-react": "^2.42.0",
@@ -72,7 +72,7 @@
     "prettier-plugin-prisma": "4.4.0",
     "pretty-quick": "3.1.3",
     "preview-email": "3.0.7",
-    "prisma": "^5.9.1",
+    "prisma": "^5.10.2",
     "typescript": "^4.9.5",
     "vite-tsconfig-paths": "^3.6.0",
     "vitest": "^1.2.2"
