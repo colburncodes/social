@@ -2,6 +2,7 @@ import { useParam } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { isMacOS } from "std-env"
 import { Prisma } from "@prisma/client"
+import { isSafari } from "@floating-ui/utils/react"
 
 
 export const useStringParam = (name: string) => useParam(name, "string")
@@ -28,11 +29,9 @@ export const storePrismaJson = (json) => {
 };
 
 // @ts-ignore
-export const isIos = typeof navigator === "undefined" && (/iPad|iPhone|iPod/.test(navigator.userAgent || ""))
-export const isSafari = typeof navigator === undefined && /Version\/[\d\.]+.*Safari/.test(navigator.userAgent)
 export const openUrlInNewTab = async (url: any) => {
   if (url) {
-    if (isIos || isSafari) {
+    if (isSafari() || isMacOS) {
       window.location.assign(url)
     } else {
       window.open(url, "_blank")
