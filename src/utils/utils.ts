@@ -1,7 +1,7 @@
 import { useParam } from "@blitzjs/next"
 import { useRouter } from "next/router"
-import { isMacOS } from "std-env"
 import { Prisma } from "@prisma/client"
+import { isMacOS } from "std-env"
 import { isSafari } from "@floating-ui/utils/react"
 
 
@@ -31,7 +31,7 @@ export const storePrismaJson = (json) => {
 // @ts-ignore
 export const openUrlInNewTab = async (url: any) => {
   if (url) {
-    if (isSafari() || isMacOS) {
+    if (isMacOS || isSafari()) {
       window.location.assign(url)
     } else {
       window.open(url, "_blank")

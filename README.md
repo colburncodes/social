@@ -24,7 +24,7 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 
 - [x] Authentication and Authorization
 - [x] Multi-tenancy
-- [ ] Payments Integration [Lemon Squeezy](https://docs.lemonsqueezy.com/api#test-mode)
+- [x] Payments Integration [Lemon Squeezy](https://docs.lemonsqueezy.com/api#test-mode)
 - [ ] Event Monitoring [Log Snag](https://logsnag.com/)
 - [ ] Subscriptions [Subscriptions](https://docs.lemonsqueezy.com/api/subscriptions)
 - [ ] Subscription plans
