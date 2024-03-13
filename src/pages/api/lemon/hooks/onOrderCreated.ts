@@ -5,7 +5,7 @@ export const onOrderCreated = async ({ event }) => {
   const userId = event.meta.custom_data.user_id;
   const createOrder = db.lemonSqueezyOrder.create({
     data: {
-      orderId: event.data.id,
+      orderId: event.data.attributes.order_number.toString(),
       user: {
         connect: {
           id: userId

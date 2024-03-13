@@ -35,7 +35,8 @@ const mockUser = {
   emailVerifiedAt: null,
   avatarImageKey: null,
   coverImageKey: null,
-  username: null
+  username: null,
+  hasLifeTimeAccess: true
 }
 
 describe("login mutation", () => {

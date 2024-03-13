@@ -3,6 +3,7 @@ import { z } from "zod"
 import db from "db"
 import { env } from "~/src/env.mjs"
 import { type NewCheckout, createCheckout } from "@lemonsqueezy/lemonsqueezy.js"
+import { lemonClient } from "~/src/features/payments/lemonClient"
 
 /**
  * Create a checkout and generate a checkout url link.
@@ -54,7 +55,7 @@ export default resolver.pipe(
         testMode: true
       }
 
-
+      console.log('lemonClient', lemonClient)
       const { error, data, statusCode } = await createCheckout(storeId, variantId, newCheckout)
       const url = data?.data.attributes.url;
       // @ts-ignore
