@@ -23,6 +23,6 @@ export const onOrderCreated = async ({ event }) => {
       hasLifeTimeAccess: true
     }
   })
-
+  
   return db.$transaction([createOrder, updateUserToPro])
 }

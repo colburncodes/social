@@ -55,9 +55,9 @@ export default resolver.pipe(
         testMode: true
       }
 
-      console.log('lemonClient', lemonClient)
       const { error, data, statusCode } = await createCheckout(storeId, variantId, newCheckout)
       const url = data?.data.attributes.url;
+
       // @ts-ignore
       return url;
     } catch (err) {

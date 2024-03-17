@@ -9,8 +9,6 @@ import { storePrismaJson } from "~/src/utils/utils"
  * @param {Object} event.data.attributes - order details with order number.
  */
 export const onOrderRefunded = async ({ event }) => {
-  console.log('order_refunded', event)
-
   const order = await db.lemonSqueezyOrder.findFirst({
     where: { orderId: event.data.attributes.order_number.toString() }
   })
@@ -38,6 +36,5 @@ export const onOrderRefunded = async ({ event }) => {
     }
   })
 
-  console.log('foundOrder', order)
   return db.$transaction([updateOrder, updateUser])
 }
