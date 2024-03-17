@@ -2,8 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next"
 import { validateLemonSqueezyHook } from "~/src/pages/api/lemon/validateLemonSqueezyHook"
 import getRawBody from "raw-body"
 import { LemonEventType } from "~/src/pages/api/lemon/types"
-import { onOrderCreated } from "~/src/pages/api/lemon/hooks/onOrderCreated"
 import { returnError, returnOkay } from "~/src/pages/api/lemon/utils"
+import { onOrderCreated } from "~/src/pages/api/lemon/hooks/onOrderCreated"
+import { onOrderRefunded } from "~/src/pages/api/lemon/hooks/onOrderRefunded"
 
 
 export const config = {
@@ -36,7 +37,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const eventType: string = event.meta.event_name;
 
     const handlers = {
-      [LemonEventType.OrderCreated]: onOrderCreated
+      [LemonEventType.OrderCreated]: onOrderCreated,
+      [LemonEventType.OrderRefunded]: onOrderRefunded
     }
 
     const foundHandler = handlers[eventType];
