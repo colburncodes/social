@@ -25,7 +25,10 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 - [x] Authentication and Authorization
 - [x] Multi-tenancy
 - [x] Payments Integration [Lemon Squeezy](https://docs.lemonsqueezy.com/api#test-mode)
-- [ ] Event Monitoring [Log Snag](https://logsnag.com/)
+- [x] Event Monitoring [Log Snag](https://logsnag.com/)
+    - [ ] Billing
+    - [ ] Orders
+    - [ ] User activity
 - [ ] Subscriptions [Subscriptions](https://docs.lemonsqueezy.com/api/subscriptions)
 - [ ] Subscription plans
 - [x] User Roles
@@ -66,6 +69,12 @@ NODE_MAILER_USER="nodeMailerCreds"
 NODE_MAILER_PASS="nodeMailerCreds"
 UPLOADTHING_SECRET="uploadSecretKey"
 UPLOADTHING_APP_ID="uploadAPPID"
+LEMONSQUEEZY_WEBHOOK_SECRET="lemonSqueezyHookSecret"
+LEMONSQUEEZY_API_KEY="lemonSqueezyApiKey"
+LEMONSQUEEZY_STORE_ID="storeID"
+LEMONSQUEEZY_VARIANT_ID="variantID"
+LOGSNAG_API_KEY="logSnagApiKey"
+NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN="logSnagClientKey"
 ```
 Start the server
 ```bash

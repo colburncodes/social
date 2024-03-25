@@ -3,6 +3,8 @@ import { z } from "zod"
 import db from "db"
 import { env } from "~/src/env.mjs"
 import { type NewCheckout, createCheckout } from "@lemonsqueezy/lemonsqueezy.js"
+import { sendPaymentActivity } from "~/src/logsnag/log-snag-events"
+import { lemonClient } from "~/src/features/payments/lemonClient"
 
 /**
  * Create a checkout and generate a checkout url link.
@@ -53,8 +55,23 @@ export default resolver.pipe(
         preview: true,
         testMode: true
       }
-
+      // @ts-ignore
+      console.log('lemonClient', lemonClient)
       const { error, data, statusCode } = await createCheckout(storeId, variantId, newCheckout)
+
+      const checkoutOptions = data?.data.attributes.checkout_options;
+      const preview = data?.data.attributes.preview;
+
+      await sendPaymentActivity({
+        id: data?.data.id || "",
+        channel: "payments",
+        event: data?.data.type || "",
+        notify: true,
+        plan: preview?.total_formatted || "",
+        cycle: "monthly",
+        trial: checkoutOptions?.discount || false
+      })
+
       const url = data?.data.attributes.url;
 
       // @ts-ignore
