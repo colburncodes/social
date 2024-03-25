@@ -55,8 +55,7 @@ export default resolver.pipe(
         preview: true,
         testMode: true
       }
-      // @ts-ignore
-      console.log('lemonClient', lemonClient)
+
       const { error, data, statusCode } = await createCheckout(storeId, variantId, newCheckout)
 
       const checkoutOptions = data?.data.attributes.checkout_options;
