@@ -16,7 +16,9 @@ export const env = createEnv({
     LEMONSQUEEZY_WEBHOOK_SECRET: z.string(),
     LEMONSQUEEZY_API_KEY: z.string(),
     LEMONSQUEEZY_STORE_ID: z.string(),
-    LEMONSQUEEZY_VARIANT_ID: z.string()
+    LEMONSQUEEZY_VARIANT_ID: z.string(),
+    LOGSNAG_API_KEY: z.string(),
+    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string()
   },
   client: {},
   runtimeEnv: {
@@ -28,6 +30,8 @@ export const env = createEnv({
     LEMONSQUEEZY_WEBHOOK_SECRET: process.env.LEMONSQUEEZY_WEBHOOK_SECRET,
     LEMONSQUEEZY_API_KEY: process.env.LEMONSQUEEZY_API_KEY,
     LEMONSQUEEZY_STORE_ID: process.env.LEMONSQUEEZY_STORE_ID,
-    LEMONSQUEEZY_VARIANT_ID: process.env.LEMONSQUEEZY_VARIANT_ID
+    LEMONSQUEEZY_VARIANT_ID: process.env.LEMONSQUEEZY_VARIANT_ID,
+    LOGSNAG_API_KEY: process.env.LOGSNAG_API_KEY,
+    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: process.env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN
   },
 });

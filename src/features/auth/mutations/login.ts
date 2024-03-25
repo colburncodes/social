@@ -3,6 +3,9 @@ import { email } from "../schemas"
 import { z } from "zod"
 import { Role } from "~/types"
 import authenticateUser from "~/src/utils/auth-utils"
+import { sendIdentifyAUser } from "~/src/logsnag/log-snag-events"
+
+
 
 export const LoginInput = z.object({
   email,
@@ -14,7 +17,15 @@ export default resolver.pipe(resolver.zod(LoginInput), async (params, ctx) => {
   // This throws an error if credentials are invalid
   const user = await authenticateUser(email, password)
 
-  await ctx.session.$create({ userId: user.id, role: user.role as Role })
+  if(!user) throw new Error("User credentials invalid")
 
+  await sendIdentifyAUser({
+    id: user.id,
+    name: user.name || "",
+    email: user.email,
+    username: user.username || ""
+  })
+
+  await ctx.session.$create({ userId: user.id, role: user.role as Role })
   return user
 })

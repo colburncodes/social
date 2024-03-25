@@ -41,6 +41,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       [LemonEventType.OrderRefunded]: onOrderRefunded
     }
 
+    // TODO: log and track events for order created and refunded.
+
     const foundHandler = handlers[eventType];
 
     if (foundHandler) {
