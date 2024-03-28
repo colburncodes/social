@@ -20,9 +20,15 @@
     "tsBuildInfoFile": ".tsbuildinfo",
     "paths": {
       "@/*": ["./src"],
-      "~/*": ["./*"]
+      "~/*": ["./*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "exclude": ["node_modules", "**/*.e2e.ts", "cypress"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types",
+    ".contentlayer/generated"]
 }
