@@ -1,5 +1,6 @@
 // @ts-check
 const { withBlitz } = require("@blitzjs/next")
+const { withContentlayer } = require("next-contentlayer")
 
 /**
  * @type {import('@blitzjs/next').BlitzConfig}
@@ -16,4 +17,4 @@ const config = {
   },
 }
 
-module.exports = withBlitz(config)
+module.exports = withBlitz(withContentlayer(config))
