@@ -1,13 +1,14 @@
-import { Group, RingProgress, Tooltip, Text, List, Box } from "@mantine/core"
+import { Group, RingProgress, Tooltip, Text, List, Box, Title } from "@mantine/core"
 import React from "react"
 import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useCurrentUser } from "~/src/features/users/hooks/useCurrentUser"
+import Layout from "~/src/core/layouts/layout"
 
 
 export const UserProfileProgress = () => {
   const user = useCurrentUser()
-  if (!user) return null
+ if(!user) return null;
 
   const keys = [
     {
