@@ -1,4 +1,4 @@
-import { Menu, Indicator, Group, Tooltip, Button } from "@mantine/core"
+import { Menu, Indicator, Group, Tooltip, Button, Title } from "@mantine/core"
 import {
   IconSettings,
   IconUserShield, IconUser
@@ -11,6 +11,7 @@ import React from "react"
 import { useRouter } from "next/navigation"
 import { useMutation } from "@blitzjs/rpc"
 import logout from "~/src/features/auth/mutations/logout"
+import Layout from "~/src/core/layouts/layout"
 
 export function UserHeaderMenu() {
   const router = useRouter()
@@ -18,6 +19,20 @@ export function UserHeaderMenu() {
 
   const user = useCurrentUser()
   if(!user) return null;
+
+  //
+  // if(!user) {
+  //   return (
+  //     <>
+  //       {/* @ts-expect-error Server Component */}
+  //       <Layout>
+  //         <Group>
+  //           <Title>user not found</Title>
+  //         </Group>
+  //       </Layout>
+  //     </>
+  //   )
+  // }
 
   return (
     <Menu shadow="md" width={200}>

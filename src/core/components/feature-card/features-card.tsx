@@ -99,20 +99,21 @@ export function FeaturesCard({ features }) {
         social will also include a full-featured documentation site built using Contentlayer and MDX.
       </Text>
 
-      <Title order={2} className={classes.title} ta="center" mt={"xl"}>
-        Proudly Open Source
-      </Title>
+        <Title order={2} className={classes.title} ta="center" mt={"xl"}>
 
-      <Text c="dimmed" className={classes.description}  ta="center" mt="sm">
-        social is open source and powered by open source software.
-        The code is available on <Anchor
+          Proudly Open Source
+        </Title>
+
+        <Text c="dimmed" className={classes.description}  ta="center" mt="sm">
+          social is open source and powered by open source software.
+          The code is available on <Anchor
           underline={"hover"}
           c={"black"}
           href={"https://github.com/colburncodes/social"}
           target={"_blank"}>
-           GitHub.
+          GitHub.
         </Anchor>
-      </Text>
+        </Text>
 
     </Container>
   );

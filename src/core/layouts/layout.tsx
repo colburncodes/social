@@ -75,6 +75,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
         padding="md"
       >
           <Group style={{ justifyContent: "space-between", position: "relative" }}>
+            <Group>
               <Anchor
                 underline={"never"}
                 component={Link}
@@ -88,6 +89,46 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 <Text
                   style={{ fontFamily: "Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif", fontSize: "1.75rem", fontWeight: "bolder", marginTop: 20, marginLeft: 20}}>social</Text>
               </Anchor>
+
+              <Anchor
+                underline={"never"}
+                component={Link}
+                href={Routes.BlogPage()}
+                fw={"bold"}
+                c={"rgb(136 142 150)"}
+              >
+                <Text size={"sm"}>Features</Text>
+              </Anchor>
+              <Anchor
+                underline={"never"}
+                component={Link}
+                href={Routes.PricingPage()}
+                fw={"bold"}
+                c={"rgb(136 142 150)"}
+              >
+                <Text size={"sm"}>Pricing</Text>
+              </Anchor>
+              <Anchor
+                underline={"never"}
+                component={Link}
+                href={Routes.BlogPage()}
+                fw={"bold"}
+                c={"rgb(136 142 150)"}
+              >
+                <Text size={"sm"}>Blog</Text>
+              </Anchor>
+
+              <Anchor
+                underline={"never"}
+                component={Link}
+                href={Routes.DocumentationPage()}
+                fw={"bold"}
+                c={"rgb(136 142 150)"}
+              >
+                <Text size={"sm"}>Documentation</Text>
+              </Anchor>
+            </Group>
+
 
               <Group className={classes.profile}>
                 <UserHeaderMenu/>

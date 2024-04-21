@@ -39,4 +39,29 @@ export const openUrlInNewTab = async (url: any) => {
   }
 }
 
+// Format Blog Date in ContentLayer
+export function formatDate(dateString) {
+  const date = new Date(dateString);
+
+  const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  // Function to add suffix to date
+  function getOrdinalSuffix(day) {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+      case 1:  return "st";
+      case 2:  return "nd";
+      case 3:  return "rd";
+      default: return "th";
+    }
+  }
+
+  const suffix = getOrdinalSuffix(day);
+  return `${month} ${day}${suffix}, ${year}`;
+}
+
 
