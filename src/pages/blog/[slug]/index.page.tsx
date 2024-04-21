@@ -6,7 +6,7 @@ import { BlitzPage } from "@blitzjs/next"
 import { useMDXComponent } from "next-contentlayer/hooks"
 // @ts-ignore
 import { mdxComponents } from "~/src/core/components/magic-grid"
-import { allPosts } from "contentlayer/generated"
+import { allPosts, Post } from "contentlayer/generated"
 
 export const BlogPostPage: BlitzPage = () => {
   const slug = useStringParam("slug")
