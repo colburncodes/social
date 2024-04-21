@@ -4,9 +4,10 @@ import Layout from "~/src/core/layouts/layout"
 import { useStringParam } from "~/src/utils/utils"
 import { BlitzPage } from "@blitzjs/next"
 import { useMDXComponent } from "next-contentlayer/hooks"
-import { allPosts } from 'contentlayer/generated'
+import { allPosts } from "~/.contentlayer/generated"
 // @ts-ignore
 import { mdxComponents } from "~/src/core/components/magic-grid"
+
 
 
 export const BlogPostPage: BlitzPage = () => {
