@@ -25,7 +25,7 @@ const BlogPostCard = (post: Post) => {
       component={Link}
       href={Routes.BlogPostPage({
       slug: post.slug
-    })} w={"100%"} shadow="sm" padding="lg" radius="md" withBorder>
+    })} shadow="sm" padding="lg" radius="md" withBorder>
 
       {post.image && (
         <Card.Section component="a" href="https://mantine.dev/">

@@ -20,20 +20,6 @@ export function UserHeaderMenu() {
   const user = useCurrentUser()
   if(!user) return null;
 
-  //
-  // if(!user) {
-  //   return (
-  //     <>
-  //       {/* @ts-expect-error Server Component */}
-  //       <Layout>
-  //         <Group>
-  //           <Title>user not found</Title>
-  //         </Group>
-  //       </Layout>
-  //     </>
-  //   )
-  // }
-
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>

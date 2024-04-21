@@ -21,8 +21,10 @@ export const MagicGrid = forwardRef<HTMLDivElement, Props>((props, ref) => {
   // @ts-ignore
   const { children, width = 250, gap = 15, ...rest } = props;
   return (
-    <Box ref={ref} style={{ ...autoGrid(width, gap), width: "100%"}} {...rest}>
-      {children}
-    </Box>
+    <>
+        <Box ref={ref} style={{ ...autoGrid(width, gap)}} {...rest}>
+          {children}
+        </Box>
+    </>
   )
 })
