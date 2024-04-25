@@ -11,3 +11,27 @@ consequat enim id excepteur consequat nostrud esse esse fugiat dolore.
 Reprehenderit occaecat exercitation non cupidatat in eiusmod laborum ex eu
 fugiat aute culpa pariatur. Irure elit proident consequat veniam minim ipsum ex
 pariatur.
+
+## Implementing Preview Mode
+
+To implement a preview mode in your headless CMS, you'll need to setup a secure and efficient way to fetch and render draft content. Here's a basic example using Next.js and a generic headless CMS:
+
+### Step 1: Setup API Route for Preview
+
+```javascript
+// pages/api/preview.js
+export default function handler(req, res) {
+  const { secret, slug } = req.query;
+
+  if (secret !== process.env.PREVIEW_SECRET || !slug) {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+
+  // Set the cookies for preview mode
+  res.setPreviewData({});
+
+  // Redirect to the path from which the preview was requested
+  res.writeHead(307, { Location: `/posts/${slug}` });
+  res.end();
+}
+```

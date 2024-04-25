@@ -1,7 +1,7 @@
 import React from "react"
-import { Group, Title, Text } from "@mantine/core"
+import { Group, Title, Text, Box, Card, Image } from "@mantine/core"
 import Layout from "~/src/core/layouts/layout"
-import { useStringParam } from "~/src/utils/utils"
+import { formatDate, useStringParam } from "~/src/utils/utils"
 import { BlitzPage } from "@blitzjs/next"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { allPosts } from "contentlayer/generated"
@@ -27,17 +27,38 @@ export const BlogPostPage: BlitzPage = () => {
       </>
     )
   }
-
+  const formattedDate = formatDate(post.date)
   const MDXContent = useMDXComponent(post.body.code)
 
   return (
     <>
       {/* @ts-expect-error Server Component */}
       <Layout>
+        <Text c={"dimmed"}>{formattedDate}</Text>
         <Title>
           {post.title}
-          <MDXContent components={mdxComponents}/>
         </Title>
+        <Card>
+          {post.image && (
+            <Card.Section component="a" href="https://mantine.dev/" mr={100}>
+              <Image
+                height={500}
+                width={"auto"}
+                radius={"md"}
+                fit={"contain"}
+                src={post.image}
+                alt={`Preview image for ${post.title}`}
+                mt={40}
+              />
+            </Card.Section>
+          )}
+        </Card>
+
+        <Card w={700}>
+          <Group justify="center" mb={4}>
+            <MDXContent components={mdxComponents}/>
+          </Group>
+        </Card>
       </Layout>
     </>
   )

@@ -38,7 +38,6 @@ const BlogPostCard = (post: Post) => {
 
       <Group justify="space-between" mt="sm" mb="xs">
         <Text fw={500}>{post.title}</Text>
-        {/*<Badge color="pink">On Sale</Badge>*/}
       </Group>
 
       <Text size="sm">
