@@ -14,7 +14,7 @@ export const autoGrid = (
   display: 'grid',
   gridGap: gridGap,
   padding: '26px',
-  marginLeft: '46px'
+  marginRight: '26px',
 })
 
 export const MagicGrid = forwardRef<HTMLDivElement, Props>((props, ref) => {

@@ -1,12 +1,13 @@
 import React from "react"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import Layout from "~/src/core/layouts/layout"
-import { Card, Image, Text, Group, Title, Divider } from "@mantine/core"
+import { Card, Image, Text, Group, Title, Divider, Stack } from "@mantine/core"
 import { allPosts, Post } from 'contentlayer/generated'
 import { compareDesc } from "date-fns"
 import Link from "next/link"
 import { MagicGrid } from "~/src/core/components/magic-grid"
 import { formatDate } from "~/src/utils/utils"
+import { MdxRender } from "~/src/core/components/mdx-render"
 
 type BlogPageProps = {
   posts: Post[]
@@ -38,11 +39,10 @@ const BlogPostCard = (post: Post) => {
 
       <Group justify="space-between" mt="sm" mb="xs">
         <Text fw={500}>{post.title}</Text>
-        {/*<Badge color="pink">On Sale</Badge>*/}
       </Group>
 
       <Text size="sm">
-        {post.description}
+        {post.description || <MdxRender post={post} />}
       </Text>
 
       <Text mt={5} size="sm" c="dimmed">
@@ -57,14 +57,14 @@ export const BlogPage: BlitzPage<BlogPageProps> = ({ posts }) => {
   return (
     <>
       {/* @ts-expect-error Server Component */}
-      <Layout>
-        <Title>
-          <Text size={"xl"} fw={"bolder"}>Blog</Text>
-        </Title>
-        <Text c={"rgb(136 142 150)"}>
-          A blog built using Contentlayer. Posts are written in MDX
-        </Text>
-        <Divider my={"sx"} w={500}/>
+      <Layout size="md" minHeight="100vh">
+            <Title order={1}>
+              <Text size={"xl"} fw={"bolder"}>Blog</Text>
+            </Title>
+            <Text c={"rgb(136 142 150)"}>
+              A blog built using Contentlayer. Posts are written in MDX.
+            </Text>
+            <Divider my={"sx"} w={800}/>
         <MagicGrid>
           {posts.map((post: any) => (
             <BlogPostCard key={post.slug} {...post} />
