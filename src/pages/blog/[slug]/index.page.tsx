@@ -7,6 +7,7 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import { allPosts } from "contentlayer/generated"
 // @ts-ignore
 import { mdxComponents } from "~/src/core/components/magic-grid"
+import { MdxRender } from "~/src/core/components/mdx-render"
 
 
 
@@ -38,25 +39,22 @@ export const BlogPostPage: BlitzPage = () => {
         <Title>
           {post.title}
         </Title>
-        <Card>
+        <Card ml={70} w={500} h={"100%"}withBorder>
           {post.image && (
-            <Card.Section component="a" href="https://mantine.dev/" mr={100}>
               <Image
                 height={500}
-                width={"auto"}
                 radius={"md"}
                 fit={"contain"}
                 src={post.image}
                 alt={`Preview image for ${post.title}`}
                 mt={40}
               />
-            </Card.Section>
           )}
         </Card>
 
         <Card w={700}>
           <Group justify="center" mb={4}>
-            <MDXContent components={mdxComponents}/>
+            <MdxRender post={post}/>
           </Group>
         </Card>
       </Layout>

@@ -8,7 +8,6 @@ const data = [
   {
     title: 'Company',
     links: [
-      { label: 'Blog', link: '/blog' },
       { label: 'Documentation', link: '/documentation' },
       { label: 'Contact Us', link: '/contact' },
     ],
