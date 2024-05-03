@@ -56,6 +56,11 @@ export const ProfilePage: BlitzPage = () => {
       }
     } else {
       form.setErrors(result.error.flatten().fieldErrors)
+      showNotification({
+        color: 'red',
+        title: "Error!",
+        message: 'Failed to update profile. Please check the input fields.'
+      })
     }
 
     showNotification({
