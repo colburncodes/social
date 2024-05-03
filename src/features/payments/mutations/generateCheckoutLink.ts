@@ -6,6 +6,7 @@ import { type NewCheckout, createCheckout } from "@lemonsqueezy/lemonsqueezy.js"
 import { sendPaymentActivity } from "~/src/logsnag/log-snag-events"
 import { lemonClient } from "~/src/features/payments/lemonClient"
 
+const client = lemonClient
 /**
  * Create a checkout and generate a checkout url link.
  *

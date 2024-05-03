@@ -17,7 +17,6 @@ import { IconInfoCircle } from '@tabler/icons-react';
 import requestEmailVerification from "~/src/features/auth/mutations/requestEmailVerification"
 
 
-
 export const ProfilePage: BlitzPage = () => {
   const router = useRouter()
   const [opened, {close, open}] = useDisclosure(false);
@@ -37,22 +36,31 @@ export const ProfilePage: BlitzPage = () => {
   })
 
   const [$requestEmailVerification, {isLoading: isSending, isSuccess }] = useMutation(requestEmailVerification)
-
   const icon = <IconInfoCircle/>
-
   if(!user) return <Text>User not found.</Text>
 
   const currentUser = useCurrentUser()
   const isOwner = currentUser?.id === user?.id
 
   const onSubmit = async (values: UpdateProfileInputType) => {
-    await $updateProfile(values)
-    const { username } = values;
+    const result = UpdateProfileInput.safeParse(values)
 
-    if (username !== user.username) {
-      if (username) {
-        await router.push(Routes.ProfilePage({ username }))
+    if (result.success) {
+      await $updateProfile(result.data)
+      const { username } = result.data;
+
+      if (username !== user.username) {
+        if (username) {
+          await router.push(Routes.ProfilePage({ username }))
+        }
       }
+    } else {
+      form.setErrors(result.error.flatten().fieldErrors)
+      showNotification({
+        color: 'red',
+        title: "Error!",
+        message: 'Failed to update profile. Please check the input fields.'
+      })
     }
 
     showNotification({
@@ -108,21 +116,6 @@ export const ProfilePage: BlitzPage = () => {
               </Text>}
             </Alert>)}
         </Group>
-        {isOwner &&
-          <Group>
-            <Button onClick={open}>
-              Edit Profile
-            </Button>
-          </Group>
-        }
-        <Image w={200} src={getUploadThingUrl(user.avatarImageKey)} alt={"Profile Image"}/>
-        <Image w={200} src={getUploadThingUrl(user.coverImageKey)} alt={"Cover Picture"}/>
-        <Text>
-          Hello from {user.name}
-        </Text>
-        <Text>
-          {user.bio}
-        </Text>
       </Layout>
     </>
   )
