@@ -1,5 +1,4 @@
 import { resolver } from "@blitzjs/rpc"
-import { z } from "zod"
 import db from "db"
 import { ChangePasswordInput } from "~/src/features/auth/schemas"
 import { SecurePassword } from "@blitzjs/auth/secure-password"

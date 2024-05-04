@@ -2,12 +2,10 @@ import React from "react"
 import { Divider, Stack, Tabs, Text, Title } from "@mantine/core"
 import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
-import { IconMail, IconUser, IconUserCog } from "@tabler/icons-react"
+import { IconMail, IconUserCog } from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
 import { ChangePassword } from "~/src/pages/settings/components/change-password"
 import { UserEmailSettings } from "~/src/pages/settings/components/user-email-settings"
-import EditProfilePage from "~/src/pages/edit-profile.page"
-
 
 export const Settings = () => {
   // @ts-ignore

@@ -1,7 +1,7 @@
 import React from "react"
 import { Alert, Button, Group, Modal, Text, Image } from "@mantine/core"
 import Layout from "~/src/core/layouts/layout"
-import { getUploadThingUrl, useStringParam } from "~/src/utils/utils"
+import { useStringParam } from "~/src/utils/utils"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import getUserProfile from "~/src/features/users/queries/getUserProfile"
 import { useMutation, useQuery } from "@blitzjs/rpc"
@@ -19,7 +19,7 @@ import requestEmailVerification from "~/src/features/auth/mutations/requestEmail
 
 export const ProfilePage: BlitzPage = () => {
   const router = useRouter()
-  const [opened, {close, open}] = useDisclosure(false);
+  const [opened, { close }] = useDisclosure(false);
   const username = useStringParam("username")
   const [user] = useQuery(getUserProfile, { username: username || '' })
   const [$updateProfile] = useMutation(updateProfile)
