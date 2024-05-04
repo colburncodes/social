@@ -6,6 +6,8 @@ import { Routes } from "@blitzjs/next"
 import { useDisclosure } from "@mantine/hooks"
 import { PromiseReturnType } from "blitz"
 import login from "~/src/features/auth/mutations/login"
+import { LoginInput, LoginInputType } from "~/src/features/auth/schemas"
+import { showNotification } from "@mantine/notifications"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -14,7 +16,7 @@ type LoginFormProps = {
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
   const [visible, { toggle }] = useDisclosure(false)
-  const form = useForm({
+  const form = useForm<LoginInputType>({
     initialValues: {
       email: "",
       password: "",
@@ -25,9 +27,23 @@ export const LoginForm = (props: LoginFormProps) => {
     },
   })
 
-  const onSubmit = async (values: any) => {
-    const user = await loginMutation(values)
-    props.onSuccess?.(user)
+  const onSubmit = async (values: LoginInputType) => {
+    const result = LoginInput.safeParse(values)
+    if (result.success) {
+      await loginMutation(result.data)
+    } else {
+      form.setErrors(result.error.flatten().fieldErrors)
+      showNotification({
+        color: 'red',
+        title: "Error!",
+        message: 'Login failed. Please check the input fields.'
+      })
+    }
+    showNotification({
+      color: 'green',
+      title: "Success!",
+      message: 'Login successful'
+    })
   }
 
   return (
