@@ -28,6 +28,8 @@ export const LoginInput = z.object({
   password
 })
 
+export type LoginInputType = z.infer<typeof LoginInput>
+
 export const ForgotPasswordInput = z.object({
   email,
 })
