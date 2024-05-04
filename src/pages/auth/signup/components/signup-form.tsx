@@ -2,7 +2,9 @@ import { Box, Button, Group, PasswordInput, TextInput } from "@mantine/core"
 import { useMutation } from "@blitzjs/rpc"
 import { useForm } from "@mantine/form"
 import signup from "~/src/features/auth/mutations/signup"
-import { notifications } from "@mantine/notifications"
+import { notifications, showNotification } from "@mantine/notifications"
+import { SignUpInput, SignUpInputType } from "~/src/features/auth/schemas"
+
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -11,7 +13,7 @@ type SignupFormProps = {
 export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
 
-  const form = useForm({
+  const form = useForm<SignUpInputType>({
     initialValues: {
       name: "",
       email: "",
@@ -23,8 +25,20 @@ export const SignupForm = (props: SignupFormProps) => {
     },
   })
 
-  let onSubmit = async (values: any) => {
-      await signupMutation(values)
+  const onSubmit = async (values: SignUpInputType) => {
+    const result = SignUpInput.safeParse(values);
+
+    if (result.success) {
+        await signupMutation(result.data)
+    } else {
+      form.setErrors(result.error.flatten().fieldErrors)
+      showNotification({
+        color: 'red',
+        title: "Error!",
+        message: 'Registration failed. Please check the input fields.'
+      })
+    }
+
     props.onSuccess?.()
       notifications.show({
         color: "green",

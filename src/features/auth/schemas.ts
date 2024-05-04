@@ -18,8 +18,10 @@ export const SignUpInput = z.object({
   name: z.string(),
   terms: z.boolean().refine((val) => val === true, {
     message: "You must agree to terms and conditions"
-  })
+  }).optional()
 })
+
+export type SignUpInputType = z.infer<typeof SignUpInput>
 
 export const LoginInput = z.object({
   email,
