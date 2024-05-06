@@ -29,16 +29,27 @@ export const EditProfilePage: BlitzPage = () => {
   })
 
   const onSubmit = async (values: UpdateProfileInputType) => {
-    const { username } = values;
-    await $updateProfile(values)
-    if (username) {
-      await router.push(Routes.ProfilePage({ username }))
+    const result = UpdateProfileInput.safeParse(values)
+    if (result.success) {
+      const { username } = result.data;
+      await $updateProfile(result.data)
+      if (username) {
+        await router.push(Routes.ProfilePage({ username }))
+        showNotification({
+          color: 'green',
+          title: "Success!",
+          message: 'Profile updated'
+        })
+      }
+    } else {
+      form.setErrors(result.error.flatten().fieldErrors)
       showNotification({
-        color: 'green',
-        title: "Success!",
-        message: 'Profile updated'
+        color: 'red',
+        title: "Error!",
+        message: 'Update failed. Please check the input fields.'
       })
     }
+
   }
 
   return (
