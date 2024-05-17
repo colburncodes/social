@@ -28,7 +28,7 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 - [x] Event Monitoring [Log Snag](https://logsnag.com/)
     - [ ] Billing
     - [ ] Orders
-    - [ ] User activity
+    - [x] User activity
 - [ ] Subscriptions [Subscriptions](https://docs.lemonsqueezy.com/api/subscriptions)
 - [ ] Subscription plans
 - [x] User Roles
@@ -45,6 +45,7 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 - [ ] Announcements
 - [ ] Invite system
 - [ ] Cron jobs
+- [x] Testing - [Vitest](https://vitest.dev/)
 ---
 
 ## 🛠️ How to run it
