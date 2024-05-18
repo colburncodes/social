@@ -1468,10 +1468,10 @@
     jsbi "^4.3.0"
     tslib "^2.4.1"
 
-"@lemonsqueezy/lemonsqueezy.js@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.npmjs.org/@lemonsqueezy/lemonsqueezy.js/-/lemonsqueezy.js-2.2.0.tgz"
-  integrity sha512-DsZTeowehSLTESUZ6xxoYPDhoE8BYepWsj3TCqibG7FvB8X1HERPXQlc6E/IeGj22SOfIM997b7GfFkeLWY8pA==
+"@lemonsqueezy/lemonsqueezy.js@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@lemonsqueezy/lemonsqueezy.js/-/lemonsqueezy.js-3.0.0.tgz"
+  integrity sha512-EomAGkJLisI0/ptpe6a0plB++1Pqoe+FgMip4etfg2de05y58dkI+OA+HSdaFyXxpn1g0OtB50ofNVVoYQJX5A==
 
 "@logsnag/next@^1.0.3":
   version "1.0.3"
