@@ -22,7 +22,7 @@
     "@blitzjs/rpc": "2.0.8",
     "@hookform/error-message": "2.0.1",
     "@hookform/resolvers": "2.9.11",
-    "@lemonsqueezy/lemonsqueezy.js": "^3.0.0",
+    "@lemonsqueezy/lemonsqueezy.js": "^2.2.0",
     "@logsnag/next": "^1.0.3",
     "@mantine/code-highlight": "^7.4.2",
     "@mantine/core": "^7.4.2",
