@@ -18,9 +18,10 @@ export const env = createEnv({
     LEMONSQUEEZY_STORE_ID: z.string(),
     LEMONSQUEEZY_VARIANT_ID: z.string(),
     LOGSNAG_API_KEY: z.string(),
+  },
+  client: {
     NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string()
   },
-  client: {},
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NODE_MAILER_USER: process.env.NODE_MAILER_USER,
