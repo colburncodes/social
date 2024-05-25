@@ -3,10 +3,11 @@ import { resolver } from "@blitzjs/rpc"
 import db from "../../../../db"
 import { Role } from "../../../../types"
 import { SignUpInput } from "../schemas"
-import { PrismaError } from "~/src/utils/blitz-utils"
+import { PrismaError, regenerateToken } from "~/src/utils/blitz-utils"
 import { sendEmail } from "~/email/sendEmail"
 import React from "react"
 import Welcome from "~/email/react-email/emails/welcome"
+import { URL_ORIGIN } from "~/src/config"
 
 
 export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, password }, ctx) => {
@@ -33,6 +34,14 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
       select: { id: true, name: true, email: true, role: true },
     })
 
+    const token = await regenerateToken({
+      userId: user.id,
+      userEmail: user.email,
+      tokenType: "VERIFY_EMAIL"
+    })
+
+    let emailVerifyUrl = `${URL_ORIGIN}/auth/verify-email?token=${token}`
+
     if (user) {
       await sendEmail({
         to: user.email,
@@ -41,7 +50,7 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
         react: React.createElement(Welcome, {
           props: {
             name: user.name,
-            emailVerifyUrl: user.email
+            emailVerifyUrl: emailVerifyUrl
           }
         })
       })
