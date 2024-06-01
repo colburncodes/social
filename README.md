@@ -33,12 +33,13 @@ Made with [Blitz](https://github.com/blitz-js/blitz).
 - [ ] Subscription plans
 - [x] User Roles
 - [ ] Notifications
-    - [x] Email using [Resend](https://resend.com/) and [React Email](https://react.email/)
+    - [x] Email prod env using [Resend](https://resend.com/) and [React Email](https://react.email/)
       - [x] Welcome Email 
       - [x] Forgot Password
       - [x] Password Reset
       - [x] Contact Email
-    - [x] Email testing using [Nodemailer](https://nodemailer.com/about/)
+    - [ ] Email staging env using [MailTrap](https://api-docs.mailtrap.io/docs/mailtrap-api-docs/5tjdeg9545058-mailtrap-api)
+    - [x] Email testing env using [Nodemailer](https://nodemailer.com/about/)
     - [ ] Discord
     - [ ] Browser / in-app
 - [x] Admin Panel
