@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {Group, Tabs} from "@mantine/core"
-import {BlitzPage} from "@blitzjs/next"
+import type {BlitzPage} from "@blitzjs/next"
 import Layout from "~/src/core/layouts/layout"
 import {allDocs, Doc} from "contentlayer/generated";
 import {MdxDocRender} from "~/src/core/components/mdx-render";

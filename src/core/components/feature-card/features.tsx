@@ -17,6 +17,7 @@ import {URL_ORIGIN} from "~/src/config";
 const LOGIN_URL = `${URL_ORIGIN}/auth/login`;
 
 export function FeaturesCard({ features }) {
+
   const theme = useMantineTheme()
   const results =  features.map((feature: any) => (
     <Card

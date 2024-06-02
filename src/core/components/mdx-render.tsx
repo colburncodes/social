@@ -1,4 +1,4 @@
-import {Doc, Post} from "contentlayer/generated"
+import type {Doc, Post} from "contentlayer/generated"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 

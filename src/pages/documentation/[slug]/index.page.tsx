@@ -1,5 +1,5 @@
 import { allDocs } from "contentlayer/generated";
-import {BlitzPage} from "@blitzjs/next";
+import type {BlitzPage} from "@blitzjs/next";
 import {useStringParam} from "~/src/utils/utils";
 import Layout from "~/src/core/layouts/layout";
 import {Group, Text, Title} from "@mantine/core";
