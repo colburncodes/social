@@ -1,7 +1,74 @@
 ---
 title: Installation
 slug: 'installation'
+order: 2
 ---
 
 
-This is documentation for API v1. Please refer here for Social v1 documentation.
+# Getting Started
+
+Social is available to you as a GitHub template. To get started, click the "Use this template" button on the [Social repository](https://github.com/colburncodes/social).
+
+1. Create a new repository from the template
+2. Clone the repository to your local machine
+3. Install dependencies with `yarn`
+4. Start the development server with `yarn dev`
+
+## Clone the repository
+
+```bash
+git clone https://github.com/colburncodes/social
+```
+
+## Install dependencies
+
+```bash
+yarn add
+```
+
+## Start the development server
+
+```bash
+yarn dev
+```
+
+## Push to GitHub
+
+Create a new repository on GitHub and push your project to it.
+
+```bash
+git add .
+git commit -m "Initial commit"
+git push
+```
+
+## Deploy to Railway
+
+Social is designed to be deployed to Railway.
+
+First, create a new project on Railway. Then, link your GitHub repository to Railway. Finally, deploy your project.
+
+To deploy your project, use the Railway CLI:
+
+To install the Railway CLI, run the following command:
+
+```bash
+npm i -g railway
+```
+
+Use the following command to login to Railway:
+
+```bash
+railway login
+```
+
+Link your project to Railway:
+
+```bash
+railway init
+```
+
+Deploy your project:
+```bash
+railway up
+```

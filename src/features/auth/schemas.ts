@@ -1,5 +1,4 @@
 import { z } from "zod"
-import { UpdateProfileInput } from "~/src/features/users/schemas"
 
 export const email = z
   .string()

@@ -1,5 +1,4 @@
 // contentlayer.config.js
-
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
 export const Post = defineDocumentType(() => ({
@@ -55,7 +54,8 @@ export const Doc = defineDocumentType(() => ({
     description: {
       type: 'string',
       required: false
-    }
+    },
+    order: { type: 'number', required: true },
   },
   computedFields: {
     url: {

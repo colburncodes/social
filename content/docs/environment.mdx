@@ -1,0 +1,36 @@
+---
+title: Environment
+slug: 'environment'
+description: Set up your environment variables
+order: 3
+---
+
+# Environment Variables
+
+In this step, we'll set up your environment.
+
+## Railway Environment Variables
+
+Social uses [Railway environment variables](https://docs.railway.app/guides/variables) to store secrets.
+Use the Railway project you created in the previous step to set up your environment variables.
+
+1. Open the Railway project you created in the previous step
+2. Click the "Environment Variables" tab
+3. Add the following environment variables:
+
+**Create a `.env` file in root directory**
+
+```js
+DATABASE_URL
+RESEND_API_KEY
+NODE_MAILER_USER
+NODE_MAILER_PASS
+UPLOADTHING_SECRET
+UPLOADTHING_APP_ID
+LEMONSQUEEZY_WEBHOOK_SECRET
+LEMONSQUEEZY_API_KEY
+LEMONSQUEEZY_STORE_ID
+LEMONSQUEEZY_VARIANT_ID
+LOGSNAG_API_KEY=
+NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN
+```

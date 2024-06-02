@@ -2,7 +2,7 @@ import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
 import { Group } from "@mantine/core"
 import React from "react"
-import { FeaturesCard } from "~/src/core/components/feature-card/features-card"
+import { FeaturesCard } from "~/src/core/components/feature-card/features"
 import { features } from "~/src/utils/constants"
 import classes from "~/src/styles/Home.module.css"
 
