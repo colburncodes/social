@@ -14,6 +14,10 @@ import { globalModals } from "~/src/modals"
 import { LogSnagProvider } from "@logsnag/next"
 import { env } from "~/src/env.mjs"
 import { APP_NAME } from "~/src/config"
+import {
+  MantineEmotionProvider,
+} from '@mantine/emotion';
+
 
 const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({
   statusCode,
@@ -61,20 +65,22 @@ export function RootErrorFallback({ error }: ErrorFallbackProps) {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-      <MantineProvider theme={theme}>
-        <ModalsProvider modals={globalModals}>
-          {/* @ts-expect-error Server Component */}
-          <ErrorBoundary FallbackComponent={RootErrorFallback}>
-            <Notifications position={"top-right"} />
-            <Suspense fallback="Loading...">
-              <LogSnagProvider token={env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN} project={APP_NAME}>
-              {/* @ts-expect-error Server Component */}
-              <Component {...pageProps} />
-              </LogSnagProvider>
-            </Suspense>
-          </ErrorBoundary>
-        </ModalsProvider>
-      </MantineProvider>
+      <MantineEmotionProvider>
+        <MantineProvider theme={theme}>
+          <ModalsProvider modals={globalModals}>
+            {/* @ts-expect-error Server Component */}
+            <ErrorBoundary FallbackComponent={RootErrorFallback}>
+              <Notifications position={"top-right"} />
+              <Suspense fallback="Loading...">
+                <LogSnagProvider token={env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN} project={APP_NAME}>
+                  {/* @ts-expect-error Server Component */}
+                  <Component {...pageProps} />
+                </LogSnagProvider>
+              </Suspense>
+            </ErrorBoundary>
+          </ModalsProvider>
+        </MantineProvider>
+      </MantineEmotionProvider>
   )
 }
 

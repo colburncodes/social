@@ -3,10 +3,8 @@ import { Group, Title, Text, Box, Card, Image } from "@mantine/core"
 import Layout from "~/src/core/layouts/layout"
 import { formatDate, useStringParam } from "~/src/utils/utils"
 import { BlitzPage } from "@blitzjs/next"
-import { useMDXComponent } from "next-contentlayer/hooks"
 import { allPosts } from "contentlayer/generated"
 // @ts-ignore
-import { mdxComponents } from "~/src/core/components/magic-grid"
 import { MdxRender } from "~/src/core/components/mdx-render"
 
 
@@ -29,7 +27,6 @@ export const BlogPostPage: BlitzPage = () => {
     )
   }
   const formattedDate = formatDate(post.date)
-  const MDXContent = useMDXComponent(post.body.code)
 
   return (
     <>

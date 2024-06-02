@@ -2,7 +2,7 @@ import { useParam } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { Prisma } from "@prisma/client"
 import { isMacOS } from "std-env"
-import { isSafari } from "@floating-ui/utils/react"
+import { isSafari } from "@floating-ui/react/utils"
 
 
 export const useStringParam = (name: string) => useParam(name, "string")

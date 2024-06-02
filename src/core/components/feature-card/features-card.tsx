@@ -13,6 +13,9 @@ import {
   useMantineTheme
 } from "@mantine/core"
 import classes from "~/src/styles/FeaturesCards.module.css"
+import {URL_ORIGIN} from "~/src/config";
+
+const LOGIN_URL = `${URL_ORIGIN}/auth/login`;
 
 export function FeaturesCard({ features }) {
   const theme = useMantineTheme()
@@ -66,7 +69,9 @@ export function FeaturesCard({ features }) {
       <Group mt={30} justify={"center"} mb={80}>
         <Box>
           <Button
+            component={"a"}
             bg={"black"} c={"white"}
+            href={LOGIN_URL}
             style={{ marginRight: '20px', cursor: theme.cursorType }}>
             Get Started
           </Button>
