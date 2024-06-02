@@ -1,4 +1,3 @@
-
 export const pathNameHidden = [
   '/auth/login',
   '/about',
@@ -12,31 +11,34 @@ export const pathNameHidden = [
 
 export const features = [
   {
-    title: 'Blitz.js 2.0',
-    description: 'Page dir, Routing, Layouts, Loading UI and Typesafe API layer.',
+    icon: '',
+    title: 'authentication',
+    description: 'end-to-end signup and login with passwordless, oauth, and anonymous auth',
   },
   {
-    title: 'Backend Architecture',
-    description: 'Server intensive tasks like sending emails, cron jobs, backend processing.',
+    icon: '',
+    title: 'emails',
+    description: 'prebuilt flows and designs for common saas email campaigns',
   },
   {
-    title: 'Database Agnostic',
+    icon: '',
+    title: 'landing page',
     description:
-      'ORM using Prisma and deployed on Railway.',
+      'converting marketing page with smooth framer animations',
   },
   {
-    title: 'Components',
-    description:
-      'UI components styled and built using Mantine UI.',
+    icon: '',
+    title: 'payments',
+    description: 'ready for tiered subscriptions or one-off purchases',
   },
   {
-    title: 'Authentication & Authorization',
-    description:
-      'Includes self-hosted username & password & third-parties like AuthO.',
+    icon: '',
+    title: 'customer engagement',
+    description: 'blog, changelog, and docs built with seo best practices',
   },
   {
-    title: 'Subscriptions',
-    description:
-      'Free and paid subscriptions using Lemon Squeezy.',
+    icon: '',
+    title: 'org management',
+    description: 'create teams, invite and remove team members, set admin permissions',
   },
 ];

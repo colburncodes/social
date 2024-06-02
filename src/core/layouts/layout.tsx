@@ -30,6 +30,7 @@ import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
 import { useRouter } from "next/router"
 import { pathNameHidden } from "~/src/utils/constants"
 
+
 type Props = {
   title?: string
   children?: React.ReactNode
@@ -40,6 +41,9 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const router = useRouter()
   const navigateToLogin = navigateToLoginRouter()
   const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
+  const isActive = (href: any) => {
+    return router.pathname === href;
+  };
   // @ts-ignore
   const { setColorScheme } = useMantineColorScheme()
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
@@ -95,27 +99,27 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 component={Link}
                 href={Routes.BlogPage()}
                 fw={"bold"}
-                c={"rgb(136 142 150)"}
+                c={isActive(Routes.BlogPage()) ? "black" : "gray"}
               >
-                <Text size={"sm"}>Features</Text>
+                <Text size={"sm"}>features</Text>
               </Anchor>
               <Anchor
                 underline={"never"}
                 component={Link}
                 href={Routes.PricingPage()}
                 fw={"bold"}
-                c={"rgb(136 142 150)"}
+                c={isActive(Routes.PricingPage()) ? "black" : "gray"}
               >
-                <Text size={"sm"}>Pricing</Text>
+                <Text size={"sm"}>pricing</Text>
               </Anchor>
               <Anchor
                 underline={"never"}
                 component={Link}
                 href={Routes.BlogPage()}
                 fw={"bold"}
-                c={"rgb(136 142 150)"}
+                c={isActive(Routes.BlogPage()) ? "black" : "gray"}
               >
-                <Text size={"sm"}>Blog</Text>
+                <Text size={"sm"}>blog</Text>
               </Anchor>
 
               <Anchor
@@ -123,9 +127,9 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                 component={Link}
                 href={Routes.DocumentationPage()}
                 fw={"bold"}
-                c={"rgb(136 142 150)"}
+                c={isActive(Routes.DocumentationPage()) ? "black" : "gray"}
               >
-                <Text size={"sm"}>Documentation</Text>
+                <Text size={"sm"}>docs</Text>
               </Anchor>
             </Group>
 
