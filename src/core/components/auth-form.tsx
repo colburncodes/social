@@ -48,85 +48,87 @@ export function AuthenticationForm(props: PaperProps) {
   })
 
   return (
-    <Box
-      className={classes.formContainer}
-    >
-      <Paper radius="md" p="xl" withBorder {...props}>
-        <Text size="lg" fw={"bold"} ta={"center"}>
-          welcome to social, {type} with
-        </Text>
+      <div className={classes.container}>
+        <Box
+            className={classes.formContainer}
+        >
+          <Paper radius="md" p="xl" withBorder {...props}>
+            <Text size="lg" fw={"bold"} ta={"center"}>
+              welcome to social, {type} with
+            </Text>
 
-        <Group grow mb="md" mt="md">
-          <GoogleButton radius="xl">Google</GoogleButton>
-          <TwitterButton radius="xl">Twitter</TwitterButton>
-        </Group>
-
-        <Divider label="Or continue with email" labelPosition="center" my="lg" />
-
-        <form onSubmit={form.onSubmit(async (values) => {
-          if (type === "login") {
-            await $login(values)
-          } else {
-            await $signup(values)
-          }
-        })}>
-          <Stack>
-            {type === "register" && (
-              <TextInput
-                required
-                label="Name"
-                placeholder="Your name"
-                {...form.getInputProps("name")}
-                radius="md"
-              />
-            )}
-
-            <TextInput
-              required
-              label="Email"
-              placeholder="hello@social.dev"
-              {...form.getInputProps("email")}
-              radius="md"
-            />
-
-
-              <PasswordInput
-                required
-                label="Password"
-                placeholder="Your password"
-                {...form.getInputProps("password")}
-                radius="md"
-              />
-            <Group justify="flex-end">
-              <Anchor
-                component={Link}
-                size="xs"
-                c="dimmed"
-                href={Routes.ForgotPasswordPage()}>Forgot password?</Anchor>
+            <Group grow mb="md" mt="md">
+              <GoogleButton radius="xl">Google</GoogleButton>
+              <TwitterButton radius="xl">Twitter</TwitterButton>
             </Group>
 
-            {type === "register" && (
-              <Checkbox
-                color={"black"}
-                label="I accept terms and conditions"
-                {...bindCheckBoxToForm(form, "terms")}
-              />
-            )}
-          </Stack>
+            <Divider label="Or continue with email" labelPosition="center" my="lg" />
 
-          <Group justify="space-between" mt="xl">
-            <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
-              {type === "register"
-                ? "Already have an account? Login"
-                : "Don't have an account? Register"}
-            </Anchor>
-            <Button size={"sm"} disabled={!form.isValid()} bg={"black"} type="submit">
-              {upperFirst(type)}
-            </Button>
-          </Group>
-        </form>
-      </Paper>
-    </Box>
+            <form onSubmit={form.onSubmit(async (values) => {
+              if (type === "login") {
+                await $login(values)
+              } else {
+                await $signup(values)
+              }
+            })}>
+              <Stack>
+                {type === "register" && (
+                    <TextInput
+                        required
+                        label="Name"
+                        placeholder="Your name"
+                        {...form.getInputProps("name")}
+                        radius="md"
+                    />
+                )}
+
+                <TextInput
+                    required
+                    label="Email"
+                    placeholder="hello@social.dev"
+                    {...form.getInputProps("email")}
+                    radius="md"
+                />
+
+
+                <PasswordInput
+                    required
+                    label="Password"
+                    placeholder="Your password"
+                    {...form.getInputProps("password")}
+                    radius="md"
+                />
+                <Group justify="flex-end">
+                  <Anchor
+                      component={Link}
+                      size="xs"
+                      c="dimmed"
+                      href={Routes.ForgotPasswordPage()}>Forgot password?</Anchor>
+                </Group>
+
+                {type === "register" && (
+                    <Checkbox
+                        color={"black"}
+                        label="I accept terms and conditions"
+                        {...bindCheckBoxToForm(form, "terms")}
+                    />
+                )}
+              </Stack>
+
+              <Group justify="space-between" mt="xl">
+                <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+                  {type === "register"
+                      ? "Already have an account? Login"
+                      : "Don't have an account? Register"}
+                </Anchor>
+                <Button size={"sm"} disabled={!form.isValid()} bg={"black"} type="submit">
+                  {upperFirst(type)}
+                </Button>
+              </Group>
+            </form>
+          </Paper>
+        </Box>
+      </div>
   )
 }
 
