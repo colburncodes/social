@@ -1,5 +1,5 @@
-import React, {useState} from "react"
-import {Group, Tabs} from "@mantine/core"
+import React, {useEffect, useState} from "react"
+import {Group, Tabs, Title} from "@mantine/core"
 import type {BlitzPage} from "@blitzjs/next"
 import Layout from "~/src/core/layouts/layout"
 import {allDocs, Doc} from "contentlayer/generated";
@@ -18,8 +18,8 @@ const renderDocTabs = () => {
     ))
 }
 
-const renderDocData = (docs) => {
-    return allDocs.map((doc, index) => (
+const renderDocData = (docs: Doc[]) => {
+    return docs.map((doc, index) => (
         <Tabs.Panel value={doc._id} key={doc._id} ml={50}>
             <MdxDocRender doc={doc}/>
         </Tabs.Panel>
@@ -27,11 +27,19 @@ const renderDocData = (docs) => {
 }
 
 const Sidebar = () => {
-    const [activeDoc, setActiveDoc] = useState(allDocs[0]?._id);
+    const sortedDocs = React.useMemo(() => allDocs.sort((a, b) => a.order - b.order), [allDocs]);
+    const [activeDoc, setActiveDoc] = useState(sortedDocs[0]?._id);
+
+    useEffect(() => {
+        if (sortedDocs.length > 0) {
+            setActiveDoc(sortedDocs[0]?._id);
+        }
+    }, [sortedDocs]);
+
     const handleTabChange = (value: string) => {
         setActiveDoc(value);
     };
-    const sortedDocs = allDocs.sort((a, b) => a.order - b.order);
+
     return(
         <div className={classes.container}>
             <Tabs defaultValue={activeDoc} onChange={handleTabChange} orientation="vertical">

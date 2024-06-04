@@ -56,6 +56,8 @@ export const Doc = defineDocumentType(() => ({
       required: false
     },
     order: { type: 'number', required: true },
+    section: { type: 'string', required: false },
+    subsection: { type: 'string', required: false },
   },
   computedFields: {
     url: {
