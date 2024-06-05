@@ -7,3 +7,43 @@ order: 4
 
 # Database
 In this step, we'll set up your database.
+
+## PostGreSQL
+We will be using PostgresSQL as our database. PostgresSQL is a open-source
+object-relational database system.
+
+## Create Database
+1. Open PostgresSQL dashboard or use the command line
+2. Create a new database running:
+```bash
+CREATE DATABASE datbase_name;
+```
+
+## Copy Database URL
+`postgresql://<username>:<password>@<host>:<port>/<database>`
+
+## Set up envioronment variables
+1. Open Railway project created in previous step.
+2. Click "Variables" tab
+3. Add the following environment variables:
+
+```DATABASE_URL postgresql://<username>:<password>@<host>:<port>/<database>```
+
+## Prisma Schema Configuration
+In your `prisma/schema.prisma` file, make sure to configure your data source and generator:
+```
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+## Create the database schema with Prisma
+1. In the terminal
+2. Run `yarn prisma db push`
+
+This command will create the Prisma database schema for you and push it to your database.
