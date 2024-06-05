@@ -9,6 +9,6 @@ export const isStaging = railwayEnvironment?.toLowerCase() === "staging";
 export const isProduction = railwayEnvironment?.toLowerCase() === "production";
 
 
-export const URL_ORIGIN = isStaging ? STAGING_URL : isDev ? DEV_URL : PROD_URL;
+export const URL_ORIGIN = isStaging ? STAGING_URL : isProduction ? PROD_URL : DEV_URL;
 
 export const APP_NAME = "social";
