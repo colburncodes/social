@@ -12,9 +12,9 @@ import {
   useMantineTheme
 } from "@mantine/core"
 import classes from "~/src/styles/FeaturesCards.module.css"
-import {URL_ORIGIN} from "~/src/config";
+import {PROD_URL} from "~/src/config";
 
-const LOGIN_URL = `${URL_ORIGIN}/auth/login`;
+const LOGIN_URL = `${PROD_URL}/auth/login`;
 
 export function FeaturesCard({ features }) {
 
