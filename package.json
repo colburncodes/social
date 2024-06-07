@@ -17,9 +17,9 @@
     "schema": "db/schema.prisma"
   },
   "dependencies": {
-    "@blitzjs/auth": "2.0.8",
-    "@blitzjs/next": "2.0.8",
-    "@blitzjs/rpc": "2.0.8",
+    "@blitzjs/auth": "2.0.9",
+    "@blitzjs/next": "2.0.9",
+    "@blitzjs/rpc": "2.0.9",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@floating-ui/core": "^1.6.2",
@@ -43,7 +43,7 @@
     "@tabler/icons-react": "^2.42.0",
     "@uploadthing/react": "^6.1.0",
     "add": "^2.0.6",
-    "blitz": "2.0.8",
+    "blitz": "2.0.9",
     "clsx": "^2.0.0",
     "contentlayer": "^0.3.4",
     "date-fns": "^2.30.0",
