@@ -18,6 +18,8 @@ export const env = createEnv({
     LEMONSQUEEZY_STORE_ID: z.string(),
     LEMONSQUEEZY_VARIANT_ID: z.string(),
     LOGSNAG_API_KEY: z.string(),
+    MAILTRAP_USERNAME: z.string().optional(),
+    MAILTRAP_PASSWORD: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string()
@@ -33,6 +35,8 @@ export const env = createEnv({
     LEMONSQUEEZY_STORE_ID: process.env.LEMONSQUEEZY_STORE_ID,
     LEMONSQUEEZY_VARIANT_ID: process.env.LEMONSQUEEZY_VARIANT_ID,
     LOGSNAG_API_KEY: process.env.LOGSNAG_API_KEY,
-    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: process.env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN
+    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: process.env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN,
+    MAILTRAP_USERNAME: process.env.MAILTRAP_USERNAME,
+    MAILTRAP_PASSWORD: process.env.MAILTRAP_PASSWORD
   },
 });
