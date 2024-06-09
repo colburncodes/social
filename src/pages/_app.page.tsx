@@ -18,7 +18,7 @@ import {
   emotionTransform,
   MantineEmotionProvider,
 } from '@mantine/emotion';
-import {emotionCache} from "~/src/emotion/cache";
+import {emotionCache} from "~/emotion/cache";
 
 
 const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({

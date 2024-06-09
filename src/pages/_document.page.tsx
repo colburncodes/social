@@ -1,6 +1,6 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { ColorSchemeScript } from '@mantine/core';
-import { emotionCache } from '../emotion/cache';
+import { emotionCache } from '~/emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 import {createGetInitialProps} from "@mantine/emotion";
 
