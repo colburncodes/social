@@ -1,22 +1,24 @@
 import "@mantine/notifications/styles.css"
 import "src/styles/globals.css"
 import "@mantine/core/styles.css"
+import { env } from "~/src/env.mjs"
+import { APP_NAME } from "~/src/config"
+import React, { Suspense } from "react"
+import { globalModals } from "~/src/modals"
+import { withBlitz } from "src/blitz-client"
+import { Notifications } from "@mantine/notifications"
 import { ErrorFallbackProps, ErrorBoundary, AppProps } from "@blitzjs/next"
 import { AuthenticationError, AuthorizationError } from "blitz"
-import React, { Suspense } from "react"
-import { withBlitz } from "src/blitz-client"
 import { Group, MantineProvider, Paper, Text } from "@mantine/core"
-import { Notifications } from "@mantine/notifications"
 import AuthenticationForm from "~/src/core/components/auth-form"
 import { theme } from "~/src/styles/mantine-theme"
 import { ModalsProvider } from "@mantine/modals"
-import { globalModals } from "~/src/modals"
 import { LogSnagProvider } from "@logsnag/next"
-import { env } from "~/src/env.mjs"
-import { APP_NAME } from "~/src/config"
 import {
+  emotionTransform,
   MantineEmotionProvider,
 } from '@mantine/emotion';
+import {emotionCache} from "~/emotion/cache";
 
 
 const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({
@@ -65,22 +67,22 @@ export function RootErrorFallback({ error }: ErrorFallbackProps) {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-      <MantineEmotionProvider>
-        <MantineProvider theme={theme}>
-          <ModalsProvider modals={globalModals}>
-            {/* @ts-expect-error Server Component */}
-            <ErrorBoundary FallbackComponent={RootErrorFallback}>
-              <Notifications position={"top-right"} />
-              <Suspense fallback="Loading...">
-                <LogSnagProvider token={env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN} project={APP_NAME}>
-                  {/* @ts-expect-error Server Component */}
-                  <Component {...pageProps} />
-                </LogSnagProvider>
-              </Suspense>
-            </ErrorBoundary>
-          </ModalsProvider>
-        </MantineProvider>
-      </MantineEmotionProvider>
+      <MantineProvider stylesTransform={emotionTransform} theme={theme}>
+        <MantineEmotionProvider cache={emotionCache}>
+            <ModalsProvider modals={globalModals}>
+              {/* @ts-expect-error Server Component */}
+              <ErrorBoundary FallbackComponent={RootErrorFallback}>
+                <Notifications position={"top-right"} />
+                <Suspense fallback="Loading...">
+                  <LogSnagProvider token={env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN} project={APP_NAME}>
+                    {/* @ts-expect-error Server Component */}
+                    <Component {...pageProps} />
+                  </LogSnagProvider>
+                </Suspense>
+              </ErrorBoundary>
+            </ModalsProvider>
+        </MantineEmotionProvider>
+      </MantineProvider>
   )
 }
 
