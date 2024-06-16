@@ -27,6 +27,7 @@ model User {
 
   username          String?             @unique
   onBoarded         Boolean             @default(false)
+  githubProfileId  String?
   // payments
   hasLifeTimeAccess Boolean             @default(false)
   Orders            LemonSqueezyOrder[]
