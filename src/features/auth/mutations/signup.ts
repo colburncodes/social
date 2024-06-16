@@ -55,6 +55,7 @@ export default resolver.pipe(resolver.zod(SignUpInput), async ({ email, name, pa
         })
       })
       await ctx.session.$create({ userId: user.id, role: user.role as Role })
+      return user
     }
   } catch (err) {
     throw new PrismaError(err.message, err.code, err.meta)

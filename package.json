@@ -56,7 +56,6 @@
     "next": "^14.2.3",
     "next-contentlayer": "^0.3.4",
     "nodemailer": "^6.9.13",
-    "passport-github2": "^0.1.12",
     "raw-body": "^2.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
