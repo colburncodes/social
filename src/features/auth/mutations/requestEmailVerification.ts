@@ -40,8 +40,6 @@ export default resolver.pipe(
     const user = await db.user.findFirst({
       where: { id: userId }
     })
-
-    console.log(user)
     if (!user) throw new Error("User not found!")
 
     await sendVerificationEmail({

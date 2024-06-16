@@ -29,9 +29,9 @@ export function TwitterButton(props: ButtonProps & React.ComponentPropsWithoutRe
   )
 }
 
-export function GithubButton(props: ButtonProps & React.ComponentPropsWithoutRef<"button">) {
+export function GithubButton(props: ButtonProps & React.ComponentPropsWithoutRef<"a">) {
   return (
-    <Button {...props} leftSection={<GithubIcon style={{ width: "1rem", height: "1rem" }} />} />
+    <Button component={"a"} href={"/api/auth/github"} {...props} leftSection={<GithubIcon style={{ width: "1rem", height: "1rem" }} />} />
   )
 }
 
