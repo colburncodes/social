@@ -22,9 +22,7 @@ export const env = createEnv({
     MAILTRAP_PASSWORD: z.string().optional(),
   },
   client: {
-    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string(),
-    NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID: z.string().min(1),
-    NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY: z.string().min(1),
+    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string()
   },
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
@@ -39,8 +37,6 @@ export const env = createEnv({
     LOGSNAG_API_KEY: process.env.LOGSNAG_API_KEY,
     NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: process.env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN,
     MAILTRAP_USERNAME: process.env.MAILTRAP_USERNAME,
-    MAILTRAP_PASSWORD: process.env.MAILTRAP_PASSWORD,
-    NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID,
-    NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY: process.env.NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY,
+    MAILTRAP_PASSWORD: process.env.MAILTRAP_PASSWORD
   },
 });
