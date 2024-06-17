@@ -14,7 +14,7 @@ import {
   Anchor,
   Stack,
 } from "@mantine/core"
-import { GoogleButton } from "./social-buttons/social-buttons"
+import {GithubButton, GoogleButton} from "./social-buttons/social-buttons"
 import { TwitterButton } from "./social-buttons/social-buttons"
 import { useMutation } from "@blitzjs/rpc"
 import signup from "../../features/auth/mutations/signup"
@@ -59,7 +59,7 @@ export function AuthenticationForm(props: PaperProps) {
 
             <Group grow mb="md" mt="md">
               <GoogleButton radius="xl">Google</GoogleButton>
-              <TwitterButton radius="xl">Twitter</TwitterButton>
+              <GithubButton radius="xl">Github</GithubButton>
             </Group>
 
             <Divider label="Or continue with email" labelPosition="center" my="lg" />

@@ -30,7 +30,7 @@ export default api(
                         create: {
                             email,
                             name: profile.displayName,
-                            githubProfileId: profile.id
+                            githubUserProfileId: profile.id
                         },
                         update: { email },
                     })
