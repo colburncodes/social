@@ -2,7 +2,7 @@
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
 import { Strategy as GitHubStrategy, Profile } from "passport-github2";
-import {env} from "~/env.mjs";
+import { env } from "~/src/env.mjs";
 import {URL_ORIGIN} from "~/src/config";
 import db from "~/db";
 
