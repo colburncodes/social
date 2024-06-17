@@ -20,11 +20,11 @@ export const env = createEnv({
     LOGSNAG_API_KEY: z.string(),
     MAILTRAP_USERNAME: z.string().optional(),
     MAILTRAP_PASSWORD: z.string().optional(),
-  },
-  client: {
-    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string(),
     NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID: z.string().min(1),
     NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY: z.string().min(1),
+  },
+  client: {
+    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string()
   },
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
