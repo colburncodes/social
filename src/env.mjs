@@ -20,11 +20,13 @@ export const env = createEnv({
     LOGSNAG_API_KEY: z.string(),
     MAILTRAP_USERNAME: z.string().optional(),
     MAILTRAP_PASSWORD: z.string().optional(),
-    NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID: z.string().min(1),
-    NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY: z.string().min(1),
   },
   client: {
-    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string()
+    NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN: z.string(),
+    NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID: z.string().min(1),
+    NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY: z.string().min(1),
+    NEXT_PUBLIC_GITHUB_STAGING_CLIENT_ID: z.string().min(1),
+    NEXT_PUBLIC_GITHUB_STAGING_SECRETY_KEY: z.string().min(1),
   },
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
@@ -42,5 +44,7 @@ export const env = createEnv({
     MAILTRAP_PASSWORD: process.env.MAILTRAP_PASSWORD,
     NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID: process.env.NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID,
     NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY: process.env.NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY,
+    NEXT_PUBLIC_GITHUB_STAGING_CLIENT_ID: process.env.NEXT_PUBLIC_GITHUB_STAGING_CLIENT_ID,
+    NEXT_PUBLIC_GITHUB_STAGING_SECRETY_KEY: process.env.NEXT_PUBLIC_GITHUB_STAGING_SECRETY_KEY
   },
 });
