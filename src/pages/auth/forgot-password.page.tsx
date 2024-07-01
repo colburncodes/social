@@ -52,14 +52,11 @@ const ForgotPasswordPage: BlitzPage = () => {
                 {...form.getInputProps("email")}
               />
             </Group>
-
-
             <Group justify="flex-start" mt="md">
               <Button disabled={!form.isValid()} loading={isLoading} type="submit">Submit</Button>
             </Group>
           </form>
         )}
-
       </Layout>
     </>
 

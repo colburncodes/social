@@ -1,7 +1,7 @@
 import { SecurePassword } from "@blitzjs/auth/secure-password"
 import { resolver } from "@blitzjs/rpc"
 import db from "../../../../db"
-import { Role } from "../../../../types"
+import { Role } from "~/types"
 import { SignUpInput } from "../schemas"
 import { PrismaError, regenerateToken } from "~/src/utils/blitz-utils"
 import { sendEmail } from "~/email/sendEmail"

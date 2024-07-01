@@ -5,8 +5,6 @@ import { Role } from "~/types"
 import authenticateUser from "~/src/utils/auth-utils"
 import { sendIdentifyAUser } from "~/src/logsnag/log-snag-events"
 
-
-
 export const LoginInput = z.object({
   email,
   password: z.string(),

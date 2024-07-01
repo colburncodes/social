@@ -14,8 +14,6 @@ export const config = {
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("🍋: hello")
-
   if (req.method !== "POST") {
     console.log("🍋: method not allowed")
     return res.status(405).json({

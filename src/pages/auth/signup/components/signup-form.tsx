@@ -27,8 +27,8 @@ export const SignupForm = (props: SignupFormProps) => {
 
   const onSubmit = async (values: SignUpInputType) => {
     const result = SignUpInput.safeParse(values);
-
-    if (result.success) {
+    const isSuccessful = result.success;
+    if (isSuccessful) {
         await signupMutation(result.data)
     } else {
       form.setErrors(result.error.flatten().fieldErrors)

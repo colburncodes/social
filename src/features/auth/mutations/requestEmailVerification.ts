@@ -1,10 +1,10 @@
-import { resolver } from "@blitzjs/rpc"
+import {resolver} from "@blitzjs/rpc"
 import db from "db"
-import { sendEmail } from "~/email/sendEmail"
+import {sendEmail} from "~/email/sendEmail"
 import React from "react"
-import { regenerateToken } from "~/src/utils/blitz-utils"
-import { TokenType } from "@prisma/client"
-import { URL_ORIGIN } from "~/src/config"
+import {regenerateToken} from "~/src/utils/blitz-utils"
+import {TokenType} from "@prisma/client"
+import {URL_ORIGIN} from "~/src/config"
 import VerifyEmailTemplate from "~/email/react-email/emails/verify-email"
 
 export const getEmailVerificationLink = async ({ userId, userEmail }): Promise<string> => {
@@ -14,8 +14,7 @@ export const getEmailVerificationLink = async ({ userId, userEmail }): Promise<s
     tokenType: TokenType.VERIFY_EMAIL
   })
 
-  const link = `${URL_ORIGIN}/auth/verify-email?token=${token}`;
-  return link
+  return `${URL_ORIGIN}/auth/verify-email?token=${token}`
 }
 export const sendVerificationEmail = async ({ userId, userEmail }): Promise<void> => {
   const emailVerifyUrl = await getEmailVerificationLink({

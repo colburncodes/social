@@ -15,11 +15,11 @@ export default resolver.pipe(
   resolver.zod(Input),
   resolver.authorize(),
   async ({ currentPassword, newPassword }, ctx) => {
-    const user = await db.user.findFirst({ where: { id: ctx.session.userId } })
+    const user = await db.user.findFirst({ where: { id: ctx.session.userId } });
     if (!user) throw new NotFoundError()
-
+    const email = user.email;
     try {
-      await authenticateUser(user.email, currentPassword)
+      await authenticateUser(email, currentPassword)
     } catch (error) {
       if (error instanceof AuthenticationError) {
         throw new Error("Invalid Password")

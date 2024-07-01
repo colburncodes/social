@@ -40,7 +40,9 @@ export const ProfilePage: BlitzPage = () => {
   if(!user) return <Text>User not found.</Text>
 
   const currentUser = useCurrentUser()
+  const hasUsername = user.username || "";
   const isOwner = currentUser?.id === user?.id
+  const isEmailVerified = currentUser?.emailVerifiedAt;
 
   const onSubmit = async (values: UpdateProfileInputType) => {
     const result = UpdateProfileInput.safeParse(values)
@@ -49,7 +51,7 @@ export const ProfilePage: BlitzPage = () => {
       await $updateProfile(result.data)
       const { username } = result.data;
 
-      if (username !== user.username) {
+      if (username !== hasUsername) {
         if (username) {
           await router.push(Routes.ProfilePage({ username }))
         }
@@ -82,7 +84,7 @@ export const ProfilePage: BlitzPage = () => {
       {/* @ts-expect-error Server Component */}
       <Layout>
         <Group>
-          {isOwner && !currentUser?.emailVerifiedAt && (
+          {isOwner && !isEmailVerified && (
             <Alert
               variant={"outline"}
               color={"red"}
