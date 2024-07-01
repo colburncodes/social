@@ -2,10 +2,13 @@
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
 import { Strategy as GitHubStrategy, Profile } from "passport-github2";
-import { env } from "~/src/env.mjs";
 import {URL_ORIGIN} from "~/src/config";
 import db from "~/db";
 
+
+const getEnvVariable = (devVar: string, stagingVar: string) => {
+    return process.env[devVar] || process.env[stagingVar];
+}
 
 export default api(
     passportAuth({
@@ -14,8 +17,8 @@ export default api(
         strategies: [
             {
                 strategy: new GitHubStrategy({
-                    clientID: env.NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID,
-                    clientSecret: env.NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY,
+                    clientID: getEnvVariable('NEXT_PUBLIC_GITHUB_AUTH_CLIENT_ID', `NEXT_PUBLIC_GITHUB_STAGING_CLIENT_ID`),
+                    clientSecret: getEnvVariable('NEXT_PUBLIC_GITHUB_AUTH_SECRET_KEY', 'NEXT_PUBLIC_GITHUB_STAGING_SECRETY_KEY'),
                     callbackURL: `${URL_ORIGIN}/api/auth/github/callback`,
                     scope: ["user:email"]
                 }, // Provide initialized passport strategy here
