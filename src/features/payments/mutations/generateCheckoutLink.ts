@@ -1,10 +1,10 @@
-import { resolver } from "@blitzjs/rpc"
-import { z } from "zod"
+import {resolver} from "@blitzjs/rpc"
+import {z} from "zod"
 import db from "db"
-import { env } from "~/src/env.mjs"
-import { type NewCheckout, createCheckout } from "@lemonsqueezy/lemonsqueezy.js"
-import { sendPaymentActivity } from "~/src/logsnag/log-snag-events"
-import { lemonClient } from "~/src/features/payments/lemonClient"
+import {env} from "~/src/env.mjs"
+import {createCheckout, type NewCheckout} from "@lemonsqueezy/lemonsqueezy.js"
+import {sendPaymentActivity} from "~/src/logsnag/log-snag-events"
+import {lemonClient} from "~/src/features/payments/lemonClient"
 
 const client = lemonClient
 /**
@@ -33,7 +33,8 @@ export default resolver.pipe(
     })
 
     if (!user) throw new Error("User not found");
-    if (!user.name) throw new Error("User name not found")
+    const { id, name, email } = user;
+    if (!name) throw new Error("User name not found")
 
     try {
       const storeId = env.LEMONSQUEEZY_STORE_ID;
@@ -46,10 +47,10 @@ export default resolver.pipe(
           logo: true,
         },
         checkoutData: {
-          email: user.email,
-          name: user.name,
+          email: email,
+          name: name,
           custom: {
-            user_id: user.id
+            user_id: id
           }
         },
         expiresAt: null,
@@ -72,10 +73,8 @@ export default resolver.pipe(
         trial: checkoutOptions?.discount || false
       })
 
-      const url = data?.data.attributes.url;
-
       // @ts-ignore
-      return url;
+      return data?.data.attributes.url;
     } catch (err) {
       console.error(`Error generating checkout link:`, err)
       throw new Error(`Failed to generate checkout link.`, err)

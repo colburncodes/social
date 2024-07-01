@@ -6,7 +6,7 @@ export const Input = z.object({})
 
 export default resolver.pipe(
   resolver.zod(Input),
-  resolver.authorize(), async ({}, { session: { userId } }) => {
+  resolver.authorize(),  ({}, { session: { userId } }) => {
   return db.user.findUnique({
     where: {
       id: userId
@@ -19,5 +19,5 @@ export default resolver.pipe(
         }
       }
     }
-  })
+  });
 })

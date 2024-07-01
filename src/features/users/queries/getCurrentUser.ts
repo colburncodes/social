@@ -1,12 +1,11 @@
-import { Ctx } from "blitz"
+import {Ctx} from "blitz"
 import db from "../../../../db"
-import { Simulate } from "react-dom/test-utils"
 
-export default async function getCurrentUser(_ = null, { session }: Ctx) {
+export default function getCurrentUser(_ = null, { session }: Ctx) {
   if (!session.userId) return null
 
-  const user = await db.user.findUnique({
-    where: { id: session.userId },
+  return db.user.findUnique({
+    where: {id: session.userId},
     select: {
       id: true,
       name: true,
@@ -19,15 +18,13 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
       coverImageKey: true,
       onBoarded: true,
       settings: {
-         select: {
-           id: true,
-           settingsEmailProduct: true,
-           settingsEmailMarketing: true
-         }
+        select: {
+          id: true,
+          settingsEmailProduct: true,
+          settingsEmailMarketing: true
+        }
       },
       hasLifeTimeAccess: true
     },
-  })
-
-  return user
+  });
 }
