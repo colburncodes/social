@@ -28,8 +28,9 @@ export const LoginForm = (props: LoginFormProps) => {
   })
 
   const onSubmit = async (values: LoginInputType) => {
-    const result = LoginInput.safeParse(values)
-    if (result.success) {
+    const result = LoginInput.safeParse(values);
+    const isSuccessful = result.success;
+    if (isSuccessful) {
       await loginMutation(result.data)
     } else {
       form.setErrors(result.error.flatten().fieldErrors)

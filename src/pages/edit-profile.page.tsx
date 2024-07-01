@@ -30,7 +30,8 @@ export const EditProfilePage: BlitzPage = () => {
 
   const onSubmit = async (values: UpdateProfileInputType) => {
     const result = UpdateProfileInput.safeParse(values)
-    if (result.success) {
+    const { success } = result;
+    if (success) {
       const { username } = result.data;
       await $updateProfile(result.data)
       if (username) {

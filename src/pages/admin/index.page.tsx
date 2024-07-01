@@ -11,6 +11,7 @@ import { BulkEmails } from "./components/bulk-emails"
 
 export const Admin = () => {
   const user = useCurrentUser()
+    const isAdmin = user?.isAdmin;
   return (
     <Stack className={classes.container}>
       <Stack>
@@ -21,7 +22,7 @@ export const Admin = () => {
       <Tabs defaultValue="account" orientation="vertical">
         <Tabs.List>
           <Tabs.Tab value="email" leftSection={<IconMail size={"0.8rem"}/>}>Email</Tabs.Tab>
-          {user?.isAdmin &&
+          {isAdmin &&
             <Tabs.Tab
               value="users"
               leftSection={<IconUserSearch size={"0.8rem"}/>}>
@@ -36,7 +37,7 @@ export const Admin = () => {
           </div>
         </Tabs.Panel>
         <Tabs.Panel value="profile">Profile tab content</Tabs.Panel>
-        {user?.isAdmin && (
+        {isAdmin && (
           <Tabs.Panel value="users">
             <Users/>
           </Tabs.Panel>

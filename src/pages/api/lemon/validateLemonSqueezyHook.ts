@@ -1,6 +1,6 @@
-import { NextApiRequest } from "next";
+import {NextApiRequest} from "next";
 import crypto from "crypto";
-import { env } from "~/src/env.mjs";
+import {env} from "~/src/env.mjs";
 
 
 export const validateLemonSqueezyHook = async ({
@@ -15,8 +15,7 @@ export const validateLemonSqueezyHook = async ({
     const digest = Buffer.from(hmac.update(rawBody).digest("hex"), "utf8");
     const signature = Buffer.from(req.headers["x-signature"] as string, "utf8");
 
-    let validated = crypto.timingSafeEqual(digest, signature);
-    return validated;
+    return crypto.timingSafeEqual(digest, signature);
   } catch (err) {
     console.log("err", err);
     return false;
