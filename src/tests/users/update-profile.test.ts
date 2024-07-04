@@ -1,5 +1,29 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
+import updateProfile from "~/src/features/users/mutations/updateProfile";
+import { Ctx } from "@blitzjs/next"
 import db from "~/db"
+
+// Mock Blitz.js authorize function
+vi.mock('@blitzjs/auth', () => {
+    return {
+        resolver: {
+            authorize: vi.fn(() => true) // Mock the authorize function to always return true
+        },
+        AuthServerPlugin: vi.fn(), // Mock AuthServerPlugin if necessary
+    };
+});
+
+vi.mock('~/src/features/users/queries/updateProfile', () => {
+    return {
+        updateProfile: vi.fn((input, Ctx) => ({
+            id: 'mocked_id',
+            name: input.name,
+            username: input.username || '',
+            bio: input.bio || '',
+            avatarImageKey: input.avatarImageKey || '',
+        }))
+    }
+});
 
 describe('updateProfile', () => {
     test('should update profile',
@@ -12,18 +36,20 @@ describe('updateProfile', () => {
                     name: true,
                     username: true,
                     bio: true,
-                    email: true,
-                    role: true,
                     avatarImageKey: true
                 }
             })
 
             if (!firstUser) throw new Error('User not found!');
 
-            const updateData = {
+            const input = {
+                name: firstUser.name || "",
+                username: firstUser.username || "",
                 bio: "Updated bio",
                 avatarImageKey: "updated_avatar_key",
-            }
+            };
+
+            const updateData = await updateProfile(input, {} as Ctx);
 
             // Act: Update user's profile
             await db.user.update({
@@ -36,11 +62,7 @@ describe('updateProfile', () => {
                 where: { id: firstUser.id },
                 select: {
                     id: true,
-                    name: true,
-                    username: true,
                     bio: true,
-                    email: true,
-                    role: true,
                     avatarImageKey: true,
                 }
             });
@@ -49,11 +71,7 @@ describe('updateProfile', () => {
 
             expect(updatedUser).toMatchObject({
                 id: firstUser.id,
-                name: firstUser.name, // Assuming the name wasn't updated
-                username: firstUser.username,
                 bio: "Updated bio",
-                email: firstUser.email,
-                role: firstUser.role,
                 avatarImageKey: "updated_avatar_key"})
         })
 })

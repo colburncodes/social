@@ -11,7 +11,11 @@ loadEnvConfig(projectDir)
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
+    dir: "./",
     globals: true,
+    coverage: {
+      reporter: ["text", "json", "html"],
+    },
     environment: "jsdom"
   },
   resolve: {
