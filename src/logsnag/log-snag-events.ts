@@ -24,7 +24,7 @@ type PaymentActivity = {
   trial: boolean;
 }
 
-export const sendIdentifyAUser = async (data: IdentifyUser) => {
+export const sendUserActivity = async (data: IdentifyUser) => {
    return await logSnag.identify({
     user_id: data.id,
     properties: {

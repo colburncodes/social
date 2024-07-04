@@ -4,10 +4,6 @@ import db from "../../../../db"
 import { hash256 } from "@blitzjs/auth"
 import { SecurePassword } from "@blitzjs/auth/secure-password"
 
-beforeEach(async () => {
-  await db.$reset()
-})
-
 const mockCtx: any = {
   session: {
     $create: vi.fn(),
@@ -15,6 +11,12 @@ const mockCtx: any = {
 }
 
 describe("resetPassword mutation", () => {
+
+  beforeEach(async () => {
+    // @ts-ignore
+    await db.$reset()
+  })
+
   it("works correctly", async () => {
     expect(true).toBe(true)
 
