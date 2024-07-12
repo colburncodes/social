@@ -3,7 +3,7 @@ import { email } from "../schemas"
 import { z } from "zod"
 import { Role } from "~/types"
 import authenticateUser from "~/src/utils/auth-utils"
-import { sendIdentifyAUser } from "~/src/logsnag/log-snag-events"
+import { sendUserActivity } from "~/src/logsnag/log-snag-events"
 
 export const LoginInput = z.object({
   email,
@@ -17,7 +17,7 @@ export default resolver.pipe(resolver.zod(LoginInput), async (params, ctx) => {
 
   if(!user) throw new Error("User credentials invalid")
 
-  await sendIdentifyAUser({
+  await sendUserActivity({
     id: user.id,
     name: user.name || "",
     email: user.email,
