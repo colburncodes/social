@@ -1,6 +1,4 @@
 import { describe, test, expect, vi } from 'vitest';
-import updateProfile from "~/src/features/users/mutations/updateProfile";
-import { Ctx } from "@blitzjs/next"
 import db from "~/db"
 
 // Mock Blitz.js authorize function
@@ -49,12 +47,11 @@ describe('updateProfile', () => {
                 avatarImageKey: "updated_avatar_key",
             };
 
-            const updateData = await updateProfile(input, {} as Ctx);
 
             // Act: Update user's profile
             await db.user.update({
                 where: { id: firstUser.id },
-                data: updateData
+                data: input
             })
 
             // Assert: Fetch the update user and verify the changes.

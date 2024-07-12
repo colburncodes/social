@@ -1,6 +1,6 @@
 // @ts-check
-const { withBlitz } = require("@blitzjs/next")
-const { withContentlayer } = require("next-contentlayer")
+const { withBlitz } = require("@blitzjs/next");
+const { withContentlayer } = require("next-contentlayer");
 
 /**
  * @type {import('@blitzjs/next').BlitzConfig}
