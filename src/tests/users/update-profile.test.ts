@@ -47,7 +47,6 @@ describe('updateProfile', () => {
                 avatarImageKey: "updated_avatar_key",
             };
 
-
             // Act: Update user's profile
             await db.user.update({
                 where: { id: firstUser.id },
@@ -65,7 +64,6 @@ describe('updateProfile', () => {
             });
 
             if (!updatedUser) throw new Error('Updated user not found!');
-
             expect(updatedUser).toMatchObject({
                 id: firstUser.id,
                 bio: "Updated bio",
