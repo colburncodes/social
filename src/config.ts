@@ -12,3 +12,6 @@ export const isProduction = railwayEnvironment?.toLowerCase() === "production";
 export const URL_ORIGIN = isProduction ? PROD_URL : isStaging ? STAGING_URL : DEV_URL;
 
 export const APP_NAME = "social";
+export const APP_FULL_TITLE = "Socilio - Create and Share";
+export const APP_DESCRIPTION = "Create and share with your network";
+export const APP_DEFAULT_URL = URL_ORIGIN;

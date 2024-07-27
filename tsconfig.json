@@ -22,7 +22,8 @@
       "@/*": ["./src"],
       "~/*": ["./*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
-    }
+    },
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "exclude": ["node_modules", "**/*.e2e.ts", "cypress"],
   "include": [
@@ -30,5 +31,6 @@
     "**/*.ts",
     "**/*.tsx",
     "types",
+    "tests/**/*.tsx",
     ".contentlayer/generated"]
 }

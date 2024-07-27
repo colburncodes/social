@@ -1,4 +1,3 @@
-import Head from "next/head"
 import React, { Suspense, useEffect, useState } from "react"
 import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
 import {
@@ -29,6 +28,7 @@ import { UserHeaderMenu } from "~/src/core/components/header/user-header-menu"
 import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
 import { useRouter } from "next/router"
 import { pathNameHidden } from "~/src/utils/constants"
+import MetaTagHead from "~/src/core/meta-tag-head";
 
 
 type Props = {
@@ -68,10 +68,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
 
   return (
     <>
-      <Head>
-        <title>{title || "social"}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <MetaTagHead title={title}/>
       <AppShell
         header={{ height: 90 }}
         navbar={{ width: 300, breakpoint: "sm" }}
