@@ -2031,6 +2031,13 @@
     "@mantine/store" "7.11.2"
     react-transition-group "4.4.5"
 
+"@mantine/spotlight@^7.11.2":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@mantine/spotlight/-/spotlight-7.11.2.tgz#b50e44cdc151c2a2ec2199dbc4e82907717c4111"
+  integrity sha512-/90ck+7wuRPyg7Ix8Wn6W6BUH5BX5pjAghugopLCEUcLL6gtuTHf9Pd5DG4Bd2Mf4iabpW2hiaBJoC1aJ7yDNA==
+  dependencies:
+    "@mantine/store" "7.11.2"
+
 "@mantine/store@7.11.2":
   version "7.11.2"
   resolved "https://registry.npmjs.org/@mantine/store/-/store-7.11.2.tgz"

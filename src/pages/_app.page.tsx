@@ -19,6 +19,7 @@ import {
   MantineEmotionProvider,
 } from '@mantine/emotion';
 import {emotionCache} from "~/emotion/cache";
+import { SpotlightWrapper } from "~/src/core/components/spotlight";
 
 
 const ErrorComponent: React.FC<{ statusCode: string | number; title: string}> = ({
@@ -75,8 +76,10 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <Notifications position={"top-right"} />
                 <Suspense fallback="Loading...">
                   <LogSnagProvider token={env.NEXT_PUBLIC_LOGSNAG_CLIENT_TOKEN} project={APP_NAME}>
-                    {/* @ts-expect-error Server Component */}
-                    <Component {...pageProps} />
+                    <SpotlightWrapper>
+                        {/* @ts-expect-error Server Component */}
+                      <Component {...pageProps} />
+                    </SpotlightWrapper>
                   </LogSnagProvider>
                 </Suspense>
               </ErrorBoundary>
