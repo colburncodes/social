@@ -1,5 +1,4 @@
-import { Button } from '@mantine/core';
-import { Spotlight, spotlight } from '@mantine/spotlight';
+import { Spotlight } from '@mantine/spotlight';
 import { IconSearch, IconHome, IconDashboard, IconFileText } from '@tabler/icons-react';
 import { rem } from '@mantine/core';
 
@@ -39,7 +38,6 @@ export function SpotlightWrapper({ children }) {
                 }}
                 shortcut="mod + K"
             />
-            <Button onClick={() => spotlight.open()}>Open Spotlight</Button>
             {children}
         </>
     );

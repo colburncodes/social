@@ -29,7 +29,7 @@ import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
 import { useRouter } from "next/router"
 import { pathNameHidden } from "~/src/utils/constants"
 import MetaTagHead from "~/src/core/meta-tag-head";
-
+import {useHotkeys} from "@mantine/hooks";
 
 type Props = {
   title?: string
@@ -40,13 +40,15 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const user = useCurrentUser()
   const router = useRouter()
   const navigateToLogin = navigateToLoginRouter()
-  const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
-  const isActive = (href: any) => {
-    return router.pathname === href;
-  };
   // @ts-ignore
   const { setColorScheme } = useMantineColorScheme()
+  const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
+  const isActive = (href: any) => router.pathname === href;
+  const toggleColorScheme = () => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
+
+  useHotkeys([['mod+J', () => toggleColorScheme()]])
+
   const openModal = () => modals.openContextModal({
     modal: GlobalModal.becomePro,
     title: "Become a pro",
@@ -55,15 +57,10 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
     }
   })
 
-  const handleLoginButtonClick = async () => {
-    await navigateToLogin()
-  }
+  const handleLoginButtonClick = async () => await navigateToLogin()
 
   useEffect(() => {
-    const paths = pathNameHidden;
-
-    const isLoginPage = paths.includes(router.pathname)
-    setLoginButtonVisible(!isLoginPage)
+    setLoginButtonVisible(!pathNameHidden.includes(router.pathname))
   }, [router.pathname])
 
   return (
@@ -151,7 +148,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                       pos={"relative"}
                       top={1}
                       className={classes.iconWrapper}
-                      onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                      onClick={() => toggleColorScheme()}
                       variant="default"
                       size="md"
                       aria-label="Toggle color scheme"
@@ -165,23 +162,21 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
               </Group>
 
             {!user && isLoginButtonVisible && (
-              <Button bg={"black"} c={"white"} size="sm" variant="light"
-                      style={{ margin: 10, right: 30, top: 10 }}
-                      onClick={handleLoginButtonClick}>
+              <Button
+                  bg={"black"}
+                  c={"white"}
+                  size="sm"
+                  variant="light"
+                  style={{ margin: 10, right: 30, top: 10 }}
+                  onClick={handleLoginButtonClick}
+              >
                 Login
               </Button>
             )}
 
           </Group>
         <AppShell.Main style-={{ alignItems: "center"}}>
-
         <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
           {/* @ts-expect-error Server Component */}
