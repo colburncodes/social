@@ -1,35 +1,41 @@
-import React, { Suspense, useEffect, useState } from "react"
-import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
+import React, {Suspense, useEffect, useState} from "react"
+import {BlitzLayout, ErrorBoundary, Routes} from "@blitzjs/next"
 import {
-  AppShell,
-  Group,
-  Stack,
-  Anchor,
-  Loader,
   ActionIcon,
+  Anchor,
+  AppShell,
+  Badge,
+  Button,
+  Group,
+  Loader,
+  Modal,
+  Stack,
   Text,
-  useMantineColorScheme, useComputedColorScheme, Modal, Badge, Button
+  useComputedColorScheme,
+  useMantineColorScheme
 } from "@mantine/core"
 import Link from "next/link"
-import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
-import { IconSun, IconMoon } from "@tabler/icons-react"
-import { RootErrorFallback } from "~/src/pages/_app.page"
+import {useCurrentUser} from "../../features/users/hooks/useCurrentUser"
+import {IconMoon, IconSun} from "@tabler/icons-react"
+import {RootErrorFallback} from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
-import { Footer } from '~/src/core/components/footer/footer'
+import {Footer} from '~/src/core/components/footer/footer'
 import cx from 'clsx'
-import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { extractRouterConfig } from "uploadthing/server";
-import { UserProfileProgress } from "~/src/core/components/header/user-profile-progress"
-import { OnboardingWizard } from "~/src/core/components/onboarding-wizard"
-import { modals } from "@mantine/modals"
-import { GlobalModal } from "~/src/modals"
-import { UserHeaderMenu } from "~/src/core/components/header/user-header-menu"
-import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
-import { useRouter } from "next/router"
-import { pathNameHidden } from "~/src/utils/constants"
+import {ourFileRouter} from "~/src/uploadthing/uploadthing-router"
+import {NextSSRPlugin} from "@uploadthing/react/next-ssr-plugin";
+import {extractRouterConfig} from "uploadthing/server";
+import {UserProfileProgress} from "~/src/core/components/header/user-profile-progress"
+import {OnboardingWizard} from "~/src/core/components/onboarding-wizard"
+import {modals} from "@mantine/modals"
+import {GlobalModal} from "~/src/modals"
+import {UserHeaderMenu} from "~/src/core/components/header/user-header-menu"
+import {navigateToLoginRouter} from "~/src/utils/blitz-utils"
+import {useRouter} from "next/router"
+import {pathNameHidden} from "~/src/utils/constants"
 import MetaTagHead from "~/src/core/meta-tag-head";
 import {useHotkeys} from "@mantine/hooks";
+import {getShortcutKeys} from "~/src/core/components/shortcuts/shortcut-list";
+import {ShortcutId} from "~/src/shortcuts/types";
 
 type Props = {
   title?: string
@@ -47,7 +53,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const isActive = (href: any) => router.pathname === href;
   const toggleColorScheme = () => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
 
-  useHotkeys([['mod+J', () => toggleColorScheme()]])
+  useHotkeys([[getShortcutKeys(ShortcutId.ToggleDarkTheme), () => toggleColorScheme()]])
 
   const openModal = () => modals.openContextModal({
     modal: GlobalModal.becomePro,
