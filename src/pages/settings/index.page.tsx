@@ -6,6 +6,7 @@ import {IconCreditCard, IconGift, IconKey, IconKeyboard, IconMail, IconUserCog} 
 import classes from '~/src/styles/Settings.module.css';
 import { ChangePassword } from "~/src/pages/settings/components/change-password"
 import { UserEmailSettings } from "~/src/pages/settings/components/user-email-settings"
+import {Shortcuts} from "~/src/pages/settings/components/shortcuts";
 
 export const Settings = () => {
   // @ts-ignore
@@ -39,7 +40,7 @@ export const Settings = () => {
             "Invites View"
           </Tabs.Panel>
           <Tabs.Panel value="shortcuts">
-            "Shortcuts View"
+            <Shortcuts />
           </Tabs.Panel>
         </Tabs>
       </Stack>

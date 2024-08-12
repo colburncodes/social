@@ -27,7 +27,7 @@ const EMAIL_SETTINGS: EmailSettings[] = [
 export const UserEmailSettings: React.FC<{}> = () => {
     const [user] = useQuery(getUserEmailSettings, {})
     const [$setUserSettings, {isLoading}] = useMutation(setUserSettings)
-      const handleToggle = (key: any, value: any) => async () => {
+      const handleToggle = (key: any, value: boolean) => async () => {
          await $setUserSettings({
           key,
           value: !value
