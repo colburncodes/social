@@ -1,35 +1,41 @@
-import React, { Suspense, useEffect, useState } from "react"
-import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next"
+import React, {Suspense, useEffect, useState} from "react"
+import {BlitzLayout, ErrorBoundary, Routes} from "@blitzjs/next"
 import {
-  AppShell,
-  Group,
-  Stack,
-  Anchor,
-  Loader,
   ActionIcon,
+  Anchor,
+  AppShell,
+  Badge,
+  Button,
+  Group,
+  Loader,
+  Modal,
+  Stack,
   Text,
-  useMantineColorScheme, useComputedColorScheme, Modal, Badge, Button
+  useComputedColorScheme,
+  useMantineColorScheme
 } from "@mantine/core"
 import Link from "next/link"
-import { useCurrentUser } from "../../features/users/hooks/useCurrentUser"
-import { IconSun, IconMoon } from "@tabler/icons-react"
-import { RootErrorFallback } from "~/src/pages/_app.page"
+import {useCurrentUser} from "../../features/users/hooks/useCurrentUser"
+import {IconMoon, IconSun} from "@tabler/icons-react"
+import {RootErrorFallback} from "~/src/pages/_app.page"
 import classes from "~/src/styles/Home.module.css"
-import { Footer } from '~/src/core/components/footer/footer'
+import {Footer} from '~/src/core/components/footer/footer'
 import cx from 'clsx'
-import { ourFileRouter } from "~/src/uploadthing/uploadthing-router"
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { extractRouterConfig } from "uploadthing/server";
-import { UserProfileProgress } from "~/src/core/components/header/user-profile-progress"
-import { OnboardingWizard } from "~/src/core/components/onboarding-wizard"
-import { modals } from "@mantine/modals"
-import { GlobalModal } from "~/src/modals"
-import { UserHeaderMenu } from "~/src/core/components/header/user-header-menu"
-import { navigateToLoginRouter } from "~/src/utils/blitz-utils"
-import { useRouter } from "next/router"
-import { pathNameHidden } from "~/src/utils/constants"
+import {ourFileRouter} from "~/src/uploadthing/uploadthing-router"
+import {NextSSRPlugin} from "@uploadthing/react/next-ssr-plugin";
+import {extractRouterConfig} from "uploadthing/server";
+import {UserProfileProgress} from "~/src/core/components/header/user-profile-progress"
+import {OnboardingWizard} from "~/src/core/components/onboarding-wizard"
+import {modals} from "@mantine/modals"
+import {GlobalModal} from "~/src/modals"
+import {UserHeaderMenu} from "~/src/core/components/header/user-header-menu"
+import {navigateToLoginRouter} from "~/src/utils/blitz-utils"
+import {useRouter} from "next/router"
+import {pathNameHidden} from "~/src/utils/constants"
 import MetaTagHead from "~/src/core/meta-tag-head";
-
+import {useHotkeys} from "@mantine/hooks";
+import {getShortcutKeys} from "~/src/core/components/shortcuts/shortcut-list";
+import {ShortcutId} from "~/src/shortcuts/types";
 
 type Props = {
   title?: string
@@ -40,13 +46,15 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
   const user = useCurrentUser()
   const router = useRouter()
   const navigateToLogin = navigateToLoginRouter()
-  const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
-  const isActive = (href: any) => {
-    return router.pathname === href;
-  };
   // @ts-ignore
   const { setColorScheme } = useMantineColorScheme()
+  const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true })
+  const isActive = (href: any) => router.pathname === href;
+  const toggleColorScheme = () => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
+
+  useHotkeys([[getShortcutKeys(ShortcutId.ToggleDarkTheme), () => toggleColorScheme()]])
+
   const openModal = () => modals.openContextModal({
     modal: GlobalModal.becomePro,
     title: "Become a pro",
@@ -55,15 +63,10 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
     }
   })
 
-  const handleLoginButtonClick = async () => {
-    await navigateToLogin()
-  }
+  const handleLoginButtonClick = async () => await navigateToLogin()
 
   useEffect(() => {
-    const paths = pathNameHidden;
-
-    const isLoginPage = paths.includes(router.pathname)
-    setLoginButtonVisible(!isLoginPage)
+    setLoginButtonVisible(!pathNameHidden.includes(router.pathname))
   }, [router.pathname])
 
   return (
@@ -151,7 +154,7 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
                       pos={"relative"}
                       top={1}
                       className={classes.iconWrapper}
-                      onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                      onClick={() => toggleColorScheme()}
                       variant="default"
                       size="md"
                       aria-label="Toggle color scheme"
@@ -165,23 +168,21 @@ const Layout: BlitzLayout<Props> = ({ title, children }) => {
               </Group>
 
             {!user && isLoginButtonVisible && (
-              <Button bg={"black"} c={"white"} size="sm" variant="light"
-                      style={{ margin: 10, right: 30, top: 10 }}
-                      onClick={handleLoginButtonClick}>
+              <Button
+                  bg={"black"}
+                  c={"white"}
+                  size="sm"
+                  variant="light"
+                  style={{ margin: 10, right: 30, top: 10 }}
+                  onClick={handleLoginButtonClick}
+              >
                 Login
               </Button>
             )}
 
           </Group>
         <AppShell.Main style-={{ alignItems: "center"}}>
-
         <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
           {/* @ts-expect-error Server Component */}

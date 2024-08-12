@@ -2,10 +2,11 @@ import React from "react"
 import { Divider, Stack, Tabs, Text, Title } from "@mantine/core"
 import Layout from "~/src/core/layouts/layout"
 import { BlitzPage } from "@blitzjs/next"
-import { IconMail, IconUserCog } from "@tabler/icons-react"
+import {IconCreditCard, IconGift, IconKey, IconKeyboard, IconMail, IconUserCog} from "@tabler/icons-react"
 import classes from '~/src/styles/Settings.module.css';
 import { ChangePassword } from "~/src/pages/settings/components/change-password"
 import { UserEmailSettings } from "~/src/pages/settings/components/user-email-settings"
+import {Shortcuts} from "~/src/pages/settings/components/shortcuts";
 
 export const Settings = () => {
   // @ts-ignore
@@ -21,7 +22,9 @@ export const Settings = () => {
           <Tabs.List>
             <Tabs.Tab value="account" leftSection={<IconUserCog size={"0.8rem"}/>}>Account</Tabs.Tab>
             <Tabs.Tab value="notifications" leftSection={<IconMail size={"0.8rem"}/>}>Notifications</Tabs.Tab>
-
+            <Tabs.Tab value="billing" leftSection={<IconCreditCard size={"0.8rem"}/>}>Billing</Tabs.Tab>
+            <Tabs.Tab value="invitation" leftSection={<IconGift size={"0.8rem"}/>}>Invites</Tabs.Tab>
+            <Tabs.Tab value="shortcuts" leftSection={<IconKeyboard size={"0.8rem"}/>}>Shortcuts</Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="account">
@@ -30,7 +33,15 @@ export const Settings = () => {
           <Tabs.Panel value="notifications">
             <UserEmailSettings/>
           </Tabs.Panel>
-
+          <Tabs.Panel value="billing">
+            "Billing View"
+          </Tabs.Panel>
+          <Tabs.Panel value="invitation">
+            "Invites View"
+          </Tabs.Panel>
+          <Tabs.Panel value="shortcuts">
+            <Shortcuts />
+          </Tabs.Panel>
         </Tabs>
       </Stack>
     </>

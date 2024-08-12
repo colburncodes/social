@@ -10,8 +10,6 @@ export const generateUnsubscribeLink = async ({ userId, userEmail }) => {
     expiryHours: 24,
     deleteExisting: false
   })
-
-  let unsubscribeLink = `${URL_ORIGIN}/unsubscribe?token=${token}`;
-
+  let unsubscribeLink: string = `${URL_ORIGIN}/unsubscribe?token=${token}`;
   return unsubscribeLink;
 }

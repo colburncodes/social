@@ -24,7 +24,7 @@ export const getAvatarFallbackName = (name?: string | null) => {
   return `${first ? first[0] : ""}${second ? second[0] : ""}`;
 }
 
-export const storePrismaJson = (json) => {
+export const storePrismaJson = (json: object) => {
   return JSON.parse(JSON.stringify(json)) as Prisma.JsonObject;
 };
 
@@ -40,7 +40,7 @@ export const openUrlInNewTab = async (url: any) => {
 }
 
 // Format Blog Date in ContentLayer
-export function formatDate(dateString) {
+export function formatDate(dateString: string) {
   const date = new Date(dateString);
 
   const months = ["January", "February", "March", "April", "May", "June",
