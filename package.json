@@ -56,7 +56,7 @@
     "date-fns": "^2.30.0",
     "eslint-config-next": "^14.0.3",
     "lodash": "^4.17.21",
-    "next": "^14.2.3",
+    "next": "^14.2.10",
     "next-contentlayer": "^0.3.4",
     "nodemailer": "^6.9.13",
     "passport-github2": "^0.1.12",
