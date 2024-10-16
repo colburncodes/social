@@ -107,5 +107,8 @@
     "vite-tsconfig-paths": "^3.6.0",
     "vitest": "^2.0.2"
   },
+  "engines": {
+    "node": ">20.0.0"
+  },
   "private": true
 }
